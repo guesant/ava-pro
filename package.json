@@ -41,7 +41,8 @@
     "normalize-url": "^7.0.1",
     "ruty": "^1.2.3",
     "use-context-selector": "^1.3.7",
-    "webextension-polyfill": "^0.8.0"
+    "webextension-polyfill": "^0.8.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@types/loadable__component": "^5.13.4",

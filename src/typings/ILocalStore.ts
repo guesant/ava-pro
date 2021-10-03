@@ -1,1 +1,5 @@
-export type ILocalStore = {};
+import { ISettings } from "./ISettings";
+
+export type ILocalStore = {
+  settings: ISettings;
+};
