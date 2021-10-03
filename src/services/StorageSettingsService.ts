@@ -1,12 +1,23 @@
 import * as yup from "yup";
 import { ISettings } from "../typings/ISettings";
+import { CoursesOrderBy } from "../typings/ISettings";
 import StorageService from "./StorageService";
 import produce from "immer";
 
 class StorageSettingsService {
   settingsSchema = yup
     .object()
-    .shape({})
+    .shape({
+      courses: yup
+        .object()
+        .shape({
+          orderBy: yup
+            .mixed()
+            .oneOf([CoursesOrderBy.NAME, CoursesOrderBy.LAST_VISIT])
+            .default(CoursesOrderBy.NAME),
+        })
+        .default(() => ({})),
+    })
     .default(() => ({})) as yup.ObjectSchema<any, any>;
 
   get data() {
