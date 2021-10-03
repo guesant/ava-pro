@@ -8,7 +8,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.mozilla.org/*"],
+      "matches": ["<all_urls>"],
       "js": ["browser-polyfill.min.js", "content_script.js"]
     }
   ],
@@ -19,5 +19,5 @@
     "default_popup": "browserAction/index.html",
     "default_title": "improved-moodle"
   },
-  "permissions": []
+  "permissions": ["storage", "<all_urls>"]
 }

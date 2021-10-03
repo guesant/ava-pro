@@ -19,9 +19,10 @@ const argv = yargs(hideBin(process.argv)).argv;
 const options = {
   isWatchMode: argv.watch,
 
-  isProduction: argv.mode
-    ? argv.mode === "production"
-    : process.env.NODE_ENV === "production",
+  isProduction:
+    argv.mode !== undefined
+      ? argv.mode === "production"
+      : process.env.NODE_ENV === "production",
 
   sourcemap: argv.sourcemap === true,
 };
@@ -29,17 +30,18 @@ const options = {
 function main() {
   options.isProduction && console.log(`[info] production mode enabled.`);
   options.isWatchMode && console.log(`[info] watch mode enabled.`);
+  options.sourcemap && console.log(`[info] sourcemaps enabled.`);
 
   const sharedOptions = {
     bundle: true,
     watch: options.isWatchMode,
     minify: options.isProduction,
     sourcemap: options.sourcemap,
+    incremental: options.isWatchMode,
   };
 
   esbuild.build({
     ...sharedOptions,
-    banner: {},
     entryPoints: [`${SRC_SCRIPTS}/content_script/index.ts`],
     outfile: `${DIST_EXT}/content_script.js`,
   });
@@ -49,10 +51,21 @@ function main() {
   for (const script of htmlScripts) {
     esbuild.build({
       ...sharedOptions,
-      plugins: [postCssPlugin({ modules: true })],
+
+      ...(sharedOptions.watch
+        ? {
+            outfile: `${DIST_EXT}/${script}/script.js`,
+          }
+        : {
+            format: "esm",
+            splitting: true,
+            entryNames: `[dir]/script`,
+            outdir: `${DIST_EXT}/${script}`,
+          }),
+
       inject: [`${SRC}/react-shim.ts`],
+      plugins: [postCssPlugin({ modules: true })],
       entryPoints: [`${SRC_SCRIPTS}/${script}/index.tsx`],
-      outfile: `${DIST_EXT}/${script}/script.js`,
     });
   }
 }
