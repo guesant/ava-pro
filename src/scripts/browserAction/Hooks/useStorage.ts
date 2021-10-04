@@ -1,32 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useQuery } from "react-query";
 
 export const useStorage = <T>(
+  keys: string[],
   extractData: () => T | Promise<T>,
   defaultValue: T
 ) => {
-  const [isFetchingData, setIsFetchingData] = useState(false);
-  const [data, setData] = useState(defaultValue);
-
-  const handleStorageChange = useCallback(async () => {
-    setIsFetchingData(true);
-
-    try {
-      const data = await Promise.resolve(extractData());
-      setData(data);
-    } catch (error) {} // eslint-disable-line no-empty
-
-    setIsFetchingData(false);
-  }, [extractData]);
+  const { data, refetch, ...rest } = useQuery(keys, extractData);
 
   useEffect(() => {
-    handleStorageChange();
-
-    browser.storage.onChanged.addListener(handleStorageChange);
-
+    browser.storage.onChanged.addListener(refetch);
     return () => {
-      browser.storage.onChanged.removeListener(handleStorageChange);
+      browser.storage.onChanged.removeListener(refetch);
     };
-  }, [handleStorageChange]);
+  }, [refetch]);
 
-  return { data, isFetchingData };
+  return { data: data || defaultValue, ...rest };
 };
