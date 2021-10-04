@@ -1,1 +1,5 @@
-console.log(`hello from src/scripts/content_script/index.ts!`);
+import { ContentScriptService } from "./ContentScriptService";
+
+const app = new ContentScriptService();
+
+app.start();
