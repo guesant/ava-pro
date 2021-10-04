@@ -22,7 +22,7 @@ class StorageSettingsService {
 
   get data() {
     return StorageService.getItem("settings", {} as ISettings).then(
-      (data) => this.settingsSchema.cast(data ?? {}) as ISettings
+      (data) => this.settingsSchema.cast({ ...data }) as ISettings
     );
   }
 

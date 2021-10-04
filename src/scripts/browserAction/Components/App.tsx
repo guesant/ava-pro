@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import classes from "./App.module.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { SettingsContextProvider } from "../Hooks/SettingsContext";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
@@ -10,7 +11,9 @@ const queryClient = new QueryClient({
 
 const AppProvider: React.FC = ({ children }) => (
   <>
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <SettingsContextProvider>{children}</SettingsContextProvider>
+    </QueryClientProvider>
   </>
 );
 
