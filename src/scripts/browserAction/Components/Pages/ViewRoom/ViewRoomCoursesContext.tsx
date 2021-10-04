@@ -17,6 +17,9 @@ const useRoomCourses = () => {
   return courses;
 };
 
+const sortByPinState = (a: IRoomCourse, b: IRoomCourse) =>
+  Number(Boolean(b.meta?.pinned)) - Number(Boolean(a.meta?.pinned));
+
 export const ViewRoomCoursesContextProvider: React.FC = ({ children }) => {
   const roomCourses = useRoomCourses();
 
@@ -29,7 +32,7 @@ export const ViewRoomCoursesContextProvider: React.FC = ({ children }) => {
     }) => orderBy
   );
 
-  const sortFn = useCallback(
+  const sortByOrderFn = useCallback(
     (a: IRoomCourse, b: IRoomCourse) => {
       switch (orderBy) {
         case CoursesOrderBy.LAST_VISIT: {
@@ -44,8 +47,8 @@ export const ViewRoomCoursesContextProvider: React.FC = ({ children }) => {
   );
 
   const courses = useMemo(
-    () => Array.from(roomCourses).sort(sortFn),
-    [sortFn, roomCourses]
+    () => Array.from(roomCourses).sort(sortByOrderFn).sort(sortByPinState),
+    [roomCourses, sortByOrderFn]
   );
 
   return (

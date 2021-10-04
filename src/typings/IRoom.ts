@@ -1,4 +1,6 @@
-export type IRoomCourseMeta = {};
+export type IRoomCourseMeta = {
+  pinned?: boolean;
+};
 
 export type IRoomCourse<T = IRoomCourseMeta> = {
   meta?: T;

@@ -52,7 +52,7 @@ class StorageRoomsService {
   updateOne = async (roomUrl: string, callback: (room: IRoom) => void) => {
     await this.updateMany(async (rooms) => {
       const roomIdx = await this.getMatchedIndex(roomUrl, rooms);
-      callback(rooms[roomIdx]);
+      await Promise.resolve(callback(rooms[roomIdx]));
     });
   };
 
@@ -62,9 +62,7 @@ class StorageRoomsService {
     ) => void | IRoom[] | Promise<IRoom[]> | Promise<void>
   ) => {
     const rooms = await this.getAll();
-
     const updatedRooms = await Promise.resolve(produce(rooms, callback as any));
-
     await StorageService.setData({ rooms: updatedRooms });
   };
 
@@ -73,24 +71,35 @@ class StorageRoomsService {
     lastVisitAt = Date.now()
   ) => {
     const courseId = MoodleRoutesService.getCourseId(courseUrl);
-
     if (!courseId) return;
 
     await this.updateOne(courseUrl, (room) => {
-      const idx = fallbackToLength(
+      const courseIdx = fallbackToLength(
         room.coursesCache.findIndex((i) => i.url === courseUrl),
         room.coursesCache.length
       );
 
       const cache = {
         ...{ courseId: courseId, url: courseUrl, name: courseUrl },
-        ...room.coursesCache[idx],
+        ...room.coursesCache[courseIdx],
       };
 
-      room.coursesCache[idx] = {
+      room.coursesCache[courseIdx] = {
         ...cache,
         lastVisitAt,
       };
+    });
+  };
+
+  updateCourse = async (
+    courseUrl: string,
+    callback: (course: IRoomCourse) => void
+  ) => {
+    await this.updateOne(courseUrl, async (room) => {
+      const courseIdx = room.coursesCache.findIndex((i) => i.url === courseUrl);
+      room.coursesCache[courseIdx] = await Promise.resolve(
+        produce(room.coursesCache[courseIdx], callback)
+      );
     });
   };
 

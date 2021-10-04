@@ -32,9 +32,10 @@ const ViewRoom = () => {
     <div className="page">
       <ViewRoomHeader title={room.name} />
 
-      <Tabs value={currentTabIndex} onChange={handleTabChange}></Tabs>
+      <Tabs value={currentTabIndex} onChange={handleTabChange}>
+        <Tab label="Cursos" />
+      </Tabs>
 
-      <Tab label="Cursos" />
       <Divider />
 
       <div className="pageContent">
