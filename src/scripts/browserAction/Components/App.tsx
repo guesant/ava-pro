@@ -1,10 +1,19 @@
+import loadable from "@loadable/component";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Fragment } from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import classes from "./App.module.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import {
+  HashRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import { RoomsContextProvider } from "../Hooks/RoomsContext";
 import { SettingsContextProvider } from "../Hooks/SettingsContext";
+import classes from "./App.module.css";
+import { routes } from "./Routes";
+
+const ListRooms = loadable(() => import("./Pages/ListRooms/ListRooms"));
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
@@ -28,7 +37,13 @@ const App = () => (
         <div className={classes.content}>
           <Router>
             <Switch>
-              <Route path="/"></Route>
+              <Route path={routes.listRooms()}>
+                <ListRooms />
+              </Route>
+
+              <Route path="/">
+                <Redirect to={routes.listRooms()} />
+              </Route>
             </Switch>
           </Router>
         </div>
