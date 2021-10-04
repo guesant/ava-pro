@@ -1,19 +1,24 @@
 /* eslint-disable react/prop-types */
 import Divider from "@mui/material/Divider";
+import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { useState } from "react";
 import { useContextSelector } from "use-context-selector";
 import TabPanel from "../../TabPanel/TabPanel";
 import { ViewRoomContext, ViewRoomContextProvider } from "./ViewRoomContext";
+import { ViewRoomCourses } from "./ViewRoomCourses";
+import { ViewRoomCoursesContextProvider } from "./ViewRoomCoursesContext";
 import ViewRoomFallback from "./ViewRoomFallback";
 import ViewRoomHeader from "./ViewRoomHeader";
 
-enum ViewRoomTabs {}
+enum ViewRoomTabs {
+  Cursos,
+}
 
 const ViewRoom = () => {
   const room = useContextSelector(ViewRoomContext, ({ room }) => room);
 
-  const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const [currentTabIndex, setCurrentTabIndex] = useState(ViewRoomTabs.Cursos);
 
   const handleTabChange = (_event: any, newValue: number) => {
     setCurrentTabIndex(newValue);
@@ -29,9 +34,14 @@ const ViewRoom = () => {
 
       <Tabs value={currentTabIndex} onChange={handleTabChange}></Tabs>
 
+      <Tab label="Cursos" />
       <Divider />
 
-      <div className="pageContent"></div>
+      <div className="pageContent">
+        <TabPanel value={currentTabIndex} index={ViewRoomTabs.Cursos}>
+          <ViewRoomCourses />
+        </TabPanel>
+      </div>
     </div>
   );
 };
@@ -39,7 +49,9 @@ const ViewRoom = () => {
 export default function ViewRoomContainer() {
   return (
     <ViewRoomContextProvider>
-      <ViewRoom />
+      <ViewRoomCoursesContextProvider>
+        <ViewRoom />
+      </ViewRoomCoursesContextProvider>
     </ViewRoomContextProvider>
   );
 }
