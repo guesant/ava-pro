@@ -13,6 +13,7 @@ import { SettingsContextProvider } from "../Hooks/SettingsContext";
 import classes from "./App.module.css";
 import { routes } from "./Routes";
 
+const AddRoom = loadable(() => import("./Pages/AddRoom/AddRoom"));
 const ListRooms = loadable(() => import("./Pages/ListRooms/ListRooms"));
 
 const queryClient = new QueryClient({
@@ -37,6 +38,10 @@ const App = () => (
         <div className={classes.content}>
           <Router>
             <Switch>
+              <Route path={routes.addRoom()}>
+                <AddRoom />
+              </Route>
+
               <Route path={routes.listRooms()}>
                 <ListRooms />
               </Route>
