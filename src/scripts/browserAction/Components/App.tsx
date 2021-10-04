@@ -14,6 +14,7 @@ import classes from "./App.module.css";
 import { routes } from "./Routes";
 
 const AddRoom = loadable(() => import("./Pages/AddRoom/AddRoom"));
+const ViewRoom = loadable(() => import("./Pages/ViewRoom/ViewRoom"));
 const ListRooms = loadable(() => import("./Pages/ListRooms/ListRooms"));
 
 const queryClient = new QueryClient({
@@ -41,11 +42,12 @@ const App = () => (
               <Route path={routes.addRoom()}>
                 <AddRoom />
               </Route>
-
+              <Route path={routes.viewRoom()}>
+                <ViewRoom />
+              </Route>
               <Route path={routes.listRooms()}>
                 <ListRooms />
               </Route>
-
               <Route path="/">
                 <Redirect to={routes.listRooms()} />
               </Route>
