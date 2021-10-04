@@ -13,3 +13,21 @@ img {
   display: block;
   max-width: 100%;
 }
+
+:global(.page) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+:global(.pageSpacing) {
+  padding: 1rem;
+}
+
+:global(.pageContent) {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+}
