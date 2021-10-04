@@ -3,9 +3,9 @@ import IconButton from "@mui/material/IconButton";
 import { useCallback } from "react";
 import { useContextSelector } from "use-context-selector";
 import StorageRoomsService from "../../../../../services/StorageRoomsService";
-import { ViewRoomContext } from "./ViewRoomContext";
+import { ViewRoomContext } from "../ViewRoom/ViewRoomContext";
 
-const ViewRoomHeaderRefreshButton = () => {
+const ViewRoomDashboardHeaderRefreshButton = () => {
   const url = useContextSelector(ViewRoomContext, ({ room }) => room?.url);
 
   const handleClick = useCallback(
@@ -20,4 +20,4 @@ const ViewRoomHeaderRefreshButton = () => {
   );
 };
 
-export default ViewRoomHeaderRefreshButton;
+export default ViewRoomDashboardHeaderRefreshButton;

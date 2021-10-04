@@ -1,17 +1,17 @@
 import { useContextSelector } from "use-context-selector";
-import ViewRoomHeader from "./ViewRoomHeader";
+import ViewRoomDashboardHeader from "../ViewRoomDashboard/ViewRoomDashboardHeader";
 import { RoomsContext } from "../../../Hooks/RoomsContext";
 
 export const ViewRoomFallbackLoading = () => (
   <div className="page">
-    <ViewRoomHeader title="Sala" />
+    <ViewRoomDashboardHeader title="Sala" />
     <div className="pageSpacing">Carregando..</div>
   </div>
 );
 
 export const ViewRoomFallbackNotFound = () => (
   <div className="page">
-    <ViewRoomHeader title="Sala" />
+    <ViewRoomDashboardHeader title="Sala" />
     <div className="pageSpacing">Ambiente não encontrado.</div>
   </div>
 );

@@ -5,7 +5,7 @@ import React from "react";
 import classes from "./Header.module.css";
 
 type IHeaderProps = {
-  title: string;
+  title?: string;
   endContent?: React.ReactNode;
   startContent?: React.ReactNode;
 };
@@ -19,9 +19,13 @@ const Header: React.FC<IHeaderProps> = ({
     <AppBar position="static">
       <Toolbar variant="dense" classes={{ gutters: classes.gutters }}>
         {startContent}
-        <Typography noWrap variant="h6" className={classes.title}>
-          {title}
-        </Typography>
+
+        {title && title.length > 0 && (
+          <Typography noWrap variant="h6" className={classes.title}>
+            {title}
+          </Typography>
+        )}
+
         {endContent}
       </Toolbar>
     </AppBar>
