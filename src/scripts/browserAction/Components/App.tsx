@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import classes from "./App.module.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { RoomsContextProvider } from "../Hooks/RoomsContext";
 import { SettingsContextProvider } from "../Hooks/SettingsContext";
 
 const queryClient = new QueryClient({
@@ -12,7 +13,9 @@ const queryClient = new QueryClient({
 const AppProvider: React.FC = ({ children }) => (
   <>
     <QueryClientProvider client={queryClient}>
-      <SettingsContextProvider>{children}</SettingsContextProvider>
+      <SettingsContextProvider>
+        <RoomsContextProvider>{children}</RoomsContextProvider>
+      </SettingsContextProvider>
     </QueryClientProvider>
   </>
 );
