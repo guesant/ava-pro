@@ -5,6 +5,10 @@ import { routes } from "../../Routes";
 import { ViewRoomContextProvider } from "./ViewRoomContext";
 import { ViewRoomCoursesContextProvider } from "./ViewRoomCoursesContext";
 
+const ViewRoomSearchCourses = loadable(
+  () => import("../ViewRoomSearch/ViewRoomSearch")
+);
+
 const ViewRoomDashboard = loadable(
   () => import("../ViewRoomDashboard/ViewRoomDashboard")
 );
@@ -15,6 +19,9 @@ const ViewRoom = () => (
       <Switch>
         <Route path={routes.viewRoom()} exact>
           <ViewRoomDashboard />
+        </Route>
+        <Route path={routes.viewRoomSearch()} exact>
+          <ViewRoomSearchCourses />
         </Route>
       </Switch>
     </ViewRoomCoursesContextProvider>
