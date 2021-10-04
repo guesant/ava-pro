@@ -11,6 +11,7 @@ import {
 import { RoomsContextProvider } from "../Hooks/RoomsContext";
 import { SettingsContextProvider } from "../Hooks/SettingsContext";
 import classes from "./App.module.css";
+import AppServicesProvider from "./AppServicesProvider";
 import { routes } from "./Routes";
 
 const AddRoom = loadable(() => import("./Pages/AddRoom/AddRoom"));
@@ -33,24 +34,26 @@ const AppProvider: React.FC = ({ children }) => (
 
 const App = () => (
   <Fragment>
+    <CssBaseline />
     <div className={classes.app}>
       <AppProvider>
-        <CssBaseline />
         <div className={classes.content}>
           <Router>
             <Switch>
-              <Route path={routes.addRoom()}>
-                <AddRoom />
-              </Route>
-              <Route path={routes.viewRoom()}>
-                <ViewRoom />
-              </Route>
-              <Route path={routes.listRooms()}>
-                <ListRooms />
-              </Route>
-              <Route path="/">
-                <Redirect to={routes.listRooms()} />
-              </Route>
+              <AppServicesProvider>
+                <Route path={routes.addRoom()}>
+                  <AddRoom />
+                </Route>
+                <Route path={routes.viewRoom()}>
+                  <ViewRoom />
+                </Route>
+                <Route path={routes.listRooms()} exact>
+                  <ListRooms />
+                </Route>
+                <Route path="/">
+                  <Redirect to={routes.listRooms()} />
+                </Route>
+              </AppServicesProvider>
             </Switch>
           </Router>
         </div>

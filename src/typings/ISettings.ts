@@ -4,6 +4,7 @@ export enum CoursesOrderBy {
 }
 
 export type ISettings = {
+  selectedRoom: string | null;
   courses: {
     orderBy: CoursesOrderBy;
   };

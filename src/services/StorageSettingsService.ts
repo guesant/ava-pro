@@ -8,6 +8,7 @@ class StorageSettingsService {
   settingsSchema = yup
     .object()
     .shape({
+      selectedRoom: yup.string().nullable().default(null),
       courses: yup
         .object()
         .shape({
