@@ -13,7 +13,7 @@
     "dev": "concurrently -n assets,esbuild \"yarn:dev:assets\" \"yarn:dev:ext\"",
     "dev:assets": "gulp watchAssets",
     "dev:ext": "./scripts/build.js --watch",
-    "build": "NODE_ENV=production npm run clear; yarn build:assets; yarn build:ext",
+    "build": "NODE_ENV=production yarn clear; yarn build:assets; yarn build:ext",
     "build:ext": "./scripts/build.js",
     "build:assets": "gulp assets",
     "ext:build": "web-ext build",
