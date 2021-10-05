@@ -4,10 +4,11 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import ListSubheader from "@mui/material/ListSubheader";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import Typography from "@mui/material/Typography";
 import clsx from "clsx";
-import { Fragment, useCallback } from "react";
+import { Fragment, useCallback, useMemo } from "react";
 import { useContextSelector } from "use-context-selector";
 import ExtensionService from "../../../../../services/ExtensionService";
 import StorageRoomsService from "../../../../../services/StorageRoomsService";
@@ -56,19 +57,40 @@ const ViewRoomCoursesItem: React.FC<{ course: IRoomCourse }> = ({ course }) => {
   );
 };
 
-export const ViewRoomCourses = () => {
+const ViewRoomCourses = () => {
   const courses = useContextSelector(
     ViewRoomCoursesContext,
     ({ courses }) => courses
   );
 
+  const pinnedCourses = useMemo(
+    () => courses.filter((i) => i.meta?.pinned),
+    [courses]
+  );
+  const notPinnedCourses = useMemo(
+    () => courses.filter((i) => !i.meta?.pinned),
+    [courses]
+  );
+
   return (
     <div>
       <List>
-        {courses.map((course) => (
+        {pinnedCourses.length > 0 && <ListSubheader>Fixados</ListSubheader>}
+
+        {pinnedCourses.map((course) => (
+          <ViewRoomCoursesItem course={course} key={course.courseId} />
+        ))}
+
+        {pinnedCourses.length > 0 && notPinnedCourses.length > 0 && (
+          <ListSubheader>Soltos</ListSubheader>
+        )}
+
+        {notPinnedCourses.map((course) => (
           <ViewRoomCoursesItem course={course} key={course.courseId} />
         ))}
       </List>
     </div>
   );
 };
+
+export default ViewRoomCourses;

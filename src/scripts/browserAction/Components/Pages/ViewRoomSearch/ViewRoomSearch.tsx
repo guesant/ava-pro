@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContextSelector } from "use-context-selector";
 import { ViewRoomContext } from "../ViewRoom/ViewRoomContext";
-import { ViewRoomCourses } from "../ViewRoom/ViewRoomCourses";
+import ViewRoomCourses from "../ViewRoom/ViewRoomCourses";
 import ViewRoomFallback from "../ViewRoom/ViewRoomFallback";
 import ViewRoomSearchHeader from "./ViewRoomSearchHeader";
 
