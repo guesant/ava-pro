@@ -25,7 +25,7 @@ export const useHandleRoomClick = () => {
         history.push(routes.viewRoom({ id: encodeURIComponent(roomUrl) }));
       }
     },
-    [history]
+    [history, selectedRoom]
   );
 
   return handleRoomClick;

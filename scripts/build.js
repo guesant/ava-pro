@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const esbuild = require("esbuild");
+const { execSync } = require("child_process");
 const {
   default: postCssPlugin,
 } = require("esbuild-plugin-postcss2/dist/index");
@@ -10,9 +11,21 @@ const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 
 const SRC = "src";
+const SRC_SCRIPTS = `${SRC}/scripts`;
+
 const DIST = "dist";
 const DIST_EXT = `${DIST}/ext`;
-const SRC_SCRIPTS = `${SRC}/scripts`;
+
+const getVersionFromGit = () => {
+  try {
+    return (
+      "git#" +
+      execSync('git --no-pager log --format="%h" -n 1').toString().trim()
+    );
+  } catch (error) {
+    return "unknown";
+  }
+};
 
 const argv = yargs(hideBin(process.argv)).argv;
 
@@ -25,6 +38,9 @@ const options = {
       : process.env.NODE_ENV === "production",
 
   sourcemap: argv.sourcemap === true,
+
+  buildVersion:
+    argv.buildVersion || process.env.EXT_VERSION || getVersionFromGit(),
 };
 
 function main() {
@@ -38,6 +54,9 @@ function main() {
     minify: options.isProduction,
     sourcemap: options.sourcemap,
     incremental: options.isWatchMode,
+    define: {
+      ["process.env.EXT_VERSION"]: `"${options.buildVersion}"`,
+    },
   };
 
   esbuild.build({

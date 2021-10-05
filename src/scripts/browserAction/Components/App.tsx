@@ -17,6 +17,7 @@ import { routes } from "./Routes";
 const AddRoom = loadable(() => import("./Pages/AddRoom/AddRoom"));
 const ViewRoom = loadable(() => import("./Pages/ViewRoom/ViewRoom"));
 const ListRooms = loadable(() => import("./Pages/ListRooms/ListRooms"));
+const Settings = loadable(() => import("./Pages/Settings/Settings"));
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
@@ -49,6 +50,9 @@ const App = () => (
                 </Route>
                 <Route path={routes.listRooms()} exact>
                   <ListRooms />
+                </Route>
+                <Route path={routes.settings()}>
+                  <Settings />
                 </Route>
                 <Route path="/">
                   <Redirect to={routes.listRooms()} />
