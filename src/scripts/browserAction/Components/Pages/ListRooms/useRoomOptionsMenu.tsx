@@ -30,7 +30,7 @@ export const useRoomOptionsMenu = () => {
           dense
           onClick={() => {
             if (!menuData) return;
-            StorageRoomsService.removeOne(menuData.url);
+            StorageRoomsService.remove(menuData.url);
             handleClose();
           }}
         >

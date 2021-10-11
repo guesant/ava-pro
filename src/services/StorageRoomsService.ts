@@ -7,15 +7,15 @@ import StorageService from "./StorageService";
 import URLService from "./URLService";
 
 type IHandleFetchRoomCoursesOptions = { keepUnknownCourses?: boolean };
+
 class StorageRoomsService {
-  isRoomInStorage = async (url: string) =>
-    (await this.getOneByUrl(url)) !== null;
+  isInStorage = async (url: string) => (await this.find(url)) !== null;
 
-  getAll = () => StorageService.getItem("rooms", [] as IRoom[]);
+  list = () => StorageService.getItem("rooms", [] as IRoom[]);
 
-  getOneByUrl = async (
+  find = async (
     roomUrl: string,
-    incomingRooms: IRoom[] | Promise<IRoom[]> = this.getAll()
+    incomingRooms: IRoom[] | Promise<IRoom[]> = this.list()
   ) => {
     const rooms = await Promise.resolve(incomingRooms);
     const normalizedUrl = URLService.normalize(roomUrl);
@@ -26,9 +26,9 @@ class StorageRoomsService {
     );
   };
 
-  getMatchedIndex = async (
+  findIndex = async (
     roomUrl: string,
-    incomingRooms: IRoom[] | Promise<IRoom[]> = this.getAll()
+    incomingRooms: IRoom[] | Promise<IRoom[]> = this.list()
   ) => {
     const rooms = await Promise.resolve(incomingRooms);
     const normalizedRoomUrl = URLService.normalize(roomUrl);
@@ -41,17 +41,20 @@ class StorageRoomsService {
   };
 
   add = async (data: Omit<IRoom, "coursesCache">) => {
-    const room = { coursesCache: [], ...data };
+    const room = { coursesCache: [], ...data } as IRoom;
     await this.updateMany((rooms) => ([] as IRoom[]).concat(rooms, room));
     return room;
   };
 
-  removeOne = (url: string) =>
+  remove = (url: string) =>
     this.updateMany((rooms) => rooms.filter((i) => i.url !== url));
 
-  updateOne = async (roomUrl: string, callback: (room: IRoom) => void) => {
+  update = async (
+    roomUrl: string,
+    callback: (room: IRoom) => void | Promise<void>
+  ) => {
     await this.updateMany(async (rooms) => {
-      const roomIdx = await this.getMatchedIndex(roomUrl, rooms);
+      const roomIdx = await this.findIndex(roomUrl, rooms);
       await Promise.resolve(callback(rooms[roomIdx]));
     });
   };
@@ -61,7 +64,7 @@ class StorageRoomsService {
       rooms: IRoom[]
     ) => void | IRoom[] | Promise<IRoom[]> | Promise<void>
   ) => {
-    const rooms = await this.getAll();
+    const rooms = await this.list();
     const updatedRooms = await Promise.resolve(produce(rooms, callback as any));
     await StorageService.setData({ rooms: updatedRooms });
   };
@@ -73,7 +76,7 @@ class StorageRoomsService {
     const courseId = MoodleRoutesService.getCourseId(courseUrl);
     if (!courseId) return;
 
-    await this.updateOne(courseUrl, (room) => {
+    await this.update(courseUrl, (room) => {
       const courseIdx = fallbackToLength(
         room.coursesCache.findIndex((i) => i.url === courseUrl),
         room.coursesCache.length
@@ -95,10 +98,11 @@ class StorageRoomsService {
     courseUrl: string,
     callback: (course: IRoomCourse) => void
   ) => {
-    await this.updateOne(courseUrl, async (room) => {
+    await this.update(courseUrl, async (room) => {
       const courseIdx = room.coursesCache.findIndex((i) => i.url === courseUrl);
-      room.coursesCache[courseIdx] = await Promise.resolve(
-        produce(room.coursesCache[courseIdx], callback)
+      room.coursesCache[courseIdx] = await produce(
+        room.coursesCache[courseIdx],
+        callback
       );
     });
   };
@@ -109,7 +113,7 @@ class StorageRoomsService {
   ) => {
     const courses = await MoodleService.fetchRoomCourses(url);
 
-    await this.updateOne(url, (draft) => {
+    await this.update(url, (draft) => {
       if (!keepUnknownCourses) {
         draft.coursesCache = draft.coursesCache.filter(
           (course) =>

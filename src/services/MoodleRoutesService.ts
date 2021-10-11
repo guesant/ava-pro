@@ -1,37 +1,62 @@
 import { Ruty } from "ruty";
 import StorageRoomsService from "./StorageRoomsService";
+import { MoodleUrlType } from "./enums/MoodleUrlType";
+import { MoodleRoutesQuery } from "./enums/MoodleRoutesQuery";
 
-export enum MoodleUrlQuery {
-  COURSE_ID = "id",
-}
+type IMoodlePaths = {
+  [key in MoodleUrlType]?: IMoodleRoute;
+};
 
-export enum MoodleUrlType {
-  COURSE,
-}
+type IMoodleRoute = {
+  type: MoodleUrlType;
+  path: string;
+};
+
+const isRouteMatched = (pathname: string, route: IMoodleRoute) =>
+  pathname.startsWith(route.path);
 
 class MoodleRoutesService {
   getCourseId = (url: string) =>
-    new URL(url).searchParams.get(MoodleUrlQuery.COURSE_ID);
+    new URL(url).searchParams.get(MoodleRoutesQuery.COURSE_ID);
 
-  getUrlType = async (url: string) => {
-    if (await this.isCouseUrl(url)) {
-      return MoodleUrlType.COURSE;
-    }
+  paths: IMoodlePaths = {
+    [MoodleUrlType.COURSE]: {
+      type: MoodleUrlType.COURSE,
+      path: "/course/view.php",
+    },
+    [MoodleUrlType.COURSES]: {
+      type: MoodleUrlType.COURSES,
+      path: "/my?myoverviewtab=courses",
+    },
   };
 
-  makeRoutes = (baseUrl: string) => {
+  build = (baseUrl: string) => {
     const { route } = Ruty.configure({ prefix: baseUrl });
 
     const routes = {
-      courses: route("/my?myoverviewtab=courses").build(),
+      course: route(this.paths[MoodleUrlType.COURSE].path).build(),
+      courses: route(this.paths[MoodleUrlType.COURSES].path).build(),
     };
 
     return routes;
   };
 
-  isCouseUrl = async (path: string) => {
-    const isRoom = await StorageRoomsService.isRoomInStorage(path);
-    return isRoom && new URL(path).searchParams.has(MoodleUrlQuery.COURSE_ID);
+  getMatchedRoute = async (path: string) => {
+    const room = await StorageRoomsService.find(path);
+
+    if (room) {
+      const pathname = path.replace(room.url, "");
+      return Object.values(this.paths).find((route: IMoodleRoute) =>
+        isRouteMatched(pathname, route)
+      );
+    }
+
+    return null;
+  };
+
+  getUrlType = async (path: string) => {
+    const route = await this.getMatchedRoute(path);
+    return route?.type ?? MoodleUrlType.INVALID;
   };
 }
 

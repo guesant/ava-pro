@@ -1,8 +1,7 @@
 import normalizeUrl from "normalize-url";
-import MoodleRoutesService, {
-  MoodleUrlType,
-} from "../../services/MoodleRoutesService";
+import MoodleRoutesService from "../../services/MoodleRoutesService";
 import StorageRoomsService from "../../services/StorageRoomsService";
+import { MoodleUrlType } from "../../services/enums/MoodleUrlType";
 
 export class ContentScriptService {
   start = () => {
@@ -10,8 +9,8 @@ export class ContentScriptService {
     window.addEventListener("popstate", this.checkCurrentPage);
   };
 
-  checkCurrentPage = () => {
-    this.checkURL(window.location.href);
+  checkCurrentPage = async () => {
+    await this.checkURL(window.location.href);
   };
 
   checkURL = async (incomingUrl: string) => {

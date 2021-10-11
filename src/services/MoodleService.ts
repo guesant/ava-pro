@@ -8,14 +8,15 @@ import { strcmp } from "../utils/strcmp";
 
 class MoodleService {
   fetchRoomCourses = async (roomUrl: string) => {
-    const coursesUrl = MoodleRoutesService.makeRoutes(
-      normalizeUrl(roomUrl, { removeTrailingSlash: true })
-    ).courses();
+    const normalizedRoomUrl = normalizeUrl(roomUrl, {
+      removeTrailingSlash: true,
+    });
 
-    const data = await fetch(coursesUrl).then((res) => res.text());
+    const data = await fetch(
+      MoodleRoutesService.build(normalizedRoomUrl).courses()
+    ).then((res) => res.text());
 
-    const courses = this.extractCourses(data);
-    return courses;
+    return this.extractCourses(data);
   };
 
   extractCourses = (data: string) => {
