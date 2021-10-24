@@ -4,7 +4,7 @@ import { createContext, useContextSelector } from "use-context-selector";
 import { IRoomCourse } from "../../../../../typings/IRoom";
 import { CoursesOrderBy } from "../../../../../typings/ISettings";
 import { SettingsContext } from "../../../Hooks/SettingsContext";
-import { ViewRoomContext } from "./ViewRoomContext";
+import { ViewRoomContext } from "../ViewRoom/ViewRoomContext";
 
 const useRoomCourses = () => {
   const room = useContextSelector(ViewRoomContext, ({ room }) => room);

@@ -5,19 +5,51 @@ import MoodleRoutesService from "./MoodleRoutesService";
 import MoodleService from "./MoodleService";
 import StorageService from "./StorageService";
 import URLService from "./URLService";
+import * as yup from "yup";
 
 type IHandleFetchRoomCoursesOptions = { keepUnknownCourses?: boolean };
 
 class StorageRoomsService {
+  roomCourseSchema = yup.object().shape({
+    url: yup.string(),
+    name: yup.string(),
+    courseId: yup.string(),
+    lastVisitAt: yup.number(),
+  });
+
+  roomSchema = yup
+    .object()
+    .shape({
+      url: yup.string(),
+      name: yup.string(),
+
+      coursesCache: yup
+        .array()
+        .of(this.roomCourseSchema)
+        .default(() => []),
+
+      credentials: yup
+        .object()
+        .shape({
+          username: yup.string().default(""),
+          password: yup.string().default(""),
+        })
+        .default(() => ({})),
+    })
+    .default(() => ({}));
+
   isInStorage = async (url: string) => (await this.find(url)) !== null;
 
-  list = () => StorageService.getItem("rooms", [] as IRoom[]);
+  list = () =>
+    StorageService.getItem("rooms", [] as IRoom[]).then((rooms) =>
+      rooms.map((room) => this.roomSchema.cast(room) as IRoom)
+    );
 
   find = async (
     roomUrl: string,
     incomingRooms: IRoom[] | Promise<IRoom[]> = this.list()
   ) => {
-    const rooms = await Promise.resolve(incomingRooms);
+    const rooms = await incomingRooms;
     const normalizedUrl = URLService.normalize(roomUrl);
     return (
       rooms.find(({ url }) =>
@@ -30,7 +62,7 @@ class StorageRoomsService {
     roomUrl: string,
     incomingRooms: IRoom[] | Promise<IRoom[]> = this.list()
   ) => {
-    const rooms = await Promise.resolve(incomingRooms);
+    const rooms = await incomingRooms;
     const normalizedRoomUrl = URLService.normalize(roomUrl);
 
     return (
@@ -40,10 +72,11 @@ class StorageRoomsService {
     );
   };
 
-  add = async (data: Omit<IRoom, "coursesCache">) => {
-    const room = { coursesCache: [], ...data } as IRoom;
-    await this.updateMany((rooms) => ([] as IRoom[]).concat(rooms, room));
-    return room;
+  add = async (room: Omit<IRoom, "coursesCache" | "credentials">) => {
+    await this.updateMany((rooms) =>
+      ([] as IRoom[]).concat(rooms, room as IRoom)
+    );
+    return room as IRoom;
   };
 
   remove = (url: string) =>
@@ -75,7 +108,6 @@ class StorageRoomsService {
   ) => {
     const courseId = MoodleRoutesService.getCourseId(courseUrl);
     if (!courseId) return;
-
     await this.update(courseUrl, (room) => {
       const courseIdx = fallbackToLength(
         room.coursesCache.findIndex((i) => i.url === courseUrl),

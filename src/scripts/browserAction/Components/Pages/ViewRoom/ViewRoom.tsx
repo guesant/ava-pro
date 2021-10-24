@@ -3,7 +3,7 @@ import loadable from "@loadable/component";
 import { Route, Switch } from "react-router-dom";
 import { routes } from "../../Routes";
 import { ViewRoomContextProvider } from "./ViewRoomContext";
-import { ViewRoomCoursesContextProvider } from "./ViewRoomCoursesContext";
+import { ViewRoomCoursesContextProvider } from "../ViewRoomCourses/ViewRoomCoursesContext";
 
 const ViewRoomSearchCourses = loadable(
   () => import("../ViewRoomSearch/ViewRoomSearch")
@@ -11,6 +11,10 @@ const ViewRoomSearchCourses = loadable(
 
 const ViewRoomDashboard = loadable(
   () => import("../ViewRoomDashboard/ViewRoomDashboard")
+);
+
+const ViewRoomCredentials = loadable(
+  () => import("../ViewRoomCredentials/ViewRoomCredentials")
 );
 
 const ViewRoom = () => (
@@ -22,6 +26,9 @@ const ViewRoom = () => (
         </Route>
         <Route path={routes.viewRoomSearch()} exact>
           <ViewRoomSearchCourses />
+        </Route>
+        <Route path={routes.viewRoomCredentials()} exact>
+          <ViewRoomCredentials />
         </Route>
       </Switch>
     </ViewRoomCoursesContextProvider>

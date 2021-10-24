@@ -7,6 +7,7 @@ import { useContextSelector } from "use-context-selector";
 import StorageSettingsService from "../../../../../services/StorageSettingsService";
 import { CoursesOrderBy } from "../../../../../typings/ISettings";
 import { SettingsContext } from "../../../Hooks/SettingsContext";
+import classes from "./ViewRoomDashboard.module.css";
 
 const orderByOptions = [
   { value: CoursesOrderBy.NAME, text: "Nome" },
@@ -40,8 +41,8 @@ export const ViewRoomDashboardHeaderOptionsOrderBy: React.FC<{
 
   return (
     <>
-      <ListSubheader>
-        <Typography>Ordernar por:</Typography>
+      <ListSubheader className={classes.listSubheader}>
+        <Typography variant="caption">Ordernar por:</Typography>
       </ListSubheader>
       <MenuList>
         {orderByOptions.map(({ value, text }) => (

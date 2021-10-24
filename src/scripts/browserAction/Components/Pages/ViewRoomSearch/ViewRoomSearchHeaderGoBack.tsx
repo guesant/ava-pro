@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { useHistory, useParams } from "react-router";
 import { useContextSelector } from "use-context-selector";
 import { routes } from "../../Routes";
-import { ViewRoomCoursesContext } from "../ViewRoom/ViewRoomCoursesContext";
+import { ViewRoomCoursesContext } from "../ViewRoomCourses/ViewRoomCoursesContext";
 
 const ViewRoomSearchHeaderGoBack = () => {
   const history = useHistory();

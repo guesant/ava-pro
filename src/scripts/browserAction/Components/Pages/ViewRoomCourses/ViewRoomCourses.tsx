@@ -13,7 +13,7 @@ import { useContextSelector } from "use-context-selector";
 import ExtensionService from "../../../../../services/ExtensionService";
 import StorageRoomsService from "../../../../../services/StorageRoomsService";
 import { IRoomCourse } from "../../../../../typings/IRoom";
-import classes from "./ViewRoom.module.css";
+import classes from "../ViewRoom/ViewRoom.module.css";
 import { ViewRoomCoursesContext } from "./ViewRoomCoursesContext";
 
 const toggleCoursePinState = (courseUrl: string) =>
@@ -67,6 +67,7 @@ const ViewRoomCourses = () => {
     () => courses.filter((i) => i.meta?.pinned),
     [courses]
   );
+
   const notPinnedCourses = useMemo(
     () => courses.filter((i) => !i.meta?.pinned),
     [courses]

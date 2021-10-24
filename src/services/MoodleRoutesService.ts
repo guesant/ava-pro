@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Ruty } from "ruty";
 import StorageRoomsService from "./StorageRoomsService";
 import { MoodleUrlType } from "./enums/MoodleUrlType";
@@ -28,14 +29,21 @@ class MoodleRoutesService {
       type: MoodleUrlType.COURSES,
       path: "/my?myoverviewtab=courses",
     },
+    [MoodleUrlType.LOGIN]: {
+      type: MoodleUrlType.LOGIN,
+      path: "/login/index.php",
+    },
   };
 
   build = (baseUrl: string) => {
     const { route } = Ruty.configure({ prefix: baseUrl });
 
     const routes = {
-      course: route(this.paths[MoodleUrlType.COURSE].path).build(),
-      courses: route(this.paths[MoodleUrlType.COURSES].path).build(),
+      login: route(this.paths[MoodleUrlType.LOGIN]!.path).build(),
+      courses: route(this.paths[MoodleUrlType.COURSES]!.path).build(),
+      course: route(this.paths[MoodleUrlType.COURSE]!.path + "?id").build<{
+        id: string;
+      }>(),
     };
 
     return routes;
@@ -45,7 +53,7 @@ class MoodleRoutesService {
     const room = await StorageRoomsService.find(path);
 
     if (room) {
-      const pathname = path.replace(room.url, "");
+      const pathname = path.replace(room.url, "").replace(/\/$/, "");
       return Object.values(this.paths).find((route: IMoodleRoute) =>
         isRouteMatched(pathname, route)
       );

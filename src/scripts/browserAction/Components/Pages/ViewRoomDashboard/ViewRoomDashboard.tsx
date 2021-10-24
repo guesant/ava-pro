@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useContextSelector } from "use-context-selector";
 import TabPanel from "../../TabPanel/TabPanel";
 import { ViewRoomContext } from "../ViewRoom/ViewRoomContext";
-import ViewRoomCourses from "../ViewRoom/ViewRoomCourses";
-import ViewRoomFallback from "../ViewRoom/ViewRoomFallback";
+import ViewRoomCourses from "../ViewRoomCourses/ViewRoomCourses";
+import ViewRoomFallback from "../ViewRoomFallback/ViewRoomFallback";
 import ViewRoomDashboardHeader from "./ViewRoomDashboardHeader";
 
 enum ViewRoomDashboardTabs {

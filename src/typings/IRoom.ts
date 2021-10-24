@@ -14,4 +14,8 @@ export type IRoom = {
   url: string;
   name: string;
   coursesCache: IRoomCourse[];
+  credentials: {
+    username: string;
+    password: string;
+  };
 };

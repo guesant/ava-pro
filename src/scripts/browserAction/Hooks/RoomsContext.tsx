@@ -1,5 +1,5 @@
 import { createContext } from "use-context-selector";
-import StorageService from "../../../services/StorageService";
+import StorageRoomsService from "../../../services/StorageRoomsService";
 import { IRoom } from "../../../typings/IRoom";
 import { useStorage } from "./useStorage";
 
@@ -16,7 +16,7 @@ export const RoomsContextProvider: React.FC<{ defaultRooms?: IRoom[] }> = ({
 }) => {
   const { data: rooms, isLoading } = useStorage(
     ["storage.rooms"],
-    () => StorageService.getItem("rooms", defaultRooms),
+    StorageRoomsService.list,
     defaultRooms
   );
 

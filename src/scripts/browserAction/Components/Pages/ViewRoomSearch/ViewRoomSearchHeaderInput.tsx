@@ -5,7 +5,7 @@ import InputBase from "@mui/material/InputBase";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useRef } from "react";
 import { useContextSelector } from "use-context-selector";
-import { ViewRoomCoursesContext } from "../ViewRoom/ViewRoomCoursesContext";
+import { ViewRoomCoursesContext } from "../ViewRoomCourses/ViewRoomCoursesContext";
 
 const darkTheme = createTheme({
   palette: {
