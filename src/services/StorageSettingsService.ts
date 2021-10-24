@@ -1,14 +1,20 @@
 import * as yup from "yup";
-import { ISettings } from "../typings/ISettings";
+import {
+  DetectedRoomResponse,
+  IDetectedRoom,
+  ISettings,
+} from "../typings/ISettings";
 import { CoursesOrderBy } from "../typings/ISettings";
 import StorageService from "./StorageService";
 import produce from "immer";
+import StorageRoomsService from "./StorageRoomsService";
 
 class StorageSettingsService {
   settingsSchema = yup
     .object()
     .shape({
       selectedRoom: yup.string().nullable().default(null),
+
       courses: yup
         .object()
         .shape({
@@ -18,6 +24,17 @@ class StorageSettingsService {
             .default(CoursesOrderBy.NAME),
         })
         .default(() => ({})),
+
+      detectedRooms: yup
+        .array()
+        .of(
+          yup.object().shape({
+            url: yup.string(),
+            name: yup.string(),
+            response: yup.number().default(DetectedRoomResponse.NONE),
+          })
+        )
+        .default(() => []),
     })
     .default(() => ({})) as yup.ObjectSchema<any, any>;
 
@@ -32,6 +49,25 @@ class StorageSettingsService {
   updateSettings = async (callback: (settings: ISettings) => void) => {
     const currentSettings = await this.data;
     await this.setData(produce(currentSettings, callback));
+  };
+
+  setSelectedRoomResponse = async (
+    detectedRoomUrl: IDetectedRoom["url"],
+    response: DetectedRoomResponse
+  ) => {
+    await this.updateSettings((settings) => {
+      const settingsDetectedRoom = settings.detectedRooms.find(
+        (i) => i.url === detectedRoomUrl
+      );
+      if (settingsDetectedRoom) {
+        settingsDetectedRoom.response = response;
+      }
+    });
+  };
+
+  handleDetectedRoomAcceptRequest = async ({ url, name }: IDetectedRoom) => {
+    await this.setSelectedRoomResponse(url, DetectedRoomResponse.ACCEPTED);
+    await StorageRoomsService.add({ url, name });
   };
 }
 

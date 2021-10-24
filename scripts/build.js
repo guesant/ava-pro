@@ -59,11 +59,13 @@ function main() {
     },
   };
 
-  esbuild.build({
-    ...sharedOptions,
-    entryPoints: [`${SRC_SCRIPTS}/content_script/index.ts`],
-    outfile: `${DIST_EXT}/content_script.js`,
-  });
+  for (const script of ["content_script", "BackgroundScript"]) {
+    esbuild.build({
+      ...sharedOptions,
+      entryPoints: [`${SRC_SCRIPTS}/${script}/index.ts`],
+      outfile: `${DIST_EXT}/${script}.js`,
+    });
+  }
 
   const htmlScripts = ["browserAction"];
 

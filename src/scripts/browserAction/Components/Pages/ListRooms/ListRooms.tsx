@@ -3,13 +3,19 @@ import Divider from "@mui/material/Divider";
 import ListRoomFooterNote from "./ListRoomFooterNote";
 import ListRoomsHeader from "./ListRoomsHeader";
 
-const ListRoomsList = loadable(() => import("./ListRoomsList"));
+const ListRoomsRegistered = loadable(() => import("./ListRoomsRegistered"));
+const ListRoomsDetectedWithoutResponse = loadable(
+  () => import("./ListRoomsDetectedWithoutResponse")
+);
 
 const ListRooms = () => (
   <div className="page">
     <ListRoomsHeader />
+
     <div className="pageContent">
-      <ListRoomsList />
+      <ListRoomsDetectedWithoutResponse />
+      <Divider />
+      <ListRoomsRegistered />
     </div>
 
     <Divider />

@@ -48,6 +48,8 @@ const AddRoomFormUrl = () => {
 };
 
 const AddRoomForm: React.FC = () => {
+  const isValid = useContextSelector(AddRoomContext, ({ isValid }) => isValid);
+
   const saveRoom = useContextSelector(
     AddRoomContext,
     ({ saveRoom }) => saveRoom
@@ -58,11 +60,14 @@ const AddRoomForm: React.FC = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          saveRoom();
+          isValid && saveRoom();
         }}
       >
         <AddRoomFormName />
         <AddRoomFormUrl />
+        <button type="submit" disabled={!isValid} hidden>
+          Salvar
+        </button>
       </form>
     </div>
   );

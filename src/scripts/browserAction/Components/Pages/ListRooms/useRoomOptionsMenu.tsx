@@ -3,11 +3,12 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import { useCallback, useState } from "react";
 import StorageRoomsService from "../../../../../services/StorageRoomsService";
-import { IMenuData } from "./ListRoomsList";
 
 export type IHandleOpenMenuClick = ReturnType<
   typeof useRoomOptionsMenu
 >["handleOpenMenuClick"];
+
+export type IMenuData = { url: string; anchorEl: Element };
 
 export const useRoomOptionsMenu = () => {
   const [menuData, setMenuData] = useState<IMenuData | null>(null);
@@ -28,9 +29,9 @@ export const useRoomOptionsMenu = () => {
       <MenuList>
         <MenuItem
           dense
-          onClick={() => {
+          onClick={async () => {
             if (!menuData) return;
-            StorageRoomsService.remove(menuData.url);
+            await StorageRoomsService.remove(menuData.url);
             handleClose();
           }}
         >

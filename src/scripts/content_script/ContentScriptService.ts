@@ -3,6 +3,8 @@ import MoodleRoutesService from "../../services/MoodleRoutesService";
 import StorageRoomsService from "../../services/StorageRoomsService";
 import { MoodleUrlType } from "../../services/enums/MoodleUrlType";
 import StorageSettingsService from "../../services/StorageSettingsService";
+import { DetectedRoomResponse, IDetectedRoom } from "../../typings/ISettings";
+import { RuntimeMessageType } from "../BackgroundScript";
 
 export class ContentScriptService {
   start = async () => {
@@ -51,5 +53,56 @@ export class ContentScriptService {
         }
       }
     }
+
+    if (this.isMoodleInstance()) {
+      console.log("it's a moodle instance!");
+
+      let isAlreadyDetected = false;
+
+      const url = normalizeUrl(this.getMoodleInstanceHome());
+      const name = this.getMoodleInstanceName();
+
+      const detectedRoom: IDetectedRoom = {
+        url,
+        name,
+        response: DetectedRoomResponse.NONE,
+      };
+
+      await StorageSettingsService.updateSettings((settings) => {
+        isAlreadyDetected = Boolean(
+          settings.detectedRooms.find((i) => i.url === url)
+        );
+        !isAlreadyDetected && settings.detectedRooms.push(detectedRoom);
+      });
+
+      if (!isAlreadyDetected) {
+        await browser.runtime.sendMessage({
+          type: RuntimeMessageType.NEW_ROOM_DETECTED,
+          payload: detectedRoom,
+        });
+      }
+    }
+  };
+
+  isMoodleInstance = () => {
+    const keywords = document.querySelector('meta[name="keywords"]');
+    return keywords?.attributes
+      .getNamedItem("content")
+      ?.value.split(",")
+      .includes("moodle");
+  };
+
+  getMoodleInstanceHome = (fallback = document.location.href) => {
+    const homeLinkAnchor = document.querySelector(
+      ".homelink a"
+    ) as HTMLAnchorElement | null;
+    return homeLinkAnchor?.href ?? fallback;
+  };
+
+  getMoodleInstanceName = () => {
+    const siteName = document.querySelector(
+      ".site-name"
+    ) as HTMLSpanElement | null;
+    return siteName?.textContent ?? document.title ?? document.location.href;
   };
 }

@@ -1,19 +1,17 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
+import { IRoom } from "../../../../../typings/IRoom";
+import { IHandleOpenMenuClick, useRoomOptionsMenu } from "./useRoomOptionsMenu";
+import { useHandleRoomClick } from "./useHandleRoomClick";
+import { Fragment, useCallback } from "react";
 import ListItem from "@mui/material/ListItem";
-import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import { Fragment, useCallback } from "react";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+import IconButton from "@mui/material/IconButton";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Divider from "@mui/material/Divider";
 import { useContextSelector } from "use-context-selector";
-import { IRoom } from "../../../../../typings/IRoom";
 import { RoomsContext } from "../../../Hooks/RoomsContext";
-import { useHandleRoomClick } from "./useHandleRoomClick";
-import { useRoomOptionsMenu, IHandleOpenMenuClick } from "./useRoomOptionsMenu";
-
-export type IMenuData = { url: string; anchorEl: Element };
+import List from "@mui/material/List";
 
 const ListRoomsItem: React.FC<{
   room: IRoom;
@@ -43,24 +41,26 @@ const ListRoomsItem: React.FC<{
   );
 };
 
-const ListRoomsList = () => {
+const ListRoomsRegistered = () => {
   const { menu, handleOpenMenuClick } = useRoomOptionsMenu();
   const rooms = useContextSelector(RoomsContext, ({ rooms }) => rooms);
 
+  if (rooms.length === 0) {
+    return null;
+  }
+
   return (
-    <div>
-      <List>
-        {rooms.map((room) => (
-          <ListRoomsItem
-            room={room}
-            key={room.url}
-            handleOpenMenuClick={handleOpenMenuClick}
-          />
-        ))}
-        {menu}
-      </List>
-    </div>
+    <List>
+      {rooms.map((room) => (
+        <ListRoomsItem
+          room={room}
+          key={room.url}
+          handleOpenMenuClick={handleOpenMenuClick}
+        />
+      ))}
+      {menu}
+    </List>
   );
 };
 
-export default ListRoomsList;
+export default ListRoomsRegistered;

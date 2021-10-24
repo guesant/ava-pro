@@ -19,5 +19,8 @@
     "default_popup": "browserAction/index.html",
     "default_title": "improved-moodle"
   },
-  "permissions": ["storage", "<all_urls>"]
+  "background": {
+    "scripts": ["BackgroundScript.js"]
+  },
+  "permissions": ["storage", "<all_urls>", "notifications"]
 }
