@@ -1,14 +1,18 @@
 import { createContext, useContextSelector } from "use-context-selector";
-import { useCallback, useEffect, useState, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import StorageRoomsService from "../../../../../services/StorageRoomsService";
 import { ViewRoomContext } from "../ViewRoom/ViewRoomContext";
 
 type IViewRoomCredentialsContext = {
   hasChanges: boolean;
+
   username: string;
   password: string;
-  setUsername: (value: string) => void;
-  setPassword: (value: string) => void;
+  isAutoLoginEnabled: boolean;
+
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  setIsAutoLoginEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 
   saveCredentials: () => void;
 };
@@ -24,12 +28,18 @@ const useCurrentRoomCredentials = () => {
     ViewRoomContext,
     ({ room }) => room!.credentials.username
   );
+
   const password = useContextSelector(
     ViewRoomContext,
     ({ room }) => room!.credentials.password
   );
 
-  return { url, username, password };
+  const isAutoLoginEnabled = useContextSelector(
+    ViewRoomContext,
+    ({ room }) => room!.credentials.isAutoLoginEnabled
+  );
+
+  return { url, username, password, isAutoLoginEnabled };
 };
 
 export const ViewRoomCredentialsContextProvider: React.FC = ({ children }) => {
@@ -37,26 +47,43 @@ export const ViewRoomCredentialsContextProvider: React.FC = ({ children }) => {
     url: roomUrl,
     username: roomUsername,
     password: roomPassword,
+    isAutoLoginEnabled: roomIsAutoLoginEnabled,
   } = useCurrentRoomCredentials();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isAutoLoginEnabled, setIsAutoLoginEnabled] = useState(false);
 
   useEffect(() => setUsername(roomUsername), [roomUsername]);
   useEffect(() => setPassword(roomPassword), [roomPassword]);
+  useEffect(
+    () => setIsAutoLoginEnabled(Boolean(roomIsAutoLoginEnabled)),
+    [roomIsAutoLoginEnabled]
+  );
 
   const saveCredentials = useCallback(() => {
     if (roomUrl) {
       return StorageRoomsService.update(roomUrl, (room) => {
         room.credentials.username = username;
         room.credentials.password = password;
+        room.credentials.isAutoLoginEnabled = isAutoLoginEnabled;
       });
     }
-  }, [roomUrl, username, password]);
+  }, [roomUrl, username, password, isAutoLoginEnabled]);
 
   const hasChanges = useMemo(
-    () => username !== roomUsername || password !== roomPassword,
-    [username, password, roomUsername, roomPassword]
+    () =>
+      username !== roomUsername ||
+      password !== roomPassword ||
+      isAutoLoginEnabled !== roomIsAutoLoginEnabled,
+    [
+      username,
+      password,
+      roomUsername,
+      roomPassword,
+      isAutoLoginEnabled,
+      roomIsAutoLoginEnabled,
+    ]
   );
 
   return (
@@ -69,6 +96,9 @@ export const ViewRoomCredentialsContextProvider: React.FC = ({ children }) => {
           password,
           setPassword,
           saveCredentials,
+
+          isAutoLoginEnabled,
+          setIsAutoLoginEnabled,
         }}
       >
         {children}

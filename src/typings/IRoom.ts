@@ -17,5 +17,6 @@ export type IRoom = {
   credentials: {
     username: string;
     password: string;
+    isAutoLoginEnabled?: boolean;
   };
 };

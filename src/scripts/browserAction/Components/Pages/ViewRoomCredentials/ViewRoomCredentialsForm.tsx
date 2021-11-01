@@ -1,6 +1,12 @@
+import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
+import Checkbox from "@mui/material/Checkbox";
+import Divider from "@mui/material/Divider";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import TextField from "@mui/material/TextField";
 import { useContextSelector } from "use-context-selector";
 import { ViewRoomCredentialsContext } from "./ViewRoomCredentialsContext";
-import TextField from "@mui/material/TextField";
 
 const ViewRoomCredentialsUsername = () => {
   const username = useContextSelector(
@@ -45,6 +51,38 @@ const ViewRoomCredentialsPassword = () => {
   );
 };
 
+const ViewRoomCredentialsAutoLogin = () => {
+  const isAutoLoginEnabled = useContextSelector(
+    ViewRoomCredentialsContext,
+    ({ isAutoLoginEnabled }) => isAutoLoginEnabled
+  );
+
+  const setIsAutoLoginEnabled = useContextSelector(
+    ViewRoomCredentialsContext,
+    ({ setIsAutoLoginEnabled }) => setIsAutoLoginEnabled
+  );
+
+  const handleToggle = () => setIsAutoLoginEnabled(!isAutoLoginEnabled);
+
+  return (
+    <div>
+      <FormGroup>
+        <FormControlLabel
+          control={
+            <Checkbox checked={isAutoLoginEnabled} onChange={handleToggle} />
+          }
+          label="Habilitar o Login Automático"
+        />
+      </FormGroup>
+      {isAutoLoginEnabled && (
+        <Alert severity="warning">
+          Nota: Caso a autenticação falhe, o Login Automático será desabilitado.
+        </Alert>
+      )}
+    </div>
+  );
+};
+
 const ViewRoomCredentialsForm = () => {
   const hasChanges = useContextSelector(
     ViewRoomCredentialsContext,
@@ -65,6 +103,13 @@ const ViewRoomCredentialsForm = () => {
     >
       <ViewRoomCredentialsUsername />
       <ViewRoomCredentialsPassword />
+
+      <Box my={1}>
+        <Divider />
+      </Box>
+
+      <ViewRoomCredentialsAutoLogin />
+
       <button type="submit" disabled={!hasChanges} hidden>
         Salvar
       </button>
