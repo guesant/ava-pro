@@ -25,7 +25,6 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn build
-          yarn ext:build
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
