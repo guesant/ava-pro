@@ -4,7 +4,7 @@ import { getAttributeValue, innerText } from "domutils";
 import { parseDocument } from "htmlparser2";
 import normalizeUrl from "normalize-url";
 import MoodleRoutesService from "./MoodleRoutesService";
-import { strcmp } from "../utils/strcmp";
+import { strcmp } from "../helpers/strcmp";
 
 class MoodleService {
   fetchRoomCourses = async (roomUrl: string) => {
