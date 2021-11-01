@@ -1,6 +1,6 @@
 import produce from "immer";
 import { IRoom, IRoomCourse } from "../typings/IRoom";
-import { fallbackToLength } from "../utils/fallbackToLength";
+import { fallbackToLength } from "../helpers/fallbackToLength";
 import MoodleRoutesService from "./MoodleRoutesService";
 import MoodleService from "./MoodleService";
 import StorageService from "./StorageService";
@@ -33,6 +33,7 @@ class StorageRoomsService {
         .shape({
           username: yup.string().default(""),
           password: yup.string().default(""),
+          isAutoLoginEnabled: yup.boolean().default(true),
         })
         .default(() => ({})),
     })
