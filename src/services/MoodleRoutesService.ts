@@ -27,7 +27,7 @@ class MoodleRoutesService {
     },
     [MoodleUrlType.COURSES]: {
       type: MoodleUrlType.COURSES,
-      path: "/my?myoverviewtab=courses",
+      path: "/my/?myoverviewtab=courses",
     },
     [MoodleUrlType.LOGIN]: {
       type: MoodleUrlType.LOGIN,
