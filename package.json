@@ -10,7 +10,7 @@
     "test": "jest",
     "clear": "rm -rf dist",
     "format": "prettier --write src",
-    "lint": "eslint --fix --ext js,ts,tsx,ts src/",
+    "lint": "tsc --noEmit && eslint --fix --ext js,ts,tsx,ts src/",
     "dev": "concurrently -n assets,esbuild \"yarn:assets:dev\" \"yarn:scripts:dev\"",
     "scripts": "./scripts/build.js",
     "scripts:dev": "./scripts/build.js --watch",
