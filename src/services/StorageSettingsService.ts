@@ -1,10 +1,10 @@
 import * as yup from "yup";
 import {
+  CoursesOrderBy,
   DetectedRoomResponse,
   IDetectedRoom,
   ISettings,
 } from "../typings/ISettings";
-import { CoursesOrderBy } from "../typings/ISettings";
 import StorageService from "./StorageService";
 import produce from "immer";
 import StorageRoomsService from "./StorageRoomsService";
@@ -34,6 +34,14 @@ class StorageSettingsService {
             response: yup.number().default(DetectedRoomResponse.NONE),
           })
         )
+        .transform(function (value: IDetectedRoom[]) {
+          return this.isType(value)
+            ? value.filter(
+                (detectedRoom, idx, arr) =>
+                  arr.findIndex((i) => i.url === detectedRoom.url) === idx
+              )
+            : value;
+        })
         .default(() => []),
     })
     .default(() => ({})) as yup.ObjectSchema<any, any>;
