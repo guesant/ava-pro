@@ -9,7 +9,7 @@
   "scripts": {
     "clear": "rm -rf dist",
     "format": "prettier --write src",
-    "lint": "eslint --fix src/scripts/**/*.{js,ts,tsx,ts}",
+    "lint": "eslint --fix --ext js,ts,tsx,ts src/",
     "dev": "concurrently -n assets,esbuild \"yarn:dev:assets\" \"yarn:dev:ext\"",
     "dev:assets": "gulp watchAssets",
     "dev:ext": "./scripts/build.js --watch",
