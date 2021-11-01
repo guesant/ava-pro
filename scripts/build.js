@@ -59,11 +59,22 @@ function main() {
     },
   };
 
-  for (const script of ["content_script", "BackgroundScript"]) {
+  for (const script of ["content_script"]) {
     esbuild.build({
       ...sharedOptions,
       entryPoints: [`${SRC_SCRIPTS}/${script}/index.ts`],
       outfile: `${DIST_EXT}/${script}.js`,
+    });
+  }
+
+  for (const [script, options = {}] of [
+    ["BackgroundScript", { define: { global: "globalThis" } }],
+  ]) {
+    esbuild.build({
+      ...sharedOptions,
+      entryPoints: [`${SRC}/${script}/index.ts`],
+      outfile: `${DIST_EXT}/${script}.js`,
+      ...options,
     });
   }
 

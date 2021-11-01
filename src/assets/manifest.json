@@ -20,7 +20,7 @@
     "default_title": "improved-moodle"
   },
   "background": {
-    "scripts": ["BackgroundScript.js"]
+    "scripts": ["browser-polyfill.min.js", "BackgroundScript.js"]
   },
   "permissions": ["storage", "<all_urls>", "notifications"]
 }
