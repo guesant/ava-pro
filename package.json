@@ -34,6 +34,7 @@
     "@loadable/component": "^5.15.0",
     "@mui/icons-material": "^5.0.1",
     "@mui/material": "^5.0.2",
+    "axios": "^0.24.0",
     "clsx": "^1.1.1",
     "css-select": "^4.1.3",
     "domutils": "^2.8.0",
