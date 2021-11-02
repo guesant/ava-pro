@@ -1,3 +1,4 @@
+import React from "react";
 import { createContext } from "use-context-selector";
 import StorageRoomsService from "../../../services/StorageRoomsService";
 import { IRoom } from "../../../typings/IRoom";
@@ -10,7 +11,9 @@ type IRoomsContext = {
 
 export const RoomsContext = createContext({} as IRoomsContext);
 
-export const RoomsContextProvider: React.FC<{ defaultRooms?: IRoom[] }> = ({
+type IRoomsContextProviderProps = { defaultRooms?: IRoom[] };
+
+export const RoomsContextProvider: React.FC<IRoomsContextProviderProps> = ({
   children,
   defaultRooms = [],
 }) => {

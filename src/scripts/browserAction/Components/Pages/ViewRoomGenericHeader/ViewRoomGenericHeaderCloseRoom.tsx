@@ -8,7 +8,7 @@ const removeSelectedRoom = () => {
   });
 };
 
-const ViewRoomDashboardHeaderGoBack = () => (
+const ViewRoomGenericHeaderCloseRoom = () => (
   <>
     <IconButton onClick={removeSelectedRoom} color="inherit">
       <ArrowBackIcon />
@@ -16,4 +16,4 @@ const ViewRoomDashboardHeaderGoBack = () => (
   </>
 );
 
-export default ViewRoomDashboardHeaderGoBack;
+export default ViewRoomGenericHeaderCloseRoom;

@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Button from "@mui/material/Button";
 
-export const ViewRoomCredentialsHeader = () => {
+const ViewRoomCredentialsHeader = () => {
   const history = useHistory();
   const { id } = useParams<{ id: string }>();
 
@@ -46,3 +46,5 @@ export const ViewRoomCredentialsHeader = () => {
     />
   );
 };
+
+export default ViewRoomCredentialsHeader;

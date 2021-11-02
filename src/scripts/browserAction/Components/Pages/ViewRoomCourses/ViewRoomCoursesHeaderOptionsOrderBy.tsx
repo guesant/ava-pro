@@ -7,7 +7,8 @@ import { useContextSelector } from "use-context-selector";
 import StorageSettingsService from "../../../../../services/StorageSettingsService";
 import { CoursesOrderBy } from "../../../../../typings/ISettings";
 import { SettingsContext } from "../../../Hooks/SettingsContext";
-import classes from "./ViewRoomDashboard.module.css";
+import classes from "./ViewRoomCoursesHeader.module.css";
+import { ViewRoomGenericHeaderOptionsContext } from "../ViewRoomGenericHeader/ViewRoomGenericHeaderOptionsContext";
 
 const orderByOptions = [
   { value: CoursesOrderBy.NAME, text: "Nome" },
@@ -19,9 +20,12 @@ const setOrderBy = (orderBy: CoursesOrderBy) =>
     (settings) => void (settings.courses.orderBy = orderBy)
   );
 
-export const ViewRoomDashboardHeaderOptionsOrderBy: React.FC<{
-  handleClose: () => void;
-}> = ({ handleClose }) => {
+const ViewRoomCoursesHeaderOptionsOrderBy = () => {
+  const handleClose = useContextSelector(
+    ViewRoomGenericHeaderOptionsContext,
+    ({ handleClose }) => handleClose
+  );
+
   const orderBy = useContextSelector(
     SettingsContext,
     ({
@@ -42,7 +46,7 @@ export const ViewRoomDashboardHeaderOptionsOrderBy: React.FC<{
   return (
     <>
       <ListSubheader className={classes.listSubheader}>
-        <Typography variant="caption">Ordernar por:</Typography>
+        <Typography variant="caption">Ordenar cursos por:</Typography>
       </ListSubheader>
       <MenuList>
         {orderByOptions.map(({ value, text }) => (
@@ -59,3 +63,5 @@ export const ViewRoomDashboardHeaderOptionsOrderBy: React.FC<{
     </>
   );
 };
+
+export default ViewRoomCoursesHeaderOptionsOrderBy;

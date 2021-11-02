@@ -5,7 +5,7 @@ import { useContextSelector } from "use-context-selector";
 import StorageRoomsService from "../../../../../services/StorageRoomsService";
 import { ViewRoomContext } from "../ViewRoom/ViewRoomContext";
 
-const ViewRoomDashboardHeaderRefreshButton = () => {
+const ViewRoomCoursesHeaderRefresh = () => {
   const url = useContextSelector(ViewRoomContext, ({ room }) => room?.url);
 
   const handleClick = useCallback(
@@ -20,4 +20,4 @@ const ViewRoomDashboardHeaderRefreshButton = () => {
   );
 };
 
-export default ViewRoomDashboardHeaderRefreshButton;
+export default ViewRoomCoursesHeaderRefresh;

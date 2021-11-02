@@ -7,10 +7,18 @@ export const routes = {
   listRooms: route("/room").build(),
 
   viewRoom: route("/room/view/:id").build<{ id: string }>(),
+
+  viewRoomCourses: route("/room/view/:id/courses").build<{
+    id: string;
+  }>(),
+
+  viewRoomCoursesSearch: route("/room/view/:id/courses/search").build<{
+    id: string;
+  }>(),
+
   viewRoomCredentials: route("/room/view/:id/credentials").build<{
     id: string;
   }>(),
-  viewRoomSearch: route("/room/view/:id/search").build<{ id: string }>(),
 
   settings: route("/settings").build(),
 };

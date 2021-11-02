@@ -1,36 +1,12 @@
 /* eslint-disable react/prop-types */
-import loadable from "@loadable/component";
-import { Route, Switch } from "react-router-dom";
-import { routes } from "../../Routes";
 import { ViewRoomContextProvider } from "./ViewRoomContext";
 import { ViewRoomCoursesContextProvider } from "../ViewRoomCourses/ViewRoomCoursesContext";
-
-const ViewRoomSearchCourses = loadable(
-  () => import("../ViewRoomSearch/ViewRoomSearch")
-);
-
-const ViewRoomDashboard = loadable(
-  () => import("../ViewRoomDashboard/ViewRoomDashboard")
-);
-
-const ViewRoomCredentials = loadable(
-  () => import("../ViewRoomCredentials/ViewRoomCredentials")
-);
+import ViewRoomRouter from "../ViewRoomRouter/ViewRoomRouter";
 
 const ViewRoom = () => (
   <ViewRoomContextProvider>
     <ViewRoomCoursesContextProvider>
-      <Switch>
-        <Route path={routes.viewRoom()} exact>
-          <ViewRoomDashboard />
-        </Route>
-        <Route path={routes.viewRoomSearch()} exact>
-          <ViewRoomSearchCourses />
-        </Route>
-        <Route path={routes.viewRoomCredentials()} exact>
-          <ViewRoomCredentials />
-        </Route>
-      </Switch>
+      <ViewRoomRouter />
     </ViewRoomCoursesContextProvider>
   </ViewRoomContextProvider>
 );

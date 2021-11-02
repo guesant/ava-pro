@@ -6,7 +6,7 @@ import { useContextSelector } from "use-context-selector";
 import { routes } from "../../Routes";
 import { ViewRoomCoursesContext } from "../ViewRoomCourses/ViewRoomCoursesContext";
 
-const ViewRoomSearchHeaderGoBack = () => {
+const ViewRoomCoursesSearchHeaderGoBack = () => {
   const history = useHistory();
   const { id } = useParams<{ id: string }>();
 
@@ -27,4 +27,4 @@ const ViewRoomSearchHeaderGoBack = () => {
   );
 };
 
-export default ViewRoomSearchHeaderGoBack;
+export default ViewRoomCoursesSearchHeaderGoBack;
