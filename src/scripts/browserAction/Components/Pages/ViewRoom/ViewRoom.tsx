@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
 import { ViewRoomContextProvider } from "./ViewRoomContext";
 import { ViewRoomCoursesContextProvider } from "../ViewRoomCourses/ViewRoomCoursesContext";
+import { ViewRoomAuthedContextProvider } from "./ViewRoomAuthedContext";
 import ViewRoomRouter from "../ViewRoomRouter/ViewRoomRouter";
 
 const ViewRoom = () => (
   <ViewRoomContextProvider>
-    <ViewRoomCoursesContextProvider>
-      <ViewRoomRouter />
-    </ViewRoomCoursesContextProvider>
+    <ViewRoomAuthedContextProvider>
+      <ViewRoomCoursesContextProvider>
+        <ViewRoomRouter />
+      </ViewRoomCoursesContextProvider>
+    </ViewRoomAuthedContextProvider>
   </ViewRoomContextProvider>
 );
 
