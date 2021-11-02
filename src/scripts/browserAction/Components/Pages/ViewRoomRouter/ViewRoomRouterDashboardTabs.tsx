@@ -4,7 +4,7 @@ import Divider from "@mui/material/Divider";
 import { useHistory } from "react-router";
 import { useCurrentRoomId } from "../ViewRoom/ViewRoomContext";
 import { matchPath, useLocation } from "react-router-dom";
-import { useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { routes } from "../../Routes";
 
 export enum ViewRoomDashboardTabs {
@@ -12,7 +12,7 @@ export enum ViewRoomDashboardTabs {
   Chats,
 }
 
-const useCurrentTab = () => {
+const useCurrentLocationTab = () => {
   const location = useLocation();
 
   const currentTab = useMemo(() => {
@@ -30,7 +30,7 @@ const useCurrentTab = () => {
 const useTabs = () => {
   const history = useHistory();
   const id = useCurrentRoomId(false);
-  const currentTab = useCurrentTab();
+  const currentTab = useCurrentLocationTab();
 
   const handleTab = useCallback(
     (tab: ViewRoomDashboardTabs) => {
@@ -68,4 +68,4 @@ const ViewRoomRouterDashboardTabs = () => {
   );
 };
 
-export default ViewRoomRouterDashboardTabs;
+export default memo(ViewRoomRouterDashboardTabs);

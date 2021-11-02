@@ -1,65 +1,44 @@
 import List from "@mui/material/List";
-import { useCallback, useEffect, useState } from "react";
-import debounce from "lodash/debounce";
+import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
 import { useContextSelector } from "use-context-selector";
-import { ViewRoomAuthedContext } from "../ViewRoom/ViewRoomAuthedContext";
-import ViewRoomNeedsAuth from "../ViewRoom/ViewRoomNeedsAuth";
-import { IMessageAreaContact } from "../../../../../typings/MoodleAPI/IMessageAreaContact";
 import ViewRoomChatsListItem from "./ViewRoomChatsListItem";
-import { CoreMessage_DataForMessageArea_Conversations } from "../../../../../services/MoodleAPI/CoreMessage/DataForMessageArea/Conversations";
-import { fetchUserId } from "../../../../../services/MoodleAPI/fetchUserId";
-
-const useContacts = () => {
-  const [contacts, setContacts] = useState<IMessageAreaContact[]>([]);
-
-  const authedHttp = useContextSelector(
-    ViewRoomAuthedContext,
-    ({ authedHttp }) => authedHttp
-  );
-
-  const fetchConversations = useCallback(async () => {
-    if (authedHttp) {
-      const userid = (await fetchUserId(authedHttp)())!;
-
-      const { contacts } = await CoreMessage_DataForMessageArea_Conversations(
-        authedHttp
-      )({ userid });
-
-      setContacts(contacts);
-    }
-  }, [authedHttp]);
-
-  const _fetchConversations = useCallback(
-    debounce(fetchConversations, 3 * 1000, { leading: true }),
-    [fetchConversations]
-  );
-
-  useEffect(() => {
-    _fetchConversations();
-
-    const intervalId = setInterval(() => {
-      _fetchConversations();
-    }, 60 * 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [_fetchConversations]);
-
-  return contacts;
-};
+import { ViewRoomChatsContext } from "./ViewRoomChatsContext";
+import Loading from "../../Loading";
 
 const ViewRoomChatsList = () => {
-  const contacts = useContacts();
+  const isError = useContextSelector(
+    ViewRoomChatsContext,
+    ({ conversationsQuery: { isError } }) => isError
+  );
+  const isLoading = useContextSelector(
+    ViewRoomChatsContext,
+    ({ conversationsQuery: { isLoading } }) => isLoading
+  );
+  const contacts = useContextSelector(
+    ViewRoomChatsContext,
+    ({ conversationsQuery: { data } }) => data
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError || !contacts) {
+    return (
+      <Box sx={{ margin: 1 }}>
+        <Alert severity={"error"}>Não foi possível carregar os chats.</Alert>
+      </Box>
+    );
+  }
+
   return (
     <div>
-      <ViewRoomNeedsAuth>
-        <List>
-          {contacts.map((contact) => (
-            <ViewRoomChatsListItem key={contact.userid} contact={contact} />
-          ))}
-        </List>
-      </ViewRoomNeedsAuth>
+      <List>
+        {contacts.map((contact) => (
+          <ViewRoomChatsListItem key={contact.userid} contact={contact} />
+        ))}
+      </List>
     </div>
   );
 };
