@@ -1,12 +1,14 @@
-import { useContextSelector } from "use-context-selector";
-import { ViewRoomChatsSearchContext } from "./ViewRoomChatsSearchContext";
-import Loading from "../../Loading";
+import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
 import MuiList from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import { FixedSizeList, ListChildComponentProps } from "react-window";
-import ViewRoomChatsListItem from "../ViewRoomChats/ViewRoomChatsListItem";
 import { useMemo } from "react";
+import { FixedSizeList, ListChildComponentProps } from "react-window";
+import { useContextSelector } from "use-context-selector";
 import { IMessageAreaContact } from "../../../../../typings/MoodleAPI/IMessageAreaContact";
+import Loading from "../../Loading";
+import ViewRoomChatsListItem from "../ViewRoomChats/ViewRoomChatsListItem";
+import { ViewRoomChatsSearchContext } from "./ViewRoomChatsSearchContext";
 
 const ContactRow = ({
   index,
@@ -21,10 +23,17 @@ const ContactRow = ({
   );
 };
 
+const itemSize = 57;
+
 const ViewRoomChatsSearchResults = () => {
   const isLoading = useContextSelector(
     ViewRoomChatsSearchContext,
     ({ fetchSearchContactsQuery: { isLoading } }) => isLoading
+  );
+
+  const isError = useContextSelector(
+    ViewRoomChatsSearchContext,
+    ({ fetchSearchContactsQuery: { isError } }) => isError
   );
 
   const data = useContextSelector(
@@ -44,6 +53,17 @@ const ViewRoomChatsSearchResults = () => {
     return <Loading />;
   }
 
+  if (isError) {
+    return (
+      <Box sx={{ margin: 1 }}>
+        <Alert severity={"error"}>
+          Infelizmente não foi possível realizar a busca de contatos. Tente
+          novamente mais tarde.
+        </Alert>
+      </Box>
+    );
+  }
+
   if (!data || allContacts.length === 0) {
     return (
       <div>
@@ -54,7 +74,6 @@ const ViewRoomChatsSearchResults = () => {
     );
   }
 
-  const itemSize = 57;
   const height = Math.min(7, allContacts.length) * itemSize;
 
   return (
