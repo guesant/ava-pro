@@ -24,7 +24,7 @@ const ViewRoomRouter = () => {
   return (
     <>
       <Switch>
-        <Route path={[routes.viewRoomCourses()]} exact>
+        <Route path={[routes.viewRoomCourses(), routes.viewRoomChats()]} exact>
           <ViewRoomRouterDashboard />
         </Route>
 
