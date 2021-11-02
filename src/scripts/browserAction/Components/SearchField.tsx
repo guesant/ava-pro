@@ -10,7 +10,11 @@ type ISearchFieldProps = {
   setValue: (value: string) => void;
 } & InputBaseProps;
 
-const SearchField: React.FC<ISearchFieldProps> = ({ value, setValue }) => {
+const SearchField: React.FC<ISearchFieldProps> = ({
+  value,
+  setValue,
+  ...props
+}) => {
   const inputRef = useRef<HTMLInputElement>();
 
   const clearValue = useCallback(() => {
@@ -37,6 +41,7 @@ const SearchField: React.FC<ISearchFieldProps> = ({ value, setValue }) => {
             )}
           </InputAdornment>
         }
+        {...props}
       />
     </>
   );
