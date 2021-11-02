@@ -9,6 +9,7 @@ import URLService from "../../../../../services/URLService";
 
 const useDetectedRooms = () => {
   const rooms = useContextSelector(RoomsContext, ({ rooms }) => rooms);
+
   const allDetectedRooms = useContextSelector(
     SettingsContext,
     ({ settings: { detectedRooms } }) => detectedRooms
@@ -16,16 +17,14 @@ const useDetectedRooms = () => {
 
   const detectedRooms = useMemo(
     () =>
-      allDetectedRooms
-        // .filter(detectedRoom => true || detectedRoom.response === DetectedRoomResponse.NONE)
-        .filter((detectedRoom) => {
-          const normalizedUrl = URLService.normalize(detectedRoom.url);
-          return (
-            rooms.findIndex(({ url }) =>
-              normalizedUrl.startsWith(URLService.normalize(url))
-            ) === -1
-          );
-        }),
+      allDetectedRooms.filter((detectedRoom) => {
+        const normalizedUrl = URLService.normalize(detectedRoom.url);
+        return (
+          rooms.findIndex(({ url }) =>
+            normalizedUrl.startsWith(URLService.normalize(url))
+          ) === -1
+        );
+      }),
     [allDetectedRooms, rooms]
   );
 
