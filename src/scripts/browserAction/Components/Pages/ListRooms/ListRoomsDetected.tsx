@@ -2,7 +2,7 @@ import { useContextSelector } from "use-context-selector";
 import { SettingsContext } from "../../../Hooks/SettingsContext";
 import ListSubheader from "@mui/material/ListSubheader";
 import List from "@mui/material/List";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { RoomsContext } from "../../../Hooks/RoomsContext";
 import ListRoomsDetectedItem from "./ListRoomsDetectedItem";
 import URLService from "../../../../../services/URLService";
@@ -32,7 +32,9 @@ const useDetectedRooms = () => {
   return detectedRooms;
 };
 
-const ListRoomsDetected: React.FC<{ header?: string }> = ({ header }) => {
+type IListRoomsDetectedProps = { header?: string };
+
+const ListRoomsDetected: React.FC<IListRoomsDetectedProps> = ({ header }) => {
   const detectedRoomsWithoutResponse = useDetectedRooms();
 
   if (detectedRoomsWithoutResponse.length === 0) {

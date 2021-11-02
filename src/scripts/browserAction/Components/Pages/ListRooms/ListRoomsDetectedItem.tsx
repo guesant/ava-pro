@@ -2,7 +2,7 @@ import {
   DetectedRoomResponse,
   IDetectedRoom,
 } from "../../../../../typings/ISettings";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import StorageSettingsService from "../../../../../services/StorageSettingsService";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -12,7 +12,9 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 
-const ListRoomsDetectedItem: React.FC<{ detectedRoom: IDetectedRoom }> = ({
+type IListRoomsDetectedItemProps = { detectedRoom: IDetectedRoom };
+
+const ListRoomsDetectedItem: React.FC<IListRoomsDetectedItemProps> = ({
   detectedRoom,
 }) => {
   const handleRejectRequest = useCallback(async () => {

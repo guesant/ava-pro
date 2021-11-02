@@ -4,6 +4,7 @@ import ListRoomFooterNote from "./ListRoomFooterNote";
 import ListRoomsHeader from "./ListRoomsHeader";
 
 const ListRoomsRegistered = loadable(() => import("./ListRoomsRegistered"));
+
 const ListRoomsDetectedWithoutResponse = loadable(
   () => import("./ListRoomsDetectedWithoutResponse")
 );
