@@ -37,6 +37,7 @@
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
     "css-select": "^4.1.3",
+    "deep-equal": "^2.0.5",
     "domutils": "^2.8.0",
     "fuse.js": "^6.4.6",
     "htmlparser2": "^7.1.1",
@@ -49,6 +50,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@types/deep-equal": "^1.0.1",
     "@types/jest": "^27.0.2",
     "@types/loadable__component": "^5.13.4",
     "@types/react": "^17.0.20",
