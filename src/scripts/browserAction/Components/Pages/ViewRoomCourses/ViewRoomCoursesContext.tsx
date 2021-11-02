@@ -1,14 +1,29 @@
 import Fuse from "fuse.js";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createContext, useContextSelector } from "use-context-selector";
 import { IRoomCourse } from "../../../../../typings/IRoom";
 import { CoursesOrderBy } from "../../../../../typings/ISettings";
 import { SettingsContext } from "../../../Hooks/SettingsContext";
 import { ViewRoomContext } from "../ViewRoom/ViewRoomContext";
+import { ViewRoomAuthedContext } from "../ViewRoom/ViewRoomAuthedContext";
+import StorageRoomsService from "../../../../../services/StorageRoomsService";
 
 const useRoomCourses = () => {
+  const isLoggedIn = useContextSelector(
+    ViewRoomAuthedContext,
+    ({ isLoggedIn }) => isLoggedIn
+  );
+
   const room = useContextSelector(ViewRoomContext, ({ room }) => room);
+
   const courses = useMemo(() => room?.coursesCache || [], [room?.coursesCache]);
+
+  useEffect(() => {
+    if (isLoggedIn && room) {
+      StorageRoomsService.fetchCourses(room.url);
+    }
+  }, [isLoggedIn, room?.url]);
+
   return courses;
 };
 
@@ -18,7 +33,7 @@ const sortByPinState = (a: IRoomCourse, b: IRoomCourse) =>
 type IViewRoomCourses = {
   courses: IRoomCourse[];
   searchText: string;
-  setSearchText: (searchText: string) => void;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const ViewRoomCoursesContext = createContext({} as IViewRoomCourses);
