@@ -3,12 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import { routes } from "../../Routes";
 import ViewRoomRouterDashboardTabs from "./ViewRoomRouterDashboardTabs";
 
-const ViewRoomChats = loadable(() => import("../ViewRoomChats/ViewRoomChats"));
-
-const ViewRoomChatsHeader = loadable(
-  () => import("../ViewRoomChats/ViewRoomChatsHeader")
-);
-
 const ViewRoomCourses = loadable(
   () => import("../ViewRoomCourses/ViewRoomCourses")
 );
@@ -25,9 +19,6 @@ const ViewRoomRouterDashboard = () => {
           <Route path={routes.viewRoomCourses()} exact>
             <ViewRoomCoursesHeader />
           </Route>
-          <Route path={routes.viewRoomChats()} exact>
-            <ViewRoomChatsHeader />
-          </Route>
         </Switch>
 
         <ViewRoomRouterDashboardTabs />
@@ -36,9 +27,6 @@ const ViewRoomRouterDashboard = () => {
           <Switch>
             <Route path={routes.viewRoomCourses()} exact>
               <ViewRoomCourses />
-            </Route>
-            <Route path={routes.viewRoomChats()} exact>
-              <ViewRoomChats />
             </Route>
           </Switch>
         </div>

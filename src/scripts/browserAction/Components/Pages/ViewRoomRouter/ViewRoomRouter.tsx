@@ -3,8 +3,6 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { routes } from "../../Routes";
 import { useCurrentRoomId } from "../ViewRoom/ViewRoomContext";
 
-const ViewRoomChat = loadable(() => import("../ViewRoomChat/ViewRoomChat"));
-
 const ViewRoomChatsSearch = loadable(
   () => import("../ViewRoomChatsSearch/ViewRoomChatsSearch")
 );
@@ -26,7 +24,7 @@ const ViewRoomRouter = () => {
   return (
     <>
       <Switch>
-        <Route path={[routes.viewRoomCourses(), routes.viewRoomChats()]} exact>
+        <Route path={[routes.viewRoomCourses()]} exact>
           <ViewRoomRouterDashboard />
         </Route>
 
@@ -36,10 +34,6 @@ const ViewRoomRouter = () => {
 
         <Route path={routes.viewRoomChatsSearch()} exact>
           <ViewRoomChatsSearch />
-        </Route>
-
-        <Route path={routes.viewRoomChat()} exact>
-          <ViewRoomChat />
         </Route>
 
         <Route path={routes.viewRoomCredentials()} exact>
