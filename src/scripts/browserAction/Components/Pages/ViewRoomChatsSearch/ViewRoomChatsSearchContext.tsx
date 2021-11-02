@@ -12,14 +12,14 @@ type IFetchedContacts = {
   noncontacts: IMessageAreaContact[];
 };
 
-type IViewRoomChatsContext = {
+type IViewRoomChatsSearchContext = {
   searchText: string;
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
   fetchSearchContactsQuery: UseQueryResult<IFetchedContacts | null | undefined>;
 };
 
 export const ViewRoomChatsSearchContext = createContext(
-  {} as IViewRoomChatsContext
+  {} as IViewRoomChatsSearchContext
 );
 
 export const ViewRoomChatsContextProvider: React.FC = ({ children }) => {
