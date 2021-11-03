@@ -1,0 +1,21 @@
+.message {
+  max-width: 100%;
+  line-height: 1.45;
+  word-wrap: anywhere;
+  padding: 15px 12px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.message.byOther {
+  justify-self: start;
+  grid-column: 1 / -2;
+  border-radius: 8px 8px 8px 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.message.byMe {
+  justify-self: end;
+  grid-column: 2 / -1;
+  border-radius: 8px 8px 0 8px;
+  background-color: rgba(0, 0, 0, 0.05);
+}

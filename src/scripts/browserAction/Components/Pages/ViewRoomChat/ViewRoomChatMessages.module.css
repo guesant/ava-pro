@@ -1,0 +1,19 @@
+.messages {
+  display: grid;
+  gap: 10px 12px;
+  padding: 12px 9px;
+  grid-template-columns: 2fr repeat(6, 1fr) 2fr;
+}
+
+.autoScroll {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+  flex-direction: column-reverse;
+}
+
+.infiniteScrollLoading {
+  grid-row: -1 / 1;
+  grid-column: 1 / -1;
+  padding: 0.5rem 0;
+}

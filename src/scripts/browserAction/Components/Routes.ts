@@ -16,6 +16,11 @@ export const routes = {
     id: string;
   }>(),
 
+  viewRoomChat: route("/room/view/:id/chat/:contactId").build<{
+    id: string;
+    contactId: string;
+  }>(),
+
   viewRoomChats: route("/room/view/:id/chat").build<{ id: string }>(),
 
   viewRoomChatsSearch: route("/room/view/:id/chat/seach").build<{
