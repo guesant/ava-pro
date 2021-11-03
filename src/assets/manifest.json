@@ -5,6 +5,7 @@
   "description": "Extensão do navegador projetada para aprimorar a experiência do usuário nas plataformas educacionais Moodle™.",
   "homepage_url": "https://github.com/guesant/ava-pro",
   "icons": {
+    "96": "icons/icon.png",
     "128": "icons/icon-128.png",
     "256": "icons/icon-256.png"
   },
@@ -16,6 +17,7 @@
   ],
   "browser_action": {
     "default_icon": {
+      "96": "icons/icon.png",
       "128": "icons/icon-128.png",
       "256": "icons/icon-256.png"
     },
