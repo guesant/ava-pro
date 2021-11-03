@@ -89,13 +89,7 @@ yarn build
 
 - `src/services`
 
-  > Conteúdo relacionado a um serviço, estruturado.
-
 - `src/helpers`
-
-  > Utilitários.
-
-  > Geralmente, cada utilitário possuí testes.
 
 - `src/BackgroundScript`
 
