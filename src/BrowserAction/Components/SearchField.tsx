@@ -4,6 +4,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import InputBase from "@mui/material/InputBase";
 import { InputBaseProps } from "@mui/material/InputBase/InputBase";
 import React, { useCallback, useRef } from "react";
+import { handleInputFocus } from "../Hooks/handleInputFocus";
 
 type ISearchFieldProps = {
   value: string;
@@ -30,7 +31,7 @@ const SearchField: React.FC<ISearchFieldProps> = ({
         value={value}
         inputRef={inputRef}
         sx={{ ml: 1, flex: 1 }}
-        onFocus={(e) => e.target.select()}
+        onFocus={handleInputFocus}
         onChange={(e) => setValue(e.target.value)}
         endAdornment={
           <InputAdornment position="end">
