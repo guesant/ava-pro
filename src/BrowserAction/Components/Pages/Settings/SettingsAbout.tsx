@@ -44,7 +44,7 @@ const SettingsAbout = () => (
         primary="Código Fonte"
         secondary={
           <>
-            <span>Licensa: {ABOUT.PROJECT_LICENSE}</span>
+            <span>Licença: {ABOUT.PROJECT_LICENSE}</span>
             <br />
             <span>{ABOUT.PROJECT_REPOSITORY}</span>
           </>
