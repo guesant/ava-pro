@@ -8,25 +8,34 @@ Em breve.
 
 ## Funcionalidades
 
-- Listagem e Busca dos Cursos.
+### Cursos
 
-  - Fixar Cursos
+| Feature                              | Captura de Tela                                      |
+| ------------------------------------ | ---------------------------------------------------- |
+| Listagem dos Cursos Inscritos        | ![](./screenshots/listagem-cursos.png)               |
+| Busca por Curso                      | ![](./screenshots/listagem-cursos-busca.png)         |
+| Fixar Cursos                         | ![](./screenshots/listagem-cursos-fixados.png)       |
+| Ordenar por Nome e por Último Acesso | ![](./screenshots/listagem-cursos-ultimo-acesso.png) |
 
-  - Ordenar por Nome e Último Acesso
+### Credenciais
 
-- Credenciais
+| Feature          | Captura de Tela                          |
+| ---------------- | ---------------------------------------- |
+| Login Automático | ![](./screenshots/curso-credenciais.png) |
 
-  - Preenchimento Automático do formulário de Login
+### Chats
 
-- Chats
+| Feature        | Captura de Tela                    |
+| -------------- | ---------------------------------- |
+| Lista de Chats | ![](./screenshots/chats.png)       |
+| Busca por Chat | ![](./screenshots/chats-busca.png) |
+| Conversa       | ![](./screenshots/chats-chat.png)  |
 
-  - Listar e Buscar por Chats
+### Notificações
 
-  - Enviar e Receber mensagens
-
-- Serviços em Segundo Plano
-
-  - Notificação quando houver novas mensagens nos chats
+| Feature       | Captura de Tela                                     |
+| ------------- | --------------------------------------------------- |
+| Nova Mensagem | ![](./screenshots/background-notificacao-chats.png) |
 
 ## Aviso
 
@@ -48,7 +57,6 @@ cd improved-moodle
 ```sh
 # Com yarn (recomendado)
 yarn
-
 # Com npm
 npm install
 ```
@@ -79,6 +87,10 @@ yarn build
 
 ### Estrutura do Projeto
 
+- `src/helpers`
+
+- `src/services`
+
 - `src/assets/manifest.json`
 
   > A alma da extensão.
@@ -86,10 +98,6 @@ yarn build
   Links úteis:
 
   - https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
-
-- `src/services`
-
-- `src/helpers`
 
 - `src/BackgroundScript`
 
