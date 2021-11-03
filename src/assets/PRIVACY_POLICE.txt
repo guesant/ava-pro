@@ -1,0 +1,9 @@
+Created at: 2021/11/03 at 19:30 UTC
+
+---
+
+We do not collect and do not intend to collect any data from users of the Extension. Not even anonymous data are of interest to us.
+
+However, we have no control over the data collected by Third Parties that are added in the extension's "Add Room" page.
+
+The Extension will only make HTTP calls to websites that you adds.
