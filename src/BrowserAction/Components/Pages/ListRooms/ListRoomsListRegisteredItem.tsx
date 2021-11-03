@@ -15,7 +15,7 @@ type IListRoomsRegisteredItemProps = {
   handleOpenMenuClick: IHandleOpenMenuClick;
 };
 
-const ListRoomsRegisteredItem: React.FC<IListRoomsRegisteredItemProps> = ({
+const ListRoomsListRegisteredItem: React.FC<IListRoomsRegisteredItemProps> = ({
   handleOpenMenuClick,
   room: { name, url },
 }) => {
@@ -43,4 +43,4 @@ const ListRoomsRegisteredItem: React.FC<IListRoomsRegisteredItemProps> = ({
   );
 };
 
-export default ListRoomsRegisteredItem;
+export default ListRoomsListRegisteredItem;

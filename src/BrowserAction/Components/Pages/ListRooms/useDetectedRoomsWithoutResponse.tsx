@@ -1,14 +1,11 @@
 import { useContextSelector } from "use-context-selector";
-import { SettingsContext } from "../../../Hooks/SettingsContext";
-import ListSubheader from "@mui/material/ListSubheader";
-import List from "@mui/material/List";
-import { DetectedRoomResponse } from "../../../../typings/ISettings";
-import { useMemo } from "react";
 import { RoomsContext } from "../../../Hooks/RoomsContext";
-import ListRoomsDetectedItem from "./ListRoomsDetectedItem";
+import { SettingsContext } from "../../../Hooks/SettingsContext";
+import { useMemo } from "react";
+import { DetectedRoomResponse } from "../../../../typings/ISettings";
 import URLService from "../../../../services/URLService";
 
-const useDetectedRoomsWithoutResponse = () => {
+export const useDetectedRoomsWithoutResponse = () => {
   const rooms = useContextSelector(RoomsContext, ({ rooms }) => rooms);
 
   const allDetectedRooms = useContextSelector(
@@ -16,7 +13,7 @@ const useDetectedRoomsWithoutResponse = () => {
     ({ settings: { detectedRooms } }) => detectedRooms
   );
 
-  const detectedRooms = useMemo(
+  const detectedRoomsWithoutResponse = useMemo(
     () =>
       allDetectedRooms
         .filter(
@@ -33,24 +30,5 @@ const useDetectedRoomsWithoutResponse = () => {
     [allDetectedRooms, rooms]
   );
 
-  return detectedRooms;
+  return detectedRoomsWithoutResponse;
 };
-
-const ListRoomsDetectedWithoutResponse = () => {
-  const detectedRoomsWithoutResponse = useDetectedRoomsWithoutResponse();
-
-  if (detectedRoomsWithoutResponse.length === 0) {
-    return null;
-  }
-
-  return (
-    <List>
-      <ListSubheader>Ambientes Detectados</ListSubheader>
-      {detectedRoomsWithoutResponse.map((i) => (
-        <ListRoomsDetectedItem key={i.url} detectedRoom={i} />
-      ))}
-    </List>
-  );
-};
-
-export default ListRoomsDetectedWithoutResponse;

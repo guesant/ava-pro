@@ -14,7 +14,7 @@ import CheckIcon from "@mui/icons-material/Check";
 
 type IListRoomsDetectedItemProps = { detectedRoom: IDetectedRoom };
 
-const ListRoomsDetectedItem: React.FC<IListRoomsDetectedItemProps> = ({
+const ListRoomsListDetectedItem: React.FC<IListRoomsDetectedItemProps> = ({
   detectedRoom,
 }) => {
   const handleRejectRequest = useCallback(async () => {
@@ -47,4 +47,4 @@ const ListRoomsDetectedItem: React.FC<IListRoomsDetectedItemProps> = ({
   );
 };
 
-export default ListRoomsDetectedItem;
+export default ListRoomsListDetectedItem;
