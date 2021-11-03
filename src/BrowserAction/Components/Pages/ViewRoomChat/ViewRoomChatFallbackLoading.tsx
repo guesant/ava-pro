@@ -1,6 +1,6 @@
 import Header from "../../Header/Header";
-import ViewRoomCoursesSearchHeaderGoBack from "../ViewRoomCoursesSearch/ViewRoomCoursesSearchHeaderGoBack";
 import Loading from "../../Loading";
+import ViewRoomChatHeaderGoBack from "./ViewRoomChatHeaderGoBack";
 
 const ViewRoomChatFallbackLoading = () => {
   return (
@@ -9,7 +9,7 @@ const ViewRoomChatFallbackLoading = () => {
         title="Carregando..."
         startContent={
           <>
-            <ViewRoomCoursesSearchHeaderGoBack />
+            <ViewRoomChatHeaderGoBack />
           </>
         }
       />

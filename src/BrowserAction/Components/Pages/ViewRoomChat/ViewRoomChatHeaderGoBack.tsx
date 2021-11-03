@@ -2,24 +2,16 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import IconButton from "@mui/material/IconButton";
 import { useCallback } from "react";
 import { useHistory } from "react-router";
-import { useContextSelector } from "use-context-selector";
 import { routes } from "../../Routes";
-import { ViewRoomCoursesContext } from "../ViewRoomCourses/ViewRoomCoursesContext";
 import { useCurrentRoomId } from "../ViewRoom/ViewRoomContext";
 
-const ViewRoomCoursesSearchHeaderGoBack = () => {
+const ViewRoomChatHeaderGoBack = () => {
   const history = useHistory();
   const id = useCurrentRoomId(false);
 
-  const setSearchText = useContextSelector(
-    ViewRoomCoursesContext,
-    ({ setSearchText }) => setSearchText
-  );
-
   const goBack = useCallback(() => {
-    setSearchText("");
-    history.push(routes.viewRoom({ id }));
-  }, [history, id, setSearchText]);
+    history.push(routes.viewRoomChats({ id }));
+  }, [history, id]);
 
   return (
     <IconButton onClick={goBack} color="inherit">
@@ -28,4 +20,4 @@ const ViewRoomCoursesSearchHeaderGoBack = () => {
   );
 };
 
-export default ViewRoomCoursesSearchHeaderGoBack;
+export default ViewRoomChatHeaderGoBack;

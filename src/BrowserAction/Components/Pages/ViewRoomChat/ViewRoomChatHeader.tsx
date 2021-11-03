@@ -1,7 +1,7 @@
 import { useContextSelector } from "use-context-selector";
 import { ViewRoomChatContext } from "./ViewRoomChatContext";
 import Header from "../../Header/Header";
-import ViewRoomCoursesSearchHeaderGoBack from "../ViewRoomCoursesSearch/ViewRoomCoursesSearchHeaderGoBack";
+import ViewRoomChatHeaderGoBack from "./ViewRoomChatHeaderGoBack";
 
 const ViewRoomChatHeader = () => {
   const lastMessageArea = useContextSelector(
@@ -13,7 +13,7 @@ const ViewRoomChatHeader = () => {
       title={lastMessageArea.otheruserfullname}
       startContent={
         <>
-          <ViewRoomCoursesSearchHeaderGoBack />
+          <ViewRoomChatHeaderGoBack />
         </>
       }
     />

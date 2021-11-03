@@ -1,7 +1,7 @@
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Header from "../../Header/Header";
-import ViewRoomCoursesSearchHeaderGoBack from "../ViewRoomCoursesSearch/ViewRoomCoursesSearchHeaderGoBack";
+import ViewRoomChatHeaderGoBack from "./ViewRoomChatHeaderGoBack";
 
 const ViewRoomChatFallbackError = () => {
   return (
@@ -10,7 +10,7 @@ const ViewRoomChatFallbackError = () => {
         title="Ocorreu um erro"
         startContent={
           <>
-            <ViewRoomCoursesSearchHeaderGoBack />
+            <ViewRoomChatHeaderGoBack />
           </>
         }
       />
