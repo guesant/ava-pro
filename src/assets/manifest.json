@@ -1,10 +1,11 @@
 {
   "version": "0.0.1",
   "manifest_version": 2,
-  "name": "improved-moodle",
+  "name": "Improved Moodle",
   "description": "Extensão para navegador criada para melhorar a experiência do usuário na plataforma Moodle",
+  "homepage_url": "https://github.com/guesant/improved-moodle",
   "icons": {
-    "64": "icons/icon.png"
+    "128": "icons/icon-128.png"
   },
   "content_scripts": [
     {
@@ -14,10 +15,10 @@
   ],
   "browser_action": {
     "default_icon": {
-      "64": "icons/icon.png"
+      "128": "icons/icon-128.png"
     },
     "default_popup": "BrowserAction/index.html",
-    "default_title": "improved-moodle"
+    "default_title": "Improved Moodle"
   },
   "background": {
     "scripts": ["browser-polyfill.min.js", "BackgroundScript.js"]
