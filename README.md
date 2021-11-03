@@ -39,7 +39,7 @@ Em breve.
 
 ## Aviso
 
-- A utilização da extensão é de inteira e total responsabilidade do utilizador.
+- A utilização desta extensão é de inteira e total responsabilidade do usuário.
 
 - Eu não me responsabilizo pelas consequências da utilização dos serviços e/ou da extensão.
 
@@ -91,14 +91,6 @@ yarn build
 
 - `src/services`
 
-- `src/assets/manifest.json`
-
-  > A alma da extensão.
-
-  Links úteis:
-
-  - https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
-
 - `src/BackgroundScript`
 
   > Script que estará executando em segundo plano.
@@ -110,6 +102,14 @@ yarn build
 - `src/ContentScript`
 
   > Script que será executado em cada página (desde que esteja autorizado pelo manifest.json) que for aberta.
+
+- `src/assets/manifest.json`
+
+  > A alma da extensão.
+
+  Links úteis:
+
+  - https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
 
 ## Licença
 
