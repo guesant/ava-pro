@@ -13,6 +13,7 @@ const ViewRoomCredentialsUsername = () => {
     ViewRoomCredentialsContext,
     ({ username }) => username
   );
+
   const setUsername = useContextSelector(
     ViewRoomCredentialsContext,
     ({ setUsername }) => setUsername
@@ -34,6 +35,7 @@ const ViewRoomCredentialsPassword = () => {
     ViewRoomCredentialsContext,
     ({ password }) => password
   );
+
   const setPassword = useContextSelector(
     ViewRoomCredentialsContext,
     ({ setPassword }) => setPassword
@@ -52,6 +54,11 @@ const ViewRoomCredentialsPassword = () => {
 };
 
 const ViewRoomCredentialsAutoLogin = () => {
+  const canBeToggled = useContextSelector(
+    ViewRoomCredentialsContext,
+    ({ username, password }) => username.length > 0 && password.length > 0
+  );
+
   const isAutoLoginEnabled = useContextSelector(
     ViewRoomCredentialsContext,
     ({ isAutoLoginEnabled }) => isAutoLoginEnabled
@@ -68,13 +75,21 @@ const ViewRoomCredentialsAutoLogin = () => {
     <div>
       <FormGroup>
         <FormControlLabel
+          disabled={!canBeToggled}
+          label="Habilitar o Login Automático"
           control={
             <Checkbox checked={isAutoLoginEnabled} onChange={handleToggle} />
           }
-          label="Habilitar o Login Automático"
         />
       </FormGroup>
-      {isAutoLoginEnabled && (
+
+      {!canBeToggled && (
+        <Alert severity="info">
+          Informe o usuário e senha para configurar o Login Automático.
+        </Alert>
+      )}
+
+      {canBeToggled && isAutoLoginEnabled && (
         <Alert severity="warning">
           Nota: Caso a autenticação falhe, o Login Automático será desabilitado.
         </Alert>
