@@ -11,8 +11,6 @@ const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 
 const SRC = "src";
-const SRC_SCRIPTS = `${SRC}/scripts`;
-
 const DIST = "dist";
 const DIST_EXT = `${DIST}/ext`;
 
@@ -71,7 +69,7 @@ function main() {
     });
   }
 
-  const htmlScripts = ["browserAction"];
+  const htmlScripts = ["BrowserAction"];
 
   for (const script of htmlScripts) {
     esbuild.build({
@@ -90,7 +88,7 @@ function main() {
 
       inject: [`${SRC}/react-shim.ts`],
       plugins: [postCssPlugin({ modules: true })],
-      entryPoints: [`${SRC_SCRIPTS}/${script}/index.tsx`],
+      entryPoints: [`${SRC}/${script}/index.tsx`],
     });
   }
 }
