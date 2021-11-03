@@ -1,67 +1,65 @@
 import loadable from "@loadable/component";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Fragment } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import React, { Fragment } from "react";
 import {
   HashRouter as Router,
   Redirect,
   Route,
   Switch,
 } from "react-router-dom";
-import { RoomsContextProvider } from "../Hooks/RoomsContext";
-import { SettingsContextProvider } from "../Hooks/SettingsContext";
 import classes from "./App.module.css";
-import AppServicesProvider from "./AppServicesProvider";
+import AppCheckRoute from "./AppCheckRoute";
 import { routes } from "./Routes";
+import { AppProviders } from "./AppProviders";
 
 const AddRoom = loadable(() => import("./Pages/AddRoom/AddRoom"));
+
 const ViewRoom = loadable(() => import("./Pages/ViewRoom/ViewRoom"));
+
 const ListRooms = loadable(() => import("./Pages/ListRooms/ListRooms"));
+
 const Settings = loadable(() => import("./Pages/Settings/Settings"));
-
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetchOnWindowFocus: false } },
-});
-
-const AppProvider: React.FC = ({ children }) => (
-  <>
-    <QueryClientProvider client={queryClient}>
-      <SettingsContextProvider>
-        <RoomsContextProvider>{children}</RoomsContextProvider>
-      </SettingsContextProvider>
-    </QueryClientProvider>
-  </>
+const SettingsLicenses = loadable(
+  () => import("./Pages/SettingsLicenses/SettingsLicenses")
 );
 
 const App = () => (
   <Fragment>
     <CssBaseline />
     <div className={classes.app}>
-      <AppProvider>
+      <AppProviders>
         <div className={classes.content}>
           <Router>
             <Switch>
-              <AppServicesProvider>
+              <AppCheckRoute>
                 <Route path={routes.addRoom()}>
                   <AddRoom />
                 </Route>
+
                 <Route path={routes.viewRoom()}>
                   <ViewRoom />
                 </Route>
+
                 <Route path={routes.listRooms()} exact>
                   <ListRooms />
                 </Route>
-                <Route path={routes.settings()}>
+
+                <Route path={routes.settings()} exact>
                   <Settings />
                 </Route>
+
+                <Route path={routes.settingsLicenses()} exact>
+                  <SettingsLicenses />
+                </Route>
+
                 <Route path="/">
                   <Redirect to={routes.listRooms()} />
                 </Route>
-              </AppServicesProvider>
+              </AppCheckRoute>
             </Switch>
           </Router>
         </div>
-      </AppProvider>
+      </AppProviders>
     </div>
   </Fragment>
 );

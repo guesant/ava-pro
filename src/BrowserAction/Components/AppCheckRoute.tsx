@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useContextSelector } from "use-context-selector";
 import { SettingsContext } from "../Hooks/SettingsContext";
 import { routes } from "./Routes";
 
-const useSyncRouteWithSelectedRoom = () => {
+const AppCheckRoute: React.FC = ({ children }) => {
   const history = useHistory();
 
   const selectedRoom = useContextSelector(
@@ -19,11 +19,8 @@ const useSyncRouteWithSelectedRoom = () => {
       history.push(routes.listRooms());
     }
   }, [history, selectedRoom]);
-};
 
-const AppServicesProvider: React.FC = ({ children }) => {
-  useSyncRouteWithSelectedRoom();
   return <>{children}</>;
 };
 
-export default AppServicesProvider;
+export default AppCheckRoute;

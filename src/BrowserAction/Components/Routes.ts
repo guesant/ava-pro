@@ -4,6 +4,7 @@ const { route } = Ruty.configure();
 
 export const routes = {
   addRoom: route("/room/add").build(),
+
   listRooms: route("/room").build(),
 
   viewRoom: route("/room/view/:id").build<{ id: string }>(),
@@ -23,7 +24,7 @@ export const routes = {
 
   viewRoomChats: route("/room/view/:id/chat").build<{ id: string }>(),
 
-  viewRoomChatsSearch: route("/room/view/:id/chat/seach").build<{
+  viewRoomChatsSearch: route("/room/view/:id/chat/search").build<{
     id: string;
   }>(),
 
@@ -32,4 +33,6 @@ export const routes = {
   }>(),
 
   settings: route("/settings").build(),
+
+  settingsLicenses: route("/settings/licenses").build(),
 };
