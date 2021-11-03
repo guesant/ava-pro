@@ -6,6 +6,28 @@ Extensão para navegador criada para melhorar a experiência do usuário na plat
 
 Em breve.
 
+## Funcionalidades
+
+- Listagem e Busca dos Cursos.
+
+  - Fixar Cursos
+
+  - Ordenar por Nome e Último Acesso
+
+- Credenciais
+
+  - Preenchimento Automático do formulário de Login
+
+- Chats
+
+  - Listar e Buscar por Chats
+
+  - Enviar e Receber mensagens
+
+- Serviços em Segundo Plano
+
+  - Notificação quando houver novas mensagens nos chats
+
 ## Aviso
 
 - A utilização da extensão é de inteira e total responsabilidade do utilizador.
