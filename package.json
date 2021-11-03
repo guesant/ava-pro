@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "name": "improved-moodle",
   "repository": "https://github.com/guesant/improved-moodle.git",
   "author": "Gabriel R. Antunes <gabrielrodantunes@gmail.com>",
@@ -16,8 +16,8 @@
     "scripts:dev": "./scripts/build.js --watch",
     "assets": "gulp assets",
     "assets:dev": "gulp watchAssets",
-    "ext:pack": "web-ext build",
     "ext:run": "web-ext run",
+    "ext:pack": "web-ext build",
     "build": "NODE_ENV=production yarn clear; yarn assets; yarn scripts; yarn ext:pack",
     "prepare": "husky install"
   },

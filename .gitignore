@@ -1,6 +1,10 @@
+dist
 .idea
-yarn.lock
-package-lock.json
+node_modules/
+
+# yarn.lock
+# package-lock.json
+
 logs
 *.log
 npm-debug.log*
@@ -8,12 +12,11 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-node_modules/
+.yarn-integrity
+
 *.tsbuildinfo
 .eslintcache
 *.tgz
-.yarn-integrity
+
 .env
 .env.test
-dist
-.vuepress/dist
