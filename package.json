@@ -1,8 +1,8 @@
 {
   "private": true,
   "version": "0.0.1",
-  "name": "improved-moodle",
-  "repository": "https://github.com/guesant/improved-moodle.git",
+  "name": "ava-pro",
+  "repository": "https://github.com/guesant/ava-pro.git",
   "author": "Gabriel R. Antunes <gabrielrodantunes@gmail.com>",
   "description": "Extensão para navegador criada para melhorar a experiência do usuário na plataforma Moodle.",
   "license": "MIT",

@@ -1,11 +1,12 @@
 {
-  "version": "0.0.1",
   "manifest_version": 2,
-  "name": "Improved Moodle",
-  "description": "Extensão para navegador criada para melhorar a experiência do usuário na plataforma Moodle",
-  "homepage_url": "https://github.com/guesant/improved-moodle",
+  "version": "0.0.1",
+  "name": "AVA Pro",
+  "description": "Extensão do navegador projetada para aprimorar a experiência do usuário nas plataformas educacionais Moodle™.",
+  "homepage_url": "https://github.com/guesant/ava-pro",
   "icons": {
-    "128": "icons/icon-128.png"
+    "128": "icons/icon-128.png",
+    "256": "icons/icon-256.png"
   },
   "content_scripts": [
     {
@@ -15,10 +16,11 @@
   ],
   "browser_action": {
     "default_icon": {
-      "128": "icons/icon-128.png"
+      "128": "icons/icon-128.png",
+      "256": "icons/icon-256.png"
     },
     "default_popup": "BrowserAction/index.html",
-    "default_title": "Improved Moodle"
+    "default_title": "AVA Pro"
   },
   "background": {
     "scripts": ["browser-polyfill.min.js", "BackgroundScript.js"]

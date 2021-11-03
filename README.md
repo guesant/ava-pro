@@ -1,6 +1,8 @@
-# improved-moodle
+# AVA Pro
 
-Extensão para navegador criada para melhorar a experiência do usuário na plataforma Moodle
+Extensão para navegador criada para melhorar a experiência do usuário em plataformas educacionais Moodle™ (\*).
+
+\* Moodle™ trade marks are owned by either Moodle Pty Ltd or one of its associated entities. Read more here: <https://moodle.com/trademarks/>.
 
 ## Instalação
 
@@ -48,8 +50,8 @@ Em breve.
 - Para baixar o código do projeto, digite:
 
 ```sh
-git clone https://github.com/guesant/improved-moodle.git
-cd improved-moodle
+git clone https://github.com/guesant/ava-pro.git
+cd ava-pro
 ```
 
 - Instalação das dependências:
@@ -113,4 +115,4 @@ yarn build
 
 ## Licença
 
-[Gabriel R. Antunes](https://github.com/guesant) e [Contribuidores](https://github.com/guesant/improved-moodle/graphs/contributors) © [MIT](./LICENSE)
+[Gabriel R. Antunes](https://github.com/guesant) e [Contribuidores](https://github.com/guesant/ava-pro/graphs/contributors) © [MIT](./LICENSE)

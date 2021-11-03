@@ -7,7 +7,7 @@ import SettingsAboutLicenses from "./SettingsAboutLicenses";
 
 export const ABOUT = {
   PROJECT_LICENSE: "MIT",
-  PROJECT_REPOSITORY: "https://github.com/guesant/improved-moodle",
+  PROJECT_REPOSITORY: "https://github.com/guesant/ava-pro",
 
   AUTHOR_NAME: "Gabriel R. Antunes",
   AUTHOR_EMAIL: "gabrielrodantunes@gmail.com",
