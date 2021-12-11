@@ -1,0 +1,4 @@
+.parcel-cache
+.pnpm-store
+pnpm-lock.yaml
+dist

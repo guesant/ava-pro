@@ -15,6 +15,27 @@ git clone -b dev https://github.com/guesant/ava-pro.git
 cd ava-pro
 ```
 
+#### Development with docker-compose (recommended)
+
+We recommend you to use docker-compose to develop the extension (~~due security reasons lol~~ [[1]](https://thehackernews.com/2021/10/popular-npm-package-hijacked-to-publish.html)).
+
+```sh
+docker-compose up dev # -> packages/webextension/dist/dev
+docker-compose up build # -> packages/webextension/dist/prod
+```
+
+#### Development with your system's nodejs
+
+```sh
+npm i -g pnpm
+pnpm install
+```
+
+```sh
+pnpm run dev # -> packages/webextension/dist/dev
+pnpm run build # -> packages/webextension/dist/prod
+```
+
 ## License
 
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)

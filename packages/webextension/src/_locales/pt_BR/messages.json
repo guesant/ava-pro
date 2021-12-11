@@ -1,0 +1,224 @@
+{
+  "component_contactCard_lastMessage_sentBy_me": {
+    "message": "Você: "
+  },
+  "component_contactCard_profilePicture_alt": {
+    "message": "Foto de perfil de $1."
+  },
+  "component_courseList_subheader_notPinned": {
+    "message": "Soltos"
+  },
+  "component_courseList_subheader_pinned": {
+    "message": "Fixados"
+  },
+  "component_detectedRoomList_subheader": {
+    "message": "Ambientes Detectados"
+  },
+  "component_roomForm_input_name": {
+    "message": "Nome"
+  },
+  "component_roomForm_input_name_feedback_invalid": {
+    "message": "Insira um nome válido."
+  },
+  "component_roomForm_input_url": {
+    "message": "URL"
+  },
+  "component_roomForm_input_url_feedback_invalid": {
+    "message": "Insira uma URL válida."
+  },
+  "component_roomGuardNeedsAuth_feedback_1_intro": {
+    "message": "Para acessar este recurso, você precisa estar autenticado. Faça o"
+  },
+  "component_roomGuardNeedsAuth_feedback_2_manualLogin": {
+    "message": "Login Manual no Ambiente"
+  },
+  "component_roomGuardNeedsAuth_feedback_3_orSetupThe": {
+    "message": "ou configure o"
+  },
+  "component_roomGuardNeedsAuth_feedback_4_automaticLogin": {
+    "message": "Login Automático"
+  },
+  "component_roomList_subheader": {
+    "message": "Ambientes Cadastrados"
+  },
+  "feedback_loading": {
+    "message": "Carregando..."
+  },
+  "feedback_noResultsFound": {
+    "message": "Nenhum resultado foi encontrado."
+  },
+  "feedback_somethingWentWrong": {
+    "message": "Infelizmente alguma coisa deu errado."
+  },
+  "feedback_tryAgain": {
+    "message": "Tentar novamente"
+  },
+  "notification_newDetectedRoom_description": {
+    "message": "Conseguimos detectar o ambiente \"$1\". Abra o popup desta extensão para ter acesso a mais ações."
+  },
+  "notification_newDetectedRoom_title": {
+    "message": "Um Ambiente Moodle Foi Detectado"
+  },
+  "page_addRoom": {
+    "message": "Adicionar Ambiente"
+  },
+  "page_addRoom_form_submit": {
+    "message": "Concluído"
+  },
+  "page_error_notFound": {
+    "message": "Esta página não foi encontrada"
+  },
+  "page_error_notFound_message": {
+    "message": "A rota requisitada não existe ou está indisponível."
+  },
+  "page_listDetectedRooms": {
+    "message": "Histórico de Ambientes Detectados"
+  },
+  "page_listDetectedRooms_feedback_noneDetected": {
+    "message": "Nenhum ambiente foi detectado até o momento."
+  },
+  "page_listRooms": {
+    "message": "Ambientes"
+  },
+  "page_listRooms_feedback_noRoomsTooltip": {
+    "message": "Ainda não há ambientes registrados. Clique no botão \"+\" ou utilize a Detecção Automática."
+  },
+  "page_settings": {
+    "message": "Configurações"
+  },
+  "page_settings_about": {
+    "message": "Sobre"
+  },
+  "page_settings_about_author": {
+    "message": "Autor"
+  },
+  "page_settings_about_source_code": {
+    "message": "Código Fonte"
+  },
+  "page_settings_about_source_code_license": {
+    "message": "Licença"
+  },
+  "page_settings_about_version": {
+    "message": "Versão"
+  },
+  "page_settings_contribute": {
+    "message": "Contribuir"
+  },
+  "page_settings_contribute_message_help_donate_byPix": {
+    "message": "O projeto aceita contribuições no repositório do GitHub. Eu, Gabriel, também aceito doações no Pix."
+  },
+  "page_settings_contribute_message_help_share": {
+    "message": "Você pode contribuir com o projeto compartilhando às pessoas que possam se beneficiar com essa extensão."
+  },
+  "page_showRoom_chat_input_typeMessage": {
+    "message": "Digite uma mensagem"
+  },
+  "page_showRoom_chat_submit": {
+    "message": "Enviar Mensagem"
+  },
+  "page_showRoom_chats_fallback_notFound": {
+    "message": "Não foi possível carregar este chat."
+  },
+  "page_showRoom_chats_fallback_notFound_message": {
+    "message": "Infelizmente não foi possível carregar esta conversa."
+  },
+  "page_showRoom_credentials": {
+    "message": "Credenciais"
+  },
+  "page_showRoom_credentials_form_input_autoLogin": {
+    "message": "Habilitar o Login Automático"
+  },
+  "page_showRoom_credentials_form_input_autoLogin_feedback_autoDisable": {
+    "message": "Nota: Caso a autenticação falhe, o Login Automático será desabilitado."
+  },
+  "page_showRoom_credentials_form_input_autoLogin_feedback_fillAll": {
+    "message": "Informe o usuário e senha para configurar o Login Automático."
+  },
+  "page_showRoom_credentials_form_input_password": {
+    "message": "Senha"
+  },
+  "page_showRoom_credentials_form_input_username": {
+    "message": "Usuário"
+  },
+  "page_showRoom_credentials_form_submit": {
+    "message": "Salvar"
+  },
+  "page_showRoom_edit": {
+    "message": "Editar Ambiente"
+  },
+  "page_showRoom_edit_form_submit": {
+    "message": "Concluído"
+  },
+  "page_showRoom_fallback_notFound": {
+    "message": "Ambiente Não Encontrado"
+  },
+  "page_showRoom_fallback_notFound_message": {
+    "message": "O ambiente requisitado não foi encontrado."
+  },
+  "page_showRoom_guard_needsAuth": {
+    "message": "Autenticação Necessária"
+  },
+  "page_showRoom_guard_needsAuth_message": {
+    "message": "Você precisa estar autenticado para acessar este recurso."
+  },
+  "page_showRoom_overviewChats_feedback_error": {
+    "message": "Não foi possível carregar a lista de chats."
+  },
+  "page_showRoom_overviewCourses_feedback_error": {
+    "message": "Não foi possível carregar a lista de cursos. Certifique que você está conectado à Internet e autenticado no Ambiente."
+  },
+  "page_showRoom_overviewCourses_feedback_loadingCache": {
+    "message": "Carregando a lista de cursos..."
+  },
+  "page_showRoom_overviewCourses_feedback_noCourses": {
+    "message": "Nenhum curso foi encontrado."
+  },
+  "page_showRoom_overview_courses_query_filterBy": {
+    "message": "Mostrar Cursos:"
+  },
+  "page_showRoom_overview_courses_query_filterBy_future": {
+    "message": "Futuros"
+  },
+  "page_showRoom_overview_courses_query_filterBy_inProgress": {
+    "message": "Em Progresso"
+  },
+  "page_showRoom_overview_courses_query_filterBy_past": {
+    "message": "Concluídos"
+  },
+  "page_showRoom_overview_courses_query_sortBy": {
+    "message": "Ordenar Cursos Por:"
+  },
+  "page_showRoom_overview_courses_query_sortBy_lastAccess": {
+    "message": "Último Acesso"
+  },
+  "page_showRoom_overview_courses_query_sortBy_name": {
+    "message": "Nome"
+  },
+  "page_showRoom_overview_header_options_credentials": {
+    "message": "Credenciais"
+  },
+  "page_showRoom_overview_header_options_delete": {
+    "message": "Excluir Ambiente"
+  },
+  "page_showRoom_overview_header_options_edit": {
+    "message": "Editar"
+  },
+  "page_showRoom_overview_tab_chats": {
+    "message": "Chats"
+  },
+  "page_showRoom_overview_tab_courses": {
+    "message": "Cursos"
+  },
+  "page_showRoom_searchChats_form_input_search": {
+    "message": "Buscar chat..."
+  },
+  "page_showRoom_searchChats_form_tab_all": {
+    "message": "Todos os Perfis"
+  },
+  "page_showRoom_searchChats_form_tab_onlyAlreadyStarted": {
+    "message": "Conversas Já Iniciadas"
+  },
+  "page_showRoom_searchCourses_form_input_search": {
+    "message": "Buscar curso..."
+  }
+}

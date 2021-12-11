@@ -1,0 +1,4 @@
+.messages {
+  display: grid;
+  grid-template-columns: 2fr repeat(6, 1fr) 2fr;
+}

@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "version": "0.0.2",
+  "name": "AVA Pro",
+  "description": "Extensão do navegador projetada para aprimorar a experiência do usuário nas plataformas educacionais Moodle™.",
+  "homepage_url": "https://github.com/guesant/ava-pro",
+  "web_accessible_resources": ["icons/*"],
+  "default_locale": "pt_BR",
+  "icons": {
+    "96": "./icons/icon.png",
+    "128": "./icons/icon-128.png",
+    "256": "./icons/icon-256.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["ContentScript/index.ts"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "96": "./icons/icon.png",
+      "128": "./icons/icon-128.png",
+      "256": "./icons/icon-256.png"
+    },
+    "default_popup": "BrowserAction/index.html",
+    "default_title": "AVA Pro"
+  },
+  "background": {
+    "scripts": ["BackgroundScript/index.ts"]
+  },
+  "permissions": ["storage", "<all_urls>", "notifications"]
+}

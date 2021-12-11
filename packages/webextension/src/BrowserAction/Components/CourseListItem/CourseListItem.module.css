@@ -1,0 +1,3 @@
+.item:not(.pinned):not(:hover) .secondaryActions {
+  display: none !important;
+}

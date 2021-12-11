@@ -1,0 +1,31 @@
+{
+  "name": "root",
+  "version": "0.0.2",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint --fix --ext js,ts,tsx,jsx packages",
+    "dev": "pnpm run --filter @ava-pro/webextension start",
+    "build": "pnpm run clear:cache; pnpm run --filter @ava-pro/webextension build",
+    "clear:cache": "find . -type d -name .parcel-cache -exec rm -rf {} \\+",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.27.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.4.1",
+    "prettier-config-standard": "^4.0.0"
+  }
+}
