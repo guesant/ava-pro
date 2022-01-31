@@ -12,3 +12,5 @@ export const searchUsers = (
     "core_message_message_search_users",
     payload
   )
+
+export { ISearchUsersRequest, ISearchUsersResponse }

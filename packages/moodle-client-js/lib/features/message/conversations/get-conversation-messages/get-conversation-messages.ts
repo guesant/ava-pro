@@ -12,3 +12,5 @@ export const getConversationMessages = (
     "core_message_get_conversation_messages",
     payload
   )
+
+export { IGetConversationMessagesRequest, IGetConversationMessagesResponse }

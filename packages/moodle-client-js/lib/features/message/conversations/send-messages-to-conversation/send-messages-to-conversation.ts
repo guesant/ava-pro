@@ -14,3 +14,8 @@ export const sendMessagesToConversation = (
       ...payload
     }
   )
+
+export {
+  ISendMessagesToConversationRequest,
+  ISendMessagesToConversationResponse
+}

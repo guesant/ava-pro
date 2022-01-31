@@ -17,3 +17,5 @@ export const getConversations = async (
   )
   return conversations
 }
+
+export { IGetConversationsRequest, IGetConversationsResponse }

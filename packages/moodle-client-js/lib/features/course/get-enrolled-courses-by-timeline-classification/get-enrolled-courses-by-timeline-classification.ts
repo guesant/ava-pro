@@ -20,3 +20,8 @@ export const getEnrolledCoursesByTimelineClassification = async (
       ...payload
     }
   )
+
+export {
+  IGetEnrolledCoursesByTimelineClassificationRequest,
+  IGetEnrolledCoursesByTimelineClassificationResponse
+}
