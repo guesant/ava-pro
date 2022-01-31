@@ -18,6 +18,14 @@ Esta extensão foi criada para melhorar a minha experiência e a de alguns coleg
 
 [<img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png" alt="Get It from the Chrome Web Store" title="Get It from the Chrome Web Store" height="50"/>](https://chrome.google.com/webstore/detail/ava-pro/gdcgfjijpmboeghojhjllfhkaekmnfcb)
 
+## Ecosystem
+
+| Project                                          | Description                                                  |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| [@ava-pro/crawlers](./packages/crawlers)         | Web Scrapping library for extracting data from Moodle pages. |
+| [@ava-pro/shared](./packages/shared)             | Library with shared resources for the project needs.         |
+| [@ava-pro/webextension](./packages/webextension) | The Web Extension source code.                               |
+
 ## Hacking
 
 <details>
@@ -39,7 +47,7 @@ docker-compose up dev # -> packages/webextension/dist/dev
 docker-compose up build # -> packages/webextension/dist/prod
 ```
 
-#### Development with your system's nodejs
+#### Development with the nodejs from your system
 
 <details>
   <summary>Click to expand</summary>
