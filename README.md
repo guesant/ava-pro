@@ -1,23 +1,38 @@
 # ava-pro
 
-This is a Work-In-Progress branch.
+## What's ava-pro?
 
-The version 0.0.1 is archived and is located in [this branch](https://github.com/guesant/ava-pro/tree/0.0.1).
+PT-BR:
 
-The version 0.0.2 will be a full extension rewrite. Learn more [here](https://github.com/guesant/ava-pro/issues/11).
+Esta extensão foi criada para melhorar a minha experiência e a de alguns colegas durante o ensino remoto (com a plataforma Moodle, versão desconhecida).
+
+- nenhum dado é coletado e nunca será;
+
+- livre e gratuito para sempre;
+
+## Install
+
+### From your browser's extension store (recommended):
+
+<!-- todo: <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" height="50"/> -->
+
+[<img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png" alt="Get It from the Chrome Web Store" title="Get It from the Chrome Web Store" height="50"/>](https://chrome.google.com/webstore/detail/ava-pro/gdcgfjijpmboeghojhjllfhkaekmnfcb)
 
 ## Hacking
+
+<details>
+  <summary>Click to expand</summary>
 
 ### Getting the Source Code
 
 ```sh
-git clone -b dev https://github.com/guesant/ava-pro.git
+git clone -b 0.0.2 https://github.com/guesant/ava-pro.git
 cd ava-pro
 ```
 
 #### Development with docker-compose (recommended)
 
-We recommend you to use docker-compose to develop the extension (~~due security reasons lol~~ [[1]](https://thehackernews.com/2021/10/popular-npm-package-hijacked-to-publish.html)).
+We recommend the usage of docker-compose to develop the extension (~~due security reasons lol~~ [[1]](https://thehackernews.com/2021/10/popular-npm-package-hijacked-to-publish.html)).
 
 ```sh
 docker-compose up dev # -> packages/webextension/dist/dev
@@ -25,6 +40,9 @@ docker-compose up build # -> packages/webextension/dist/prod
 ```
 
 #### Development with your system's nodejs
+
+<details>
+  <summary>Click to expand</summary>
 
 ```sh
 npm i -g pnpm
@@ -35,6 +53,50 @@ pnpm install
 pnpm run dev # -> packages/webextension/dist/dev
 pnpm run build # -> packages/webextension/dist/prod
 ```
+
+</details>
+
+### Load the extension build
+
+### Chrome
+
+<details>
+  <summary>Click to expand</summary>
+
+tl;dr;
+
+> - Open the Extension Management page by navigating to chrome://extensions.
+>
+> - Enable Developer Mode by clicking the toggle switch next to Developer mode.
+>
+> - Click the Load unpacked button and select the extension directory.
+
+- <https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked>
+
+</details>
+
+### Firefox
+
+<details>
+  <summary>Click to expand</summary>
+
+tl;dr;
+
+> - open Firefox
+>
+> - enter "about:debugging" in the URL bar
+>
+> - click "This Firefox"
+>
+> - click "Load Temporary Add-on"
+>
+> - open the extension's directory and select any file inside the extension, or select the packaged extension (.zip file).
+
+- <https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/>
+
+</details>
+
+</details>
 
 ## License
 
