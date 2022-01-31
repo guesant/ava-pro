@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "source": "./lib/index.ts",
   "license": "LGPL-3.0",
-  "dependencies": {},
+  "dependencies": {
+    "ruty": "^1.2.3"
+  },
   "devDependencies": {
     "typescript": "^4.5.5"
   }
