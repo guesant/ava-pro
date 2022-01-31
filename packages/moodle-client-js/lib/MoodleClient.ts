@@ -4,6 +4,8 @@ import { ISmartLoginOptions, smartLogin } from "./features/auth"
 import { checkLogin } from "./features/auth/check-login/check-login"
 import { login } from "./features/auth/login/login"
 import { logout } from "./features/auth/logout/logout"
+import { getEnrolledCoursesByTimelineClassification } from "./features/course"
+import { IGetEnrolledCoursesByTimelineClassificationRequest } from "./features/course/get-enrolled-courses-by-timeline-classification/IGetEnrolledCoursesByTimelineClassificationRequest"
 import { http } from "./features/http/http"
 import { IHTTPRequest } from "./features/http/IHTTPRequest"
 import { fetchSessKey } from "./features/tokens/sess-key/fetch-sess-key"
@@ -56,5 +58,13 @@ export class MoodleClient {
 
   async checkLogin() {
     return checkLogin(this)
+  }
+
+  // course
+
+  getEnrolledCoursesByTimelineClassification(
+    payload: IGetEnrolledCoursesByTimelineClassificationRequest
+  ) {
+    return getEnrolledCoursesByTimelineClassification(this, payload)
   }
 }
