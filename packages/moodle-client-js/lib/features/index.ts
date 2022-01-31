@@ -1,4 +1,5 @@
 export * from "./ajax/ajax"
+export * as auth from "./auth"
 export * from "./http/http"
 export * as info from "./info"
 export * as tokens from "./tokens"
