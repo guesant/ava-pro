@@ -21,7 +21,7 @@ export const Settings = defaulted(
     palette: defaulted(
       object({
         mode: defaulted(
-          enums(Object.values(IPaletteMode as any)),
+          enums([IPaletteMode.DARK, IPaletteMode.LIGHT]),
           () => IPaletteMode.LIGHT
         )
       }),

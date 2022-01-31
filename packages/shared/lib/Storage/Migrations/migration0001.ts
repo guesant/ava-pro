@@ -6,19 +6,25 @@ import { IStorage } from "../../Interfaces/IStorage"
 import { IStorageMigration } from "../../Interfaces/IStorageMigration"
 import * as logger from "../../logger"
 import { Storage } from "../../Schemas/Storage"
-
-const hasOwn = (obj: any, prop: string) =>
-  Object.hasOwnProperty.call(obj ?? {}, prop)
+import { hasOwnProperty } from "../../Utils/hasOwnProperty"
 
 export const migration0001: IStorageMigration = {
   id: 1,
   async up() {
     const nextStorageData: IStorage = create({}, Storage) as IStorage
 
-    const { rooms: prevRooms, settings: prevSettings } =
-      await browser.storage.local.get()
+    const currentStorageData = await browser.storage.local.get()
 
-    const isV001 = prevSettings && hasOwn(prevSettings, "detectedRooms")
+    const {
+      version,
+      rooms: prevRooms,
+      settings: prevSettings
+    } = currentStorageData
+
+    const isV001 =
+      version === undefined &&
+      prevSettings &&
+      hasOwnProperty(prevSettings, "detectedRooms")
 
     if (isV001) {
       logger.debug("previous storage version was 0.0.1, applying migrations...")
@@ -52,6 +58,7 @@ export const migration0001: IStorageMigration = {
       nextStorageData.detectedRooms = prevSettings.detectedRooms
 
       delete nextStorageData.lastMigration
+
       await browser.storage.local.set(nextStorageData)
     }
   }
