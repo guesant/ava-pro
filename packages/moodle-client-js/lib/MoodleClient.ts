@@ -8,6 +8,18 @@ import { getEnrolledCoursesByTimelineClassification } from "./features/course"
 import { IGetEnrolledCoursesByTimelineClassificationRequest } from "./features/course/get-enrolled-courses-by-timeline-classification/IGetEnrolledCoursesByTimelineClassificationRequest"
 import { http } from "./features/http/http"
 import { IHTTPRequest } from "./features/http/IHTTPRequest"
+import {
+  getConversationMessages,
+  getConversations,
+  markAllConversationsMessagesAsRead,
+  searchUsers
+} from "./features/message"
+import { IGetConversationMessagesRequest } from "./features/message/conversations/get-conversation-messages/IGetConversationMessagesRequest"
+import { IGetConversationsRequest } from "./features/message/conversations/get-conversations/IGetConversationsRequest"
+import { IMarkAllConversationsMessagesAsReadRequest } from "./features/message/conversations/mark-all-conversations-messages-as-read/IMarkAllConversationsMessagesAsReadRequest"
+import { ISendMessagesToConversationRequest } from "./features/message/conversations/send-messages-to-conversation/ISendMessagesToConversationRequest"
+import { sendMessagesToConversation } from "./features/message/conversations/send-messages-to-conversation/send-messages-to-conversation"
+import { ISearchUsersRequest } from "./features/message/search-users/ISearchUsersRequest"
 import { fetchSessKey } from "./features/tokens/sess-key/fetch-sess-key"
 import { IMayBePromise } from "./interfaces/may-be-promise"
 
@@ -36,7 +48,9 @@ export class MoodleClient {
     return ajax(this, methodname, args, crawlerFetchOptions, incomingSessKey)
   }
 
-  async login(
+  // auth
+
+  login(
     username: string,
     password: string,
     options: { skipLogout?: boolean } = {}
@@ -44,11 +58,11 @@ export class MoodleClient {
     return login(this, username, password, options)
   }
 
-  async logout() {
+  logout() {
     return logout(this)
   }
 
-  async smartLogin(
+  smartLogin(
     username: string,
     password: string,
     options: ISmartLoginOptions = {}
@@ -66,5 +80,29 @@ export class MoodleClient {
     payload: IGetEnrolledCoursesByTimelineClassificationRequest
   ) {
     return getEnrolledCoursesByTimelineClassification(this, payload)
+  }
+
+  // message
+
+  searchUsers(payload: ISearchUsersRequest) {
+    return searchUsers(this, payload)
+  }
+
+  getConversations(payload: IGetConversationsRequest) {
+    return getConversations(this, payload)
+  }
+
+  getConversationMessages(payload: IGetConversationMessagesRequest) {
+    return getConversationMessages(this, payload)
+  }
+
+  sendMessagesToConversation(payload: ISendMessagesToConversationRequest) {
+    return sendMessagesToConversation(this, payload)
+  }
+
+  markAllConversationsMessagesAsRead(
+    payload: IMarkAllConversationsMessagesAsReadRequest
+  ) {
+    return markAllConversationsMessagesAsRead(this, payload)
   }
 }

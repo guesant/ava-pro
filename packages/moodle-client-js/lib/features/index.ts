@@ -1,5 +1,7 @@
 export * from "./ajax/ajax"
 export * as auth from "./auth"
 export * from "./http/http"
+export * as course from "./course"
+export * as message from "./message"
 export * as info from "./info"
 export * as tokens from "./tokens"
