@@ -6,6 +6,7 @@ import Page from "../../Components/Page/Page"
 import PageContent from "../../Components/PageContent/PageContent"
 import PageHeader from "../../Components/PageHeader/PageHeader"
 import SettingsAbout from "../SettingsAbout/SettingsAbout"
+import SettingsAppearance from "../SettingsAppearance/SettingsAppearance"
 import SettingsContribute from "../SettingsContribute/SettingsContribute"
 import SettingsStorageData from "../SettingsStorageData/SettingsStorageData"
 
@@ -24,6 +25,8 @@ const Settings = () => (
       }
     />
     <PageContent>
+      <SettingsAppearance />
+
       <SettingsStorageData />
 
       <SettingsAbout />

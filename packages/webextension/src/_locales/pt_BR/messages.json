@@ -101,6 +101,12 @@
   "page_settings_about_version": {
     "message": "Versão"
   },
+  "page_settings_appearance": {
+    "message": "Aparência"
+  },
+  "page_settings_appearance_theme_dark_mode": {
+    "message": "Modo Escuro"
+  },
   "page_settings_contribute": {
     "message": "Contribuir"
   },
