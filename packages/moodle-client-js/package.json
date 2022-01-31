@@ -4,6 +4,10 @@
   "source": "./lib/index.ts",
   "license": "LGPL-3.0",
   "dependencies": {
+    "css-select": "^4.2.1",
+    "domhandler": "^4.3.0",
+    "domutils": "^2.8.0",
+    "htmlparser2": "^7.2.0",
     "ruty": "^1.2.3"
   },
   "devDependencies": {
