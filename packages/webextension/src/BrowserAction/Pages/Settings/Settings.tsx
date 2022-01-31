@@ -7,6 +7,7 @@ import PageContent from "../../Components/PageContent/PageContent"
 import PageHeader from "../../Components/PageHeader/PageHeader"
 import SettingsAbout from "../SettingsAbout/SettingsAbout"
 import SettingsContribute from "../SettingsContribute/SettingsContribute"
+import SettingsStorageData from "../SettingsStorageData/SettingsStorageData"
 
 const Settings = () => (
   <Page>
@@ -23,7 +24,10 @@ const Settings = () => (
       }
     />
     <PageContent>
+      <SettingsStorageData />
+
       <SettingsAbout />
+
       <SettingsContribute />
     </PageContent>
   </Page>

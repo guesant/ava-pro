@@ -17,6 +17,7 @@ const handleUpdateRoom = makeStorageMutator(updateRoom)
 
 const useUpdateRoomCredentials = () => {
   const id = useContextSelector(ShowRoomContext, ({ room }) => room!.id)
+
   return useCallback(
     async (credentials: IFormCredentials) =>
       handleUpdateRoom({

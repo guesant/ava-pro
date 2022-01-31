@@ -12,7 +12,7 @@ const AddRoomHeader = () => {
     formState: { isValid, isDirty }
   } = useFormContext()
 
-  const canSubmit = !isDirty || !isValid
+  const canSubmit = isDirty && isValid
 
   return (
     <PageHeader
@@ -32,7 +32,7 @@ const AddRoomHeader = () => {
             type={"submit"}
             color={"inherit"}
             variant={"outlined"}
-            disabled={canSubmit}
+            disabled={!canSubmit}
           >
             {getMessage("page_addRoom_form_submit")}
           </Button>

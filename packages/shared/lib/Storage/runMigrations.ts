@@ -14,6 +14,7 @@ export const runMigrations = async () => {
     const { lastMigration = -Infinity } = await browser.storage.local.get(
       "lastMigration"
     )
+
     const pendingMigrations = migrations.filter(({ id }) => id > lastMigration)
 
     if (pendingMigrations.length > 0) {
@@ -31,5 +32,6 @@ export const runMigrations = async () => {
   })()
 
   await uniqueRunner
+
   uniqueRunner = null
 }

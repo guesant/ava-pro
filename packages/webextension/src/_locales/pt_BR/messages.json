@@ -110,6 +110,33 @@
   "page_settings_contribute_message_help_share": {
     "message": "Você pode contribuir com o projeto compartilhando às pessoas que possam se beneficiar com essa extensão."
   },
+  "page_settings_storage": {
+    "message": "Armazenamento Local"
+  },
+  "page_settings_storage_data_clear": {
+    "message": "Limpar Armazenamento"
+  },
+  "page_settings_storage_data_export": {
+    "message": "Exportar Dados"
+  },
+  "page_settings_storage_data_go_to_export": {
+    "message": "Exportar Dados"
+  },
+  "page_settings_storage_data_go_to_import": {
+    "message": "Importar Dados"
+  },
+  "page_settings_storage_data_import": {
+    "message": "Importar Dados"
+  },
+  "page_settings_storage_data_import_feedback_invalid_payload": {
+    "message": "Insira uma carga JSON válida."
+  },
+  "page_settings_storage_data_import_feedback_success": {
+    "message": "Os dados foram carregados com sucesso."
+  },
+  "page_settings_storage_data_import_submit": {
+    "message": "Importar"
+  },
   "page_showRoom_chat_input_typeMessage": {
     "message": "Digite uma mensagem"
   },

@@ -7,3 +7,7 @@ export const info = (...args: any[]) => {
 export const debug = (...args: any[]) => {
   console.info(`[${identifier}::debug]`, ...args)
 }
+
+export const error = (...args: any[]) => {
+  console.info(`[${identifier}::error]`, ...args)
+}

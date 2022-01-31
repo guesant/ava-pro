@@ -49,6 +49,14 @@ const ShowRoomChat = lazy(() => import("./Pages/ShowRoomChat/ShowRoomChat"))
 
 const Settings = lazy(() => import("./Pages/Settings/Settings"))
 
+const SettingsStorageDataExport = lazy(
+  () => import("./Pages/SettingsStorageDataExport/SettingsStorageDataExport")
+)
+
+const SettingsStorageDataImport = lazy(
+  () => import("./Pages/SettingsStorageDataImport/SettingsStorageDataImport")
+)
+
 const App = () => (
   <Box className="app">
     <Suspense fallback={<Loading />}>
@@ -82,7 +90,13 @@ const App = () => (
           <Route path="" element={<Navigate to="courses" />} />
         </Route>
 
-        <Route path="settings" element={<Settings />} />
+        <Route path={"settings"}>
+          <Route path={""} element={<Settings />} />
+
+          <Route path={"data/export"} element={<SettingsStorageDataExport />} />
+
+          <Route path={"data/import"} element={<SettingsStorageDataImport />} />
+        </Route>
 
         <Route path="" element={<AppInitialRoute />} />
 
