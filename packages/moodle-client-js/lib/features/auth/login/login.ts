@@ -40,5 +40,7 @@ export const login = async (
 
   client.isAuthed = extractLoginStateFromPage(loginSubmitResponse)
 
+  await client.updateTokensCache()
+
   return client.isAuthed
 }

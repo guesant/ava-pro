@@ -15,18 +15,14 @@ export const smartLogin = async (
 ) => {
   const { skipRecheckLogin = false, skipLogout = skipRecheckLogin } = options
 
-  let isLoggedIn = client.isAuthed
-
   if (!skipRecheckLogin) {
-    isLoggedIn = await checkLogin(client)
+    await checkLogin(client)
   }
 
-  if (!isLoggedIn && username && password) {
+  if (!client.isAuthed && username && password) {
     await login(client, username, password, { skipLogout })
-    isLoggedIn = await checkLogin(client)
+    await checkLogin(client)
   }
 
-  client.isAuthed = isLoggedIn
-
-  return isLoggedIn
+  return client.isAuthed
 }

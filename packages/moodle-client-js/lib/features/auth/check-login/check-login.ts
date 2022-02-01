@@ -7,5 +7,7 @@ export const checkLogin = async (client: MoodleClient) => {
     .http({ url: routes.login() })
     .then((res) => res.text())
 
-  return extractLoginStateFromPage(page)
+  client.isAuthed = extractLoginStateFromPage(page)
+
+  return client.isAuthed
 }

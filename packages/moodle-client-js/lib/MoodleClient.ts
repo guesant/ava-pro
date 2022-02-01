@@ -6,10 +6,6 @@ import { IMayBePromise } from "./interfaces/may-be-promise"
 export class MoodleClient {
   isAuthed = false
 
-  get sessKey() {
-    return features.tokens.fetchSessKey(this)
-  }
-
   constructor(
     public readonly endpointURL: string,
     public httpService: typeof fetch = fetch
@@ -21,13 +17,31 @@ export class MoodleClient {
     return features.http(this, payload)
   }
 
+  // tokens
+
+  cachedUserId: number | null = null
+
+  cachedSessKey: string | null = null
+
+  get sessKey() {
+    return features.tokens.fetchSessKey(this)
+  }
+
+  get userId() {
+    return features.tokens.fetchUserId(this)
+  }
+
+  updateTokensCache() {
+    return features.tokens.updateTokensCache(this)
+  }
+
   // ajax
 
   ajax(
     methodname: string,
     args: any,
     crawlerFetchOptions?: features.IHTTPRequest["options"],
-    incomingSessKey?: IMayBePromise<string | null>
+    incomingSessKey: IMayBePromise<string | null> = this.cachedSessKey
   ) {
     return features.ajax(
       this,
@@ -67,7 +81,7 @@ export class MoodleClient {
   // course
 
   getEnrolledCoursesByTimelineClassification(
-    payload: features.course.IGetEnrolledCoursesByTimelineClassificationRequest
+    payload: features.course.IGetEnrolledCoursesByTimelineClassificationRequest = {}
   ) {
     return features.course.getEnrolledCoursesByTimelineClassification(
       this,
