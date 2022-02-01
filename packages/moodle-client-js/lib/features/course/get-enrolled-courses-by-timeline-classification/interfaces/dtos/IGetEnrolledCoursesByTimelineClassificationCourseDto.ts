@@ -1,4 +1,4 @@
-type ICourse = {
+export type IGetEnrolledCoursesByTimelineClassificationCourseDto = {
   id: number
 
   fullname: string
@@ -38,10 +38,4 @@ type ICourse = {
   showshortname: boolean
 
   coursecategory: string
-}
-
-export type IGetEnrolledCoursesByTimelineClassificationResponse = {
-  courses: ICourse
-
-  nextoffset: 1
 }

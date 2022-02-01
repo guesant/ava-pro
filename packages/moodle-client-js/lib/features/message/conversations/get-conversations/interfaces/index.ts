@@ -1,0 +1,6 @@
+export * from "./dtos/IGetConversationsMessageDto"
+export * from "./dtos/IGetConversationsMemberDto"
+export * from "./dtos/IGetConversationsContactRequestDto"
+export * from "./dtos/IGetConversationsConversationDto"
+export * from "./IGetConversationsRequest"
+export * from "./IGetConversationsResponse"

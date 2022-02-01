@@ -1,6 +1,6 @@
 export type ISearchUsersRequest = {
-  limitfrom: number
-  limitnum: number
+  limitfrom?: number
+  limitnum?: number
   search: string
-  userid: string
+  userid: string | number
 } & Record<string, any>

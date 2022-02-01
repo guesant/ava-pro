@@ -1,1 +1,1 @@
-export * from "./IHTTPRequest"
+export * from "./IHTTPRequestPayload"

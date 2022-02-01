@@ -1,7 +1,11 @@
 import { MoodleClient } from "../../../../MoodleClient"
 import { ajax } from "../../../ajax/ajax"
-import { IGetConversationMessagesRequest } from "./IGetConversationMessagesRequest"
-import { IGetConversationMessagesResponse } from "./IGetConversationMessagesResponse"
+import {
+  IGetConversationMessagesRequest,
+  IGetConversationMessagesResponse
+} from "./interfaces"
+
+export * from "./interfaces"
 
 export const getConversationMessages = (
   client: MoodleClient,
@@ -12,5 +16,3 @@ export const getConversationMessages = (
     "core_message_get_conversation_messages",
     payload
   )
-
-export { IGetConversationMessagesRequest, IGetConversationMessagesResponse }

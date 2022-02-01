@@ -1,4 +1,4 @@
-import { IHTTPRequest } from "../http/interfaces/IHTTPRequest"
+import { IHTTPRequestPayload } from "../http/interfaces/IHTTPRequestPayload"
 import { IMayBePromise } from "../../interfaces/may-be-promise"
 import { MoodleClient } from "../../MoodleClient"
 import { routes } from "../../routes"
@@ -7,7 +7,7 @@ export const ajax = async <Response extends any, Args = any>(
   client: MoodleClient,
   methodname: string,
   args: Args,
-  crawlerFetchOptions: IHTTPRequest["options"] = {},
+  crawlerFetchOptions: IHTTPRequestPayload["options"] = {},
   incomingSessKey: IMayBePromise<string | null> = client.cachedSessKey
 ) => {
   const sessKey = await incomingSessKey

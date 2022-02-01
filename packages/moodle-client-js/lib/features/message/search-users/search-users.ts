@@ -1,7 +1,8 @@
 import { MoodleClient } from "../../../MoodleClient"
 import { ajax } from "../../ajax/ajax"
-import { ISearchUsersRequest } from "./ISearchUsersRequest"
-import { ISearchUsersResponse } from "./ISearchUsersResponse"
+import { ISearchUsersRequest, ISearchUsersResponse } from "./interfaces"
+
+export * from "./interfaces"
 
 export const searchUsers = (
   client: MoodleClient,
@@ -12,5 +13,3 @@ export const searchUsers = (
     "core_message_message_search_users",
     payload
   )
-
-export { ISearchUsersRequest, ISearchUsersResponse }

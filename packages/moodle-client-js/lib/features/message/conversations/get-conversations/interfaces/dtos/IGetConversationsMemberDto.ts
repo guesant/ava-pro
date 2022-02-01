@@ -1,4 +1,6 @@
-type IMember = {
+import { IGetConversationsContactRequestDto } from "./IGetConversationsContactRequestDto"
+
+export type IGetConversationsMemberDto = {
   id: number
 
   fullname: string
@@ -25,23 +27,5 @@ type IMember = {
 
   requirescontact: boolean | null
 
-  contactrequests: any[]
-}
-
-type IMessage = {
-  id: number
-
-  useridfrom: number
-
-  text: string
-
-  timecreated: number
-}
-
-export type IGetConversationMessagesResponse = {
-  id: number
-
-  members: IMember[]
-
-  messages: IMessage[]
+  contactrequests: IGetConversationsContactRequestDto[]
 }

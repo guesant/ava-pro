@@ -1,7 +1,11 @@
 import { MoodleClient } from "../../../../MoodleClient"
 import { ajax } from "../../../ajax/ajax"
-import { ISendMessagesToConversationRequest } from "./ISendMessagesToConversationRequest"
-import { ISendMessagesToConversationResponse } from "./ISendMessagesToConversationResponse"
+import {
+  ISendMessagesToConversationRequest,
+  ISendMessagesToConversationResponse
+} from "./interfaces"
+
+export * from "./interfaces"
 
 export const sendMessagesToConversation = (
   client: MoodleClient,
@@ -14,8 +18,3 @@ export const sendMessagesToConversation = (
       ...payload
     }
   )
-
-export {
-  ISendMessagesToConversationRequest,
-  ISendMessagesToConversationResponse
-}

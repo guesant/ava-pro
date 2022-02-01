@@ -1,7 +1,11 @@
 import { MoodleClient } from "../../../../MoodleClient"
 import { ajax } from "../../../ajax/ajax"
-import { IGetConversationsRequest } from "./IGetConversationsRequest"
-import { IGetConversationsResponse } from "./IGetConversationsResponse"
+import {
+  IGetConversationsRequest,
+  IGetConversationsResponse
+} from "./interfaces"
+
+export * from "./interfaces"
 
 export const getConversations = async (
   client: MoodleClient,
@@ -17,5 +21,3 @@ export const getConversations = async (
   )
   return conversations
 }
-
-export { IGetConversationsRequest, IGetConversationsResponse }
