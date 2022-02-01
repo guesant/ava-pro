@@ -13,7 +13,7 @@ export class MoodleClient {
 
   // http
 
-  http(payload: features.IHTTPRequest) {
+  http(payload: features.IHTTPRequestPayload) {
     return features.http(this, payload)
   }
 
@@ -40,7 +40,7 @@ export class MoodleClient {
   ajax(
     methodname: string,
     args: any,
-    crawlerFetchOptions?: features.IHTTPRequest["options"],
+    crawlerFetchOptions?: features.IHTTPRequestPayload["options"],
     incomingSessKey: IMayBePromise<string | null> = this.cachedSessKey
   ) {
     return features.ajax(
@@ -87,6 +87,10 @@ export class MoodleClient {
       this,
       payload
     )
+  }
+
+  getExtractedCourses() {
+    return features.course.getExtractedCourses(this)
   }
 
   // message
