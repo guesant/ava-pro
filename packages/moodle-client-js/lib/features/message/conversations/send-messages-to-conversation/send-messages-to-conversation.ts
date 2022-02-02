@@ -1,11 +1,9 @@
 import { MoodleClient } from "../../../../MoodleClient"
-import { ajax } from "../../../ajax/ajax"
+import { ajax } from "../../../ajax"
 import {
   ISendMessagesToConversationRequest,
   ISendMessagesToConversationResponse
 } from "./interfaces"
-
-export * from "./interfaces"
 
 export const sendMessagesToConversation = (
   client: MoodleClient,

@@ -1,3 +1,4 @@
+import { IGetConversationsConversationTypeDto } from "../IGetConversationsConversationTypeDto"
 import { IGetConversationsMemberDto } from "./IGetConversationsMemberDto"
 import { IGetConversationsMessageDto } from "./IGetConversationsMessageDto"
 
@@ -10,7 +11,7 @@ export type IGetConversationsConversationDto = {
 
   imageurl: string | null
 
-  type: number
+  type: IGetConversationsConversationTypeDto
 
   membercount: number
 

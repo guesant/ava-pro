@@ -1,7 +1,5 @@
 import { MoodleClient } from "../../MoodleClient"
-import { IHTTPRequestPayload } from "./interfaces/IHTTPRequestPayload"
-
-export * from "./interfaces"
+import { IHTTPRequestPayload } from "./interfaces"
 
 export const http = async (
   client: MoodleClient,

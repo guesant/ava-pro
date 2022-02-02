@@ -1,7 +1,9 @@
+import { IGetConversationsConversationTypeDto } from "./IGetConversationsConversationTypeDto"
+
 export type IGetConversationsRequest = {
   userid: number
 
-  type?: number | null
+  type?: IGetConversationsConversationTypeDto | null
 
   limit?: number
 

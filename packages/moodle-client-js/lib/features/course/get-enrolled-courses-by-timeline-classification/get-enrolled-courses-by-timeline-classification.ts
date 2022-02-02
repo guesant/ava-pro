@@ -1,11 +1,9 @@
-import { ajax } from "../../ajax/ajax"
 import { MoodleClient } from "../../../MoodleClient"
+import { ajax } from "../../ajax"
 import {
   IGetEnrolledCoursesByTimelineClassificationRequest,
   IGetEnrolledCoursesByTimelineClassificationResponse
 } from "./interfaces"
-
-export * from "./interfaces"
 
 export const getEnrolledCoursesByTimelineClassification = async (
   client: MoodleClient,

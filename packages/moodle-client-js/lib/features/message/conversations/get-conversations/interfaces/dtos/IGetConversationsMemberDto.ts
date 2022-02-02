@@ -1,4 +1,4 @@
-import { IGetConversationsContactRequestDto } from "./IGetConversationsContactRequestDto"
+import { IGetConversationsConversationContactRequestDto } from "./IGetConversationsConversationContactRequestDto"
 
 export type IGetConversationsMemberDto = {
   id: number
@@ -27,5 +27,5 @@ export type IGetConversationsMemberDto = {
 
   requirescontact: boolean | null
 
-  contactrequests: IGetConversationsContactRequestDto[]
+  contactrequests: IGetConversationsConversationContactRequestDto[]
 }

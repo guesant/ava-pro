@@ -4,8 +4,7 @@ import {
   IGetConversationsRequest,
   IGetConversationsResponse
 } from "./interfaces"
-
-export * from "./interfaces"
+import { patchConversation } from "./patch-conversation"
 
 export const getConversations = async (
   client: MoodleClient,
@@ -19,5 +18,6 @@ export const getConversations = async (
       ...payload
     }
   )
-  return conversations
+
+  return conversations.map(patchConversation)
 }

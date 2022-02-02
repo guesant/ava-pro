@@ -8,31 +8,23 @@ export class MoodleClient {
 
   constructor(
     public readonly endpointURL: string,
-    public httpService: typeof fetch = fetch
+    public httpService: typeof fetch = window.fetch.bind(window)
   ) {}
 
-  // http
-
-  http(payload: features.IHTTPRequestPayload) {
-    return features.http(this, payload)
-  }
-
   // tokens
-
-  cachedUserId: number | null = null
-
-  cachedSessKey: string | null = null
-
-  get sessKey() {
-    return features.tokens.fetchSessKey(this)
-  }
 
   get userId() {
     return features.tokens.fetchUserId(this)
   }
 
-  updateTokensCache() {
-    return features.tokens.updateTokensCache(this)
+  get sessKey() {
+    return features.tokens.fetchSessKey(this)
+  }
+
+  // http
+
+  http(payload: features.IHTTPRequestPayload) {
+    return features.http(this, payload)
   }
 
   // ajax
@@ -41,7 +33,7 @@ export class MoodleClient {
     methodname: string,
     args: any,
     crawlerFetchOptions?: features.IHTTPRequestPayload["options"],
-    incomingSessKey: IMayBePromise<string | null> = this.cachedSessKey
+    incomingSessKey: IMayBePromise<string | null> = this.sessKey
   ) {
     return features.ajax(
       this,
@@ -87,10 +79,6 @@ export class MoodleClient {
       this,
       payload
     )
-  }
-
-  getExtractedCourses() {
-    return features.course.getExtractedCourses(this)
   }
 
   // message
