@@ -87,6 +87,16 @@ export class MoodleClient {
     return features.message.searchUsers(this, payload)
   }
 
+  getConversation(conversationId: number, userId: IMayBePromise<number>) {
+    return features.message.getConversation(this, conversationId, userId)
+  }
+
+  getConversationBetweenUsers(
+    payload: features.message.IGetConversationBetweenUsersRequest
+  ) {
+    return features.message.getConversationBetweenUsers(this, payload)
+  }
+
   getConversations(payload: features.message.IGetConversationsRequest) {
     return features.message.getConversations(this, payload)
   }
