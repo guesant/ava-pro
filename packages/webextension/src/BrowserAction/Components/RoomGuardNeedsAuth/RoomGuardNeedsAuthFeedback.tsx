@@ -1,26 +1,22 @@
-import { routes } from "@ava-pro/crawlers/lib/routes"
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { routes } from "@ava-pro/moodle-client-js"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import Alert from "@mui/material/Alert"
 import normalizeUrl from "normalize-url"
 import { useMemo } from "react"
-import { Link } from "react-router-dom"
 import { useContextSelector } from "use-context-selector"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 import { RoomContext } from "../RoomContext"
 
+const getManualLoginUrl = (baseURL: string) =>
+  `${normalizeUrl(baseURL, {
+    removeTrailingSlash: true,
+    removeSingleSlash: true
+  })}${routes.login()}`
+
 const RoomGuardNeedsAuthFeedback = () => {
-  const id = useContextSelector(RoomContext, ({ room: { id } }) => id)
   const url = useContextSelector(RoomContext, ({ room: { url } }) => url)
 
-  const manualLoginUrl = useMemo(
-    () =>
-      `${normalizeUrl(url, {
-        removeTrailingSlash: true,
-        removeSingleSlash: true
-      })}${routes.login()}`,
-    [url]
-  )
-
-  const automaticLoginUrl = useMemo(() => `/rooms/${id}/credentials`, [id])
+  const manualLoginUrl = useMemo(() => getManualLoginUrl(url), [url])
 
   return (
     <Alert severity={"warning"}>
@@ -32,9 +28,12 @@ const RoomGuardNeedsAuthFeedback = () => {
         {getMessage("component_roomGuardNeedsAuth_feedback_2_manualLogin")}
       </span>{" "}
       {getMessage("component_roomGuardNeedsAuth_feedback_3_orSetupThe")}{" "}
-      <Link to={automaticLoginUrl} style={{ fontWeight: "bold" }}>
+      <AppRouteLink
+        route={appRoutes.viewRoomCredentials}
+        style={{ fontWeight: "bold" }}
+      >
         {getMessage("component_roomGuardNeedsAuth_feedback_4_automaticLogin")}
-      </Link>
+      </AppRouteLink>
       .
     </Alert>
   )

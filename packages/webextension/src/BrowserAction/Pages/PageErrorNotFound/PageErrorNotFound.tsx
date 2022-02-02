@@ -1,10 +1,10 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import IconButton from "@mui/material/IconButton"
-import { Link } from "react-router-dom"
 import Page from "../../Components/Page/Page"
 import PageContent from "../../Components/PageContent/PageContent"
 import PageHeader from "../../Components/PageHeader/PageHeader"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 
 const PageErrorNotFound = () => (
   <Page>
@@ -12,11 +12,11 @@ const PageErrorNotFound = () => (
       title={getMessage("page_error_notFound")}
       beforeTitle={
         <>
-          <Link to={"/"}>
+          <AppRouteLink route={appRoutes.root}>
             <IconButton color={"inherit"}>
               <ArrowBackIcon />
             </IconButton>
-          </Link>
+          </AppRouteLink>
         </>
       }
     />

@@ -1,11 +1,12 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
-import { Link } from "react-router-dom"
 import { useContextSelector } from "use-context-selector"
 import PageHeader from "../../Components/PageHeader/PageHeader"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 import { ShowRoomContext } from "../ShowRoom/ShowRoomContext"
 import { ShowRoomOverviewHeaderContext } from "./ShowRoomOverviewHeaderContext"
+import ShowRoomOverviewHeaderHome from "./ShowRoomOverviewHeaderHome"
 import ShowRoomOverviewHeaderOptions from "./ShowRoomOverviewHeaderOptions"
 
 const ShowRoomOverviewHeader = () => {
@@ -21,11 +22,11 @@ const ShowRoomOverviewHeader = () => {
       title={name}
       beforeTitle={
         <>
-          <Link to={"/rooms"}>
+          <AppRouteLink route={appRoutes.rooms}>
             <IconButton color={"inherit"}>
               <ArrowBackIcon />
             </IconButton>
-          </Link>
+          </AppRouteLink>
         </>
       }
       afterTitle={
@@ -36,6 +37,7 @@ const ShowRoomOverviewHeader = () => {
             }}
             sx={{ display: "flex", alignItems: "center", gap: 0.25 }}
           />
+          <ShowRoomOverviewHeaderHome />
           <ShowRoomOverviewHeaderOptions />
         </>
       }

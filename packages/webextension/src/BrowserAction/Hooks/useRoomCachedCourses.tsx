@@ -1,8 +1,8 @@
-import { ListCourses } from "@ava-pro/crawlers/lib/Scrappers/ListCourses/ListCourses"
-import { IPageExtractedCourses } from "@ava-pro/shared/lib/Interfaces/IPageExtractedCourses"
-import { IRoom } from "@ava-pro/shared/lib/Interfaces/IRoom"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { updateRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageRoomsMutations"
+import { features } from "@ava-pro/moodle-client-js"
+import { makeStorageMutator } from "@ava-pro/shared/lib/features/storage"
+import { updateRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms"
+import { IRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room"
+import { IRoomCacheCourse } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room/cache/courses/course"
 import { useCallback, useEffect } from "react"
 import { useAsync } from "react-async"
 import { useContextSelector } from "use-context-selector"
@@ -10,24 +10,24 @@ import { RoomContext } from "../Components/RoomContext"
 
 const handleUpdateRoom = makeStorageMutator(updateRoom)
 
+const handleUpdateRoomCoursesCache = (
+  id: IRoom["id"],
+  pageCourses: features.course.IGetEnrolledCoursesByTimelineClassificationCourseDto[]
+) =>
+  handleUpdateRoom({
+    id,
+    recipe: (room) => {
+      room.cache.courses = pageCourses as unknown as IRoomCacheCourse[]
+    }
+  })
+
 export const useRoomCachedCourses = () => {
-  const id = useContextSelector(RoomContext, ({ room: { id } }) => id)
-
-  const handleUpdateRoomCoursesCache = useCallback(
-    (id: IRoom["id"], pageCourses: IPageExtractedCourses) =>
-      handleUpdateRoom({
-        id,
-        recipe: (room) => {
-          room.cache.courses = pageCourses
-        }
-      }),
-    []
-  )
-
-  const crawlerFetch = useContextSelector(
+  const moodleClient = useContextSelector(
     RoomContext,
-    ({ crawlerFetch }) => crawlerFetch
+    ({ moodleClient }) => moodleClient
   )
+
+  const id = useContextSelector(RoomContext, ({ room: { id } }) => id)
 
   const coursesCache = useContextSelector(
     RoomContext,
@@ -41,13 +41,12 @@ export const useRoomCachedCourses = () => {
   const hasCache = coursesCache !== null
 
   const updateCoursesCache = useCallback(async () => {
-    const pageCourses = await ListCourses(crawlerFetch)()
-    await handleUpdateRoomCoursesCache(id, pageCourses)
-  }, [hasCache, handleUpdateRoomCoursesCache, crawlerFetch])
+    const { courses } =
+      await moodleClient.getEnrolledCoursesByTimelineClassification()
+    await handleUpdateRoomCoursesCache(id, courses)
+  }, [hasCache, moodleClient])
 
-  const { run, error, isLoading } = useAsync({
-    deferFn: updateCoursesCache
-  })
+  const { run, error, isLoading } = useAsync({ deferFn: updateCoursesCache })
 
   const reload = useCallback(() => run(), [run])
 

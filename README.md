@@ -20,11 +20,11 @@ Esta extensão foi criada para melhorar a minha experiência e a de alguns coleg
 
 ## Ecosystem
 
-| Project                                          | Description                                                  |
-| ------------------------------------------------ | ------------------------------------------------------------ |
-| [@ava-pro/crawlers](./packages/crawlers)         | Web Scrapping library for extracting data from Moodle pages. |
-| [@ava-pro/shared](./packages/shared)             | Library with shared resources for the project needs.         |
-| [@ava-pro/webextension](./packages/webextension) | The Web Extension source code.                               |
+| Project                                                  | Description                                                  |
+| -------------------------------------------------------- | ------------------------------------------------------------ |
+| [@ava-pro/moodle-client-js](./packages/moodle-client-js) | Web Scrapping library for extracting data from Moodle pages. |
+| [@ava-pro/shared](./packages/shared)                     | Library with shared resources for the project needs.         |
+| [@ava-pro/webextension](./packages/webextension)         | The Web Extension source code.                               |
 
 ## Hacking
 
@@ -45,6 +45,15 @@ We recommend the usage of Docker to develop the extension (~~due security reason
 ```sh
 make dev # -> packages/webextension/dist/dev
 make build # -> packages/webextension/dist/prod
+```
+
+```sh
+make attach # attaches to shell in a running dev or build container
+make clear-cache # purge some cache stuffs
+```
+
+```sh
+make sh # start a new container with a shell session
 ```
 
 #### Development with the NodeJS from your system

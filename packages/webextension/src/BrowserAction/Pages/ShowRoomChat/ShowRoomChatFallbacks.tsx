@@ -1,18 +1,19 @@
 import { FC } from "react"
 import { useContextSelector } from "use-context-selector"
-import { RoomChatContext } from "../../Components/RoomChatContext"
+import { ShowRoomChatContext } from "./ShowRoomChatContext"
 import ShowRoomChatFallbackLoading from "./ShowRoomChatFallbackLoading"
-import ShowRoomChatsFallbackNotFound from "./ShowRoomChatsFallbackNotFound"
+import ShowRoomChatFallbackNotFound from "./ShowRoomChatFallbackNotFound"
 
 const ShowRoomChatFallbacks: FC = ({ children }) => {
   const error = useContextSelector(
-    RoomChatContext,
-    ({ chatQuery: { error } }) => error
+    ShowRoomChatContext,
+    ({ conversationBetweenUsersQuery: { error } }) => error
   )
 
   const isLoading = useContextSelector(
-    RoomChatContext,
-    ({ chatQuery: { isLoading, data } }) => isLoading || !data
+    ShowRoomChatContext,
+    ({ conversationBetweenUsersQuery: { isLoading, data } }) =>
+      isLoading || !data
   )
 
   if (isLoading) {
@@ -20,7 +21,7 @@ const ShowRoomChatFallbacks: FC = ({ children }) => {
   }
 
   if (error) {
-    return <ShowRoomChatsFallbackNotFound />
+    return <ShowRoomChatFallbackNotFound />
   }
 
   return <>{children}</>

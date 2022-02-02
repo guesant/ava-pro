@@ -1,20 +1,17 @@
 import { useParams } from "react-router-dom"
 import Page from "../../Components/Page/Page"
-import { RoomChatContextProvider } from "../../Components/RoomChatContext"
 import ShowRoomGuardNeedsAuth from "../ShowRoomGuardNeedsAuth/ShowRoomGuardNeedsAuth"
-import ShowRoomChatContent from "./ShowRoomChatContent"
+import { ShowRoomChatContextProvider } from "./ShowRoomChatContext"
 import ShowRoomChatFallbacks from "./ShowRoomChatFallbacks"
 
 const ShowRoomChat = () => {
-  const { contactId = "" } = useParams<"contactId">()
+  const { userId = "" } = useParams<"userId">()
   return (
     <ShowRoomGuardNeedsAuth>
       <Page>
-        <RoomChatContextProvider contactId={+contactId}>
-          <ShowRoomChatFallbacks>
-            <ShowRoomChatContent />
-          </ShowRoomChatFallbacks>
-        </RoomChatContextProvider>
+        <ShowRoomChatContextProvider otherUserId={userId}>
+          <ShowRoomChatFallbacks />
+        </ShowRoomChatContextProvider>
       </Page>
     </ShowRoomGuardNeedsAuth>
   )

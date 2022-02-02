@@ -1,4 +1,4 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import Box from "@mui/material/Box"
 import Divider from "@mui/material/Divider"
 import Tab from "@mui/material/Tab"
@@ -7,7 +7,10 @@ import { Link } from "react-router-dom"
 import { useRouteMatch } from "../../Hooks/useRouteMatch"
 
 const ShowRoomOverviewTabs = () => {
-  const currentTab = useRouteMatch(["/rooms/:id/courses", "/rooms/:id/chats"])
+  const currentTab = useRouteMatch([
+    "/rooms/:id/courses",
+    "/rooms/:id/conversations"
+  ])
 
   if (!currentTab) {
     return null
@@ -24,10 +27,10 @@ const ShowRoomOverviewTabs = () => {
             component={Link}
           />
           <Tab
-            label={getMessage("page_showRoom_overview_tab_chats")}
-            value="/rooms/:id/chats"
-            to="./../chats"
             component={Link}
+            to="./../conversations"
+            value="/rooms/:id/conversations"
+            label={getMessage("page_showRoom_overview_tab_conversations")}
           />
         </Tabs>
       </Box>

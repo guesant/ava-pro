@@ -1,4 +1,4 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import Typography from "@mui/material/Typography"
 import { useContextSelector } from "use-context-selector"
 import CourseList from "../../Components/CourseList/CourseList"

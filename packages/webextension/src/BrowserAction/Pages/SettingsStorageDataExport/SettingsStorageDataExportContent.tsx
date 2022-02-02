@@ -1,9 +1,9 @@
-import { useExtensionStorageSlicer } from "@ava-pro/shared/lib/Hooks/useExtensionStorageSlicer"
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
+import { useExtensionStorageSlicer } from "@ava-pro/shared/lib/features/storage"
 import TextField from "@mui/material/TextField"
 import { handleSelectAllOnFocus } from "../../Hooks/handleSelectAllOnFocus"
 
-const getAllStateSlicer = (state) => state
+const getAllStateSlicer = (state: any) => state
 
 const SettingsStorageDataExportContent = () => {
   const { value, isLoading } = useExtensionStorageSlicer(getAllStateSlicer, {})

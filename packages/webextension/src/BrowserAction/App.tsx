@@ -31,21 +31,28 @@ const ShowRoomOverviewCourses = lazy(
   () => import("./Pages/ShowRoomOverviewCourses/ShowRoomOverviewCourses")
 )
 
-const ShowRoomOverviewChats = lazy(
-  () => import("./Pages/ShowRoomOverviewChats/ShowRoomOverviewChats")
+const ShowRoomOverviewConversations = lazy(
+  () =>
+    import(
+      "./Pages/ShowRoomOverviewConversations/ShowRoomOverviewConversations"
+    )
 )
 
 const ShowRoomSearchCourses = lazy(
   () => import("./Pages/ShowRoomSearchCourses/ShowRoomSearchCourses")
 )
 
-const ShowRoomSearchChats = lazy(
-  () => import("./Pages/ShowRoomSearchChats/ShowRoomSearchChats")
+const ShowRoomSearchMessaging = lazy(
+  () => import("./Pages/ShowRoomSearchMessaging/ShowRoomSearchMessaging")
 )
 
 const ShowRoomEdit = lazy(() => import("./Pages/ShowRoomEdit/ShowRoomEdit"))
 
 const ShowRoomChat = lazy(() => import("./Pages/ShowRoomChat/ShowRoomChat"))
+
+const ShowRoomConversation = lazy(
+  () => import("./Pages/ShowRoomConversation/ShowRoomConversation")
+)
 
 const Settings = lazy(() => import("./Pages/Settings/Settings"))
 
@@ -72,15 +79,23 @@ const App = () => (
             <Route path={""} element={<ShowRoomOverviewCourses />} />
           </Route>
 
-          <Route path={"chats"} element={<ShowRoomOverview />}>
-            <Route path={""} element={<ShowRoomOverviewChats />} />
+          <Route path={"conversations"} element={<ShowRoomOverview />}>
+            <Route path={""} element={<ShowRoomOverviewConversations />} />
           </Route>
 
-          <Route path={"chats/:contactId"} element={<ShowRoomChat />} />
+          <Route
+            path={"conversations/:conversationId"}
+            element={<ShowRoomConversation />}
+          />
+
+          <Route path={"chats/:userId"} element={<ShowRoomChat />} />
 
           <Route path={"search"}>
             <Route path={"courses"} element={<ShowRoomSearchCourses />} />
-            <Route path={"chats"} element={<ShowRoomSearchChats />} />
+            <Route
+              path={"conversations"}
+              element={<ShowRoomSearchMessaging />}
+            />
           </Route>
 
           <Route path={"credentials"} element={<ShowRoomCredentials />} />

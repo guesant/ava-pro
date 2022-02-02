@@ -1,17 +1,13 @@
-import { CheckLogin } from "@ava-pro/crawlers/lib/Scrappers/CheckLogin/CheckLogin"
-import { ExtractTokens } from "@ava-pro/crawlers/lib/Scrappers/ExtractTokens/ExtractTokens"
-import { Login } from "@ava-pro/crawlers/lib/Scrappers/Login/Login"
-import { IRoom } from "@ava-pro/shared/lib/Interfaces/IRoom"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { updateRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageRoomsMutations"
+import { makeStorageMutator } from "@ava-pro/shared/lib/features/storage"
+import { updateRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms"
+import { IRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room"
 import { FC, useCallback, useEffect, useState } from "react"
 import { createContext, useContextSelector } from "use-context-selector"
 import { RoomContext } from "./RoomContext"
 
 type IRoomAuthedContext = {
   isLoggedIn: boolean
-  userId: number | null
-  sessKey: string | null
+  userId: null | number
 }
 
 export const RoomAuthedContext = createContext({} as IRoomAuthedContext)
@@ -34,9 +30,9 @@ const useRoomSmartLogin = () => {
 
   const id = useContextSelector(RoomContext, ({ room: { id } }) => id)
 
-  const crawlerFetch = useContextSelector(
+  const moodleClient = useContextSelector(
     RoomContext,
-    ({ crawlerFetch }) => crawlerFetch
+    ({ moodleClient }) => moodleClient
   )
 
   const { username, password, autoLogin } = useContextSelector(
@@ -45,18 +41,18 @@ const useRoomSmartLogin = () => {
   )
 
   const handleAutoLogin = useCallback(async () => {
-    let isLoggedIn = await CheckLogin(crawlerFetch)()
+    await moodleClient.checkLogin()
 
-    if (!isLoggedIn && autoLogin && username && password) {
-      isLoggedIn = await Login(crawlerFetch)(username, password, true)
+    if (!moodleClient.isAuthed && autoLogin && username && password) {
+      await moodleClient.login(username, password, { skipLogout: true })
 
-      if (!isLoggedIn) {
+      if (!moodleClient.isAuthed) {
         await handleRoomUpdateAutoLogin(id, false)
       }
     }
 
-    setIsLoggedIn(isLoggedIn)
-  }, [username, password, autoLogin, crawlerFetch, handleRoomUpdateAutoLogin])
+    setIsLoggedIn(moodleClient.isAuthed)
+  }, [username, password, autoLogin, handleRoomUpdateAutoLogin, moodleClient])
 
   useEffect(() => void handleAutoLogin(), [handleAutoLogin])
 
@@ -67,25 +63,20 @@ export const RoomAuthedContextProvider: FC = ({ children }) => {
   const { isLoggedIn } = useRoomSmartLogin()
 
   const [userId, setUserId] = useState<number | null>(null)
-  const [sessKey, setSessKey] = useState<string | null>(null)
 
-  const crawlerFetch = useContextSelector(
+  const moodleClient = useContextSelector(
     RoomContext,
-    ({ crawlerFetch }) => crawlerFetch
+    ({ moodleClient }) => moodleClient
   )
 
   const handleFetchTokens = useCallback(async () => {
-    const { userId, sessKey } = await ExtractTokens(crawlerFetch)()
-    setUserId(userId)
-    setSessKey(sessKey)
-  }, [crawlerFetch, isLoggedIn])
+    setUserId(await moodleClient.userId)
+  }, [moodleClient, isLoggedIn])
 
-  useEffect(() => {
-    void handleFetchTokens()
-  }, [handleFetchTokens])
+  useEffect(() => void handleFetchTokens(), [handleFetchTokens])
 
   return (
-    <RoomAuthedContext.Provider value={{ isLoggedIn, userId, sessKey }}>
+    <RoomAuthedContext.Provider value={{ isLoggedIn, userId }}>
       {children}
     </RoomAuthedContext.Provider>
   )

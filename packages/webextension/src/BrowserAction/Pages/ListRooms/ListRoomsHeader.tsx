@@ -1,10 +1,10 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import AddIcon from "@mui/icons-material/Add"
 import HistoryIcon from "@mui/icons-material/History"
 import SettingsIcon from "@mui/icons-material/Settings"
 import IconButton from "@mui/material/IconButton"
-import { Link } from "react-router-dom"
 import PageHeader from "../../Components/PageHeader/PageHeader"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 
 const ListRoomsHeader = () => {
   return (
@@ -12,21 +12,21 @@ const ListRoomsHeader = () => {
       title={getMessage("page_listRooms")}
       afterTitle={
         <>
-          <Link to={"add"}>
+          <AppRouteLink route={appRoutes.addRoom}>
             <IconButton color={"inherit"}>
               <AddIcon />
             </IconButton>
-          </Link>
-          <Link to={"detected"}>
+          </AppRouteLink>
+          <AppRouteLink route={appRoutes.detectedRooms}>
             <IconButton color={"inherit"}>
               <HistoryIcon />
             </IconButton>
-          </Link>
-          <Link to={"../settings"}>
+          </AppRouteLink>
+          <AppRouteLink route={appRoutes.settings}>
             <IconButton color="inherit">
               <SettingsIcon />
             </IconButton>
-          </Link>
+          </AppRouteLink>
         </>
       }
     />

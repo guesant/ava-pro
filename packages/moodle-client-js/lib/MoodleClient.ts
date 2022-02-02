@@ -8,19 +8,19 @@ export class MoodleClient {
 
   private _endpointUrl: string | null = null
 
+  constructor(
+    endpointURL: string,
+    public httpService: typeof fetch = window.fetch.bind(window)
+  ) {
+    this.endpointURL = endpointURL
+  }
+
   get endpointURL() {
     return this._endpointUrl!
   }
 
   set endpointURL(value) {
     this._endpointUrl = normalizeUrl(value, { removeTrailingSlash: true })
-  }
-
-  constructor(
-    endpointURL: string,
-    public httpService: typeof fetch = window.fetch.bind(window)
-  ) {
-    this.endpointURL = endpointURL
   }
 
   // tokens

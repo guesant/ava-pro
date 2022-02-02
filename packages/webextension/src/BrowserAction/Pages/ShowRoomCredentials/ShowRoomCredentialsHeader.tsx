@@ -1,4 +1,4 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import Button from "@mui/material/Button"
 import IconButton from "@mui/material/IconButton"
@@ -18,7 +18,7 @@ const ShowRoomCredentialsHeader = () => {
       title={getMessage("page_showRoom_credentials")}
       beforeTitle={
         <>
-          <Link to={-1}>
+          <Link to={-1 as any}>
             <IconButton color={"inherit"}>
               <ArrowBackIcon />
             </IconButton>

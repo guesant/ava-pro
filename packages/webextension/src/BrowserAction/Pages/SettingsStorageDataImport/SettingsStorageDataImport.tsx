@@ -1,15 +1,15 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import { useSnackbar } from "notistack"
 import { FormProvider, useForm } from "react-hook-form"
-import { useNavigate } from "react-router"
 import browser from "webextension-polyfill"
 import Page from "../../Components/Page/Page"
 import PageContent from "../../Components/PageContent/PageContent"
+import { appRoutes, useNavigateAppRoute } from "../../Hooks/useAppRoutes"
 import SettingsStorageDataImportContent from "./SettingsStorageDataImportContent"
 import SettingsStorageDataImportHeader from "./SettingsStorageDataImportHeader"
 
 const SettingsStorageDataImport = () => {
-  const navigate = useNavigate()
+  const navigateAppRoute = useNavigateAppRoute()
   const { enqueueSnackbar } = useSnackbar()
 
   const methods = useForm({ mode: "onChange", defaultValues: { data: "{}" } })
@@ -26,7 +26,7 @@ const SettingsStorageDataImport = () => {
       { variant: "info", autoHideDuration: 3 * 1000 }
     )
 
-    navigate("./../..")
+    navigateAppRoute(appRoutes.settings)
   }
 
   return (

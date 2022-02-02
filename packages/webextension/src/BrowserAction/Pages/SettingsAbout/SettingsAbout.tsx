@@ -1,4 +1,4 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import Divider from "@mui/material/Divider"
 import ListSubheader from "@mui/material/ListSubheader"
 import SettingsAboutAuthor from "./SettingsAboutAuthor"

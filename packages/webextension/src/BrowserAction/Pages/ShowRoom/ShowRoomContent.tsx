@@ -1,5 +1,5 @@
-import { applyStorageMutation } from "@ava-pro/shared/lib/Storage/applyStorageMutation"
-import { updateSelectedRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageSettingsMutations"
+import { applyStorageMutation } from "@ava-pro/shared/lib/features/storage"
+import { updateSelectedRoom } from "@ava-pro/shared/lib/features/storage/schemas/settings"
 import { useEffect } from "react"
 import { useContextSelector } from "use-context-selector"
 import ShowRoomFallbackNotFound from "../ShowRoomFallbackNotFound/ShowRoomFallbackNotFound"

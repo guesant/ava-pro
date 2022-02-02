@@ -1,4 +1,4 @@
-import { IExtractedCourse } from "@ava-pro/shared/lib/Interfaces/IExtractedCourse"
+import { IRoomCacheCourse } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room/cache/courses/course"
 import PushPinIcon from "@mui/icons-material/PushPin"
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined"
 import IconButton from "@mui/material/IconButton"
@@ -10,26 +10,26 @@ import { FC, useCallback } from "react"
 import { useCoursePinState } from "../../Hooks/useCoursePinState"
 import * as classes from "./CourseListItem.module.css"
 
-const CourseListItem: FC<{ course: IExtractedCourse }> = ({ course }) => {
+const CourseListItem: FC<{ course: IRoomCacheCourse }> = ({ course }) => {
   const { isPinned, togglePinState } = useCoursePinState(course)
 
   const handleClick = useCallback(() => {
-    window.open(course.url)
-  }, [course.url])
+    window.open(course.viewurl)
+  }, [course.viewurl])
 
   return (
     <ListItem
       button
       divider
       disableRipple
-      title={course.name}
       onClick={handleClick}
+      title={course.fullname}
       classes={{
         container: [classes.item, isPinned ? classes.pinned : null].join(" ")
       }}
     >
       <ListItemText>
-        <Typography noWrap>{course.name}</Typography>
+        <Typography noWrap>{course.fullname}</Typography>
       </ListItemText>
       <ListItemSecondaryAction className={classes.secondaryActions}>
         <IconButton onClick={togglePinState}>

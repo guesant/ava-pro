@@ -1,0 +1,7 @@
+export * as detectedRooms from "./detected-rooms"
+export * as rooms from "./rooms"
+export * as settings from "./settings"
+export * from "./interfaces"
+export * from "./storage.struct"
+export * as version from "./version"
+export * as lastMigration from "./last-migration"

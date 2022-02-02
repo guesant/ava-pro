@@ -1,4 +1,4 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import { useFormContext } from "react-hook-form"

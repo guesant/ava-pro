@@ -1,4 +1,4 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import IconButton from "@mui/material/IconButton"
 import { Link } from "react-router-dom"
@@ -10,7 +10,7 @@ const ShowRoomChatFallbackLoading = () => {
       <PageHeader
         beforeTitle={
           <>
-            <Link to={-1}>
+            <Link to={-1 as any}>
               <IconButton color={"inherit"}>
                 <ArrowBackIcon />
               </IconButton>

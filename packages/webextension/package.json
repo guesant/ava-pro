@@ -10,12 +10,11 @@
     "prod": {}
   },
   "scripts": {
-    "clear:dist": "rm -rf dist",
     "start": "parcel watch src/manifest.json --target dev",
     "build": "parcel build src/manifest.json --target prod"
   },
   "dependencies": {
-    "@ava-pro/crawlers": "workspace:*",
+    "@ava-pro/moodle-client-js": "workspace:*",
     "@ava-pro/shared": "workspace:*",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
@@ -34,6 +33,8 @@
     "react-router": "^6.0.2",
     "react-router-dom": "^6.0.2",
     "react-virtuoso": "^2.2.8",
+    "ruty": "^1.2.3",
+    "scheduler": "^0.20.2",
     "typescript": "^4.5.2",
     "use-context-selector": "^1.3.9",
     "use-debounce": "^7.0.1",

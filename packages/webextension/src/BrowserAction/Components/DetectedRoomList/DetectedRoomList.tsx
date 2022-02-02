@@ -1,5 +1,5 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
-import { IDetectedRoom } from "@ava-pro/shared/lib/Interfaces/IDetectedRoom"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
+import { IDetectedRoom } from "@ava-pro/shared/lib/features/storage/schemas/detected-rooms/detected-room"
 import Box from "@mui/material/Box"
 import Divider from "@mui/material/Divider"
 import List from "@mui/material/List"

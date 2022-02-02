@@ -1,13 +1,16 @@
-import { IExtractedCourse } from "@ava-pro/shared/lib/Interfaces/IExtractedCourse"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { updateRoomCourse } from "@ava-pro/shared/lib/Storage/Mutations/StorageRoomsMutations"
+import { makeStorageMutator } from "@ava-pro/shared/lib/features/storage"
+import { updateRoomCourse } from "@ava-pro/shared/lib/features/storage/schemas/rooms"
+import { IRoomCacheCourse } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room/cache/courses/course"
 import { useCallback } from "react"
 import { useContextSelector } from "use-context-selector"
 import { RoomContext } from "../Components/RoomContext"
 
 const handleUpdateRoomCourse = makeStorageMutator(updateRoomCourse)
 
-export const useCoursePinState = ({ courseId, isPinned }: IExtractedCourse) => {
+export const useCoursePinState = ({
+  id: courseId,
+  isPinned
+}: IRoomCacheCourse) => {
   const roomId = useContextSelector(RoomContext, ({ room: { id } }) => id)
 
   const togglePinState = useCallback(

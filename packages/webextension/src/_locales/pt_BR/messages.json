@@ -1,8 +1,8 @@
 {
-  "component_contactCard_lastMessage_sentBy_me": {
+  "component_conversationCard_lastMessage_sentBy_me": {
     "message": "Você: "
   },
-  "component_contactCard_profilePicture_alt": {
+  "component_conversationCard_profilePicture_alt": {
     "message": "Foto de perfil de $1."
   },
   "component_courseList_subheader_notPinned": {
@@ -57,7 +57,13 @@
     "message": "Conseguimos detectar o ambiente \"$1\". Abra o popup desta extensão para ter acesso a mais ações."
   },
   "notification_newDetectedRoom_title": {
-    "message": "Um Ambiente Moodle Foi Detectado"
+    "message": "Um Ambiente Moodle Foi Detectado."
+  },
+  "notification_unreadRoomMessages_description": {
+    "message": "$1 mensagem(s) de $2 conversas(s)."
+  },
+  "notification_unreadRoomMessages_title": {
+    "message": "Você possui novas mensagens não lidas no ambiente $1."
   },
   "page_addRoom": {
     "message": "Adicionar Ambiente"
@@ -143,16 +149,16 @@
   "page_settings_storage_data_import_submit": {
     "message": "Importar"
   },
-  "page_showRoom_chat_input_typeMessage": {
+  "page_showRoom_conversation_input_typeMessage": {
     "message": "Digite uma mensagem"
   },
-  "page_showRoom_chat_submit": {
+  "page_showRoom_conversation_submit": {
     "message": "Enviar Mensagem"
   },
-  "page_showRoom_chats_fallback_notFound": {
-    "message": "Não foi possível carregar este chat."
+  "page_showRoom_conversations_fallback_notFound": {
+    "message": "Não foi possível carregar esta conversa."
   },
-  "page_showRoom_chats_fallback_notFound_message": {
+  "page_showRoom_conversations_fallback_notFound_message": {
     "message": "Infelizmente não foi possível carregar esta conversa."
   },
   "page_showRoom_credentials": {
@@ -194,8 +200,8 @@
   "page_showRoom_guard_needsAuth_message": {
     "message": "Você precisa estar autenticado para acessar este recurso."
   },
-  "page_showRoom_overviewChats_feedback_error": {
-    "message": "Não foi possível carregar a lista de chats."
+  "page_showRoom_overviewConversations_feedback_error": {
+    "message": "Não foi possível carregar a lista de conversas."
   },
   "page_showRoom_overviewCourses_feedback_error": {
     "message": "Não foi possível carregar a lista de cursos. Certifique que você está conectado à Internet e autenticado no Ambiente."
@@ -236,19 +242,19 @@
   "page_showRoom_overview_header_options_edit": {
     "message": "Editar"
   },
-  "page_showRoom_overview_tab_chats": {
-    "message": "Chats"
+  "page_showRoom_overview_tab_conversations": {
+    "message": "Conversas"
   },
   "page_showRoom_overview_tab_courses": {
     "message": "Cursos"
   },
-  "page_showRoom_searchChats_form_input_search": {
-    "message": "Buscar chat..."
+  "page_showRoom_searchConversations_form_input_search": {
+    "message": "Buscar conversa..."
   },
-  "page_showRoom_searchChats_form_tab_all": {
+  "page_showRoom_searchConversations_form_tab_all": {
     "message": "Todos os Perfis"
   },
-  "page_showRoom_searchChats_form_tab_onlyAlreadyStarted": {
+  "page_showRoom_searchConversations_form_tab_onlyAlreadyStarted": {
     "message": "Conversas Já Iniciadas"
   },
   "page_showRoom_searchCourses_form_input_search": {

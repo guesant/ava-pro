@@ -1,11 +1,11 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import IconButton from "@mui/material/IconButton"
-import { Link } from "react-router-dom"
 import Loading from "../../Components/Loading/Loading"
 import Page from "../../Components/Page/Page"
 import PageContent from "../../Components/PageContent/PageContent"
 import PageHeader from "../../Components/PageHeader/PageHeader"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 
 const ShowRoomFallbackLoading = () => (
   <Page>
@@ -13,11 +13,11 @@ const ShowRoomFallbackLoading = () => (
       title={getMessage("feedback_loading")}
       beforeTitle={
         <>
-          <Link to={"/rooms"}>
+          <AppRouteLink route={appRoutes.rooms}>
             <IconButton color={"inherit"}>
               <ArrowBackIcon />
             </IconButton>
-          </Link>
+          </AppRouteLink>
         </>
       }
     />

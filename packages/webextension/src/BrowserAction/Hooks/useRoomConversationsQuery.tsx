@@ -1,25 +1,27 @@
-import { Conversations } from "@ava-pro/crawlers/lib/Scrappers/AjaxServices/CoreMessage/DataForMessageArea/Conversations"
-import { useQuery } from "react-query"
+import { useQuery, UseQueryResult } from "react-query"
 import { useContextSelector } from "use-context-selector"
 import { RoomAuthedContext } from "../Components/RoomAuthedContext"
 import { RoomContext } from "../Components/RoomContext"
 
-export const useRoomConversationsQuery = () => {
-  const userId = useContextSelector(RoomAuthedContext, ({ userId }) => userId)
+export type IRoomConversationsQuery = {
+  conversationsQuery: UseQueryResult<any | null>
+}
 
-  const crawlerFetch = useContextSelector(
+export const useRoomConversationsQuery = () => {
+  const moodleClient = useContextSelector(
     RoomContext,
-    ({ crawlerFetch }) => crawlerFetch
+    ({ moodleClient }) => moodleClient
   )
 
+  const userId = useContextSelector(RoomAuthedContext, ({ userId }) => userId)
+
   const conversationsQuery = useQuery(
-    [userId, "conversations", crawlerFetch],
+    [userId, "conversations", moodleClient],
     async () => {
       if (userId !== null) {
-        const { contacts } = await Conversations(crawlerFetch)({
+        return moodleClient.getConversations({
           userid: userId
         })
-        return contacts
       }
       return []
     }

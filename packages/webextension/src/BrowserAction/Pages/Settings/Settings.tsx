@@ -1,10 +1,10 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import ArrowBack from "@mui/icons-material/ArrowBack"
 import IconButton from "@mui/material/IconButton"
-import { Link } from "react-router-dom"
 import Page from "../../Components/Page/Page"
 import PageContent from "../../Components/PageContent/PageContent"
 import PageHeader from "../../Components/PageHeader/PageHeader"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 import SettingsAbout from "../SettingsAbout/SettingsAbout"
 import SettingsAppearance from "../SettingsAppearance/SettingsAppearance"
 import SettingsContribute from "../SettingsContribute/SettingsContribute"
@@ -16,11 +16,11 @@ const Settings = () => (
       title={getMessage("page_settings")}
       beforeTitle={
         <>
-          <Link to={"./.."}>
+          <AppRouteLink route={appRoutes.root}>
             <IconButton color={"inherit"}>
               <ArrowBack />
             </IconButton>
-          </Link>
+          </AppRouteLink>
         </>
       }
     />

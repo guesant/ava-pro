@@ -1,9 +1,11 @@
-import { useExtensionStorageSlicer } from "@ava-pro/shared/lib/Hooks/useExtensionStorageSlicer"
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
-import { ICoursesOrderBy } from "@ava-pro/shared/lib/Interfaces/ICoursesOrderBy"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { updateCoursesOrderBy } from "@ava-pro/shared/lib/Storage/Mutations/StorageSettingsMutations"
-import { getCoursesOrderBy } from "@ava-pro/shared/lib/Storage/Slicers/StorageSettingsSlicers"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
+import {
+  makeStorageMutator,
+  useExtensionStorageSlicer
+} from "@ava-pro/shared/lib/features/storage"
+import { updateCoursesOrderBy } from "@ava-pro/shared/lib/features/storage/schemas/settings"
+import { ICoursesOrderBy } from "@ava-pro/shared/lib/features/storage/schemas/settings/courses-order-by"
+import { getCoursesOrderBy } from "@ava-pro/shared/lib/features/storage/schemas/settings/courses-order-by/get-courses-order-by.slicer"
 import HistoryIcon from "@mui/icons-material/History"
 import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
 import ListItemIcon from "@mui/material/ListItemIcon"

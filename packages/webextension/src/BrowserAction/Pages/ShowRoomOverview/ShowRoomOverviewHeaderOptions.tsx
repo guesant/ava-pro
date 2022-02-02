@@ -1,6 +1,6 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { removeRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageRoomsMutations"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
+import { makeStorageMutator } from "@ava-pro/shared/lib/features/storage"
+import { removeRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice"
@@ -10,22 +10,25 @@ import ListItemIcon from "@mui/material/ListItemIcon"
 import MenuItem from "@mui/material/MenuItem"
 import MenuList from "@mui/material/MenuList"
 import { FC, useCallback } from "react"
-import { useNavigate } from "react-router"
-import { Link } from "react-router-dom"
 import { useContextSelector } from "use-context-selector"
 import MenuButton from "../../Components/MenuButton/MenuButton"
 import { RoomContext } from "../../Components/RoomContext"
+import {
+  AppRouteLink,
+  appRoutes,
+  useNavigateAppRoute
+} from "../../Hooks/useAppRoutes"
 
 const handleRemoveRoom = makeStorageMutator(removeRoom)
 
 const ShowRoomOverviewHeaderOptionsDelete = () => {
-  const navigate = useNavigate()
+  const navigateAppRoute = useNavigateAppRoute()
   const id = useContextSelector(RoomContext, ({ room }) => room.id)
 
   const handleDelete = useCallback(async () => {
-    await Promise.resolve(navigate("/rooms"))
+    await Promise.resolve(navigateAppRoute(appRoutes.rooms))
     await handleRemoveRoom(id)
-  }, [navigate])
+  }, [navigateAppRoute])
 
   return (
     <MenuItem onClick={handleDelete} dense disableRipple>
@@ -44,7 +47,7 @@ const ShowRoomOverviewHeaderOptions: FC = () => (
       menuContent={
         <div>
           <MenuList>
-            <Link to={"./../settings"}>
+            <AppRouteLink route={appRoutes.settings}>
               <MenuItem dense disableRipple>
                 <ListItemIcon>
                   <EditIcon />
@@ -52,9 +55,9 @@ const ShowRoomOverviewHeaderOptions: FC = () => (
 
                 {getMessage("page_showRoom_overview_header_options_edit")}
               </MenuItem>
-            </Link>
+            </AppRouteLink>
 
-            <Link to={"./../credentials"}>
+            <AppRouteLink route={appRoutes.viewRoomCredentials}>
               <MenuItem dense disableRipple>
                 <ListItemIcon>
                   <LocalPoliceIcon />
@@ -64,7 +67,7 @@ const ShowRoomOverviewHeaderOptions: FC = () => (
                   "page_showRoom_overview_header_options_credentials"
                 )}
               </MenuItem>
-            </Link>
+            </AppRouteLink>
 
             <Divider sx={{ my: 1 }} />
 

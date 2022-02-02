@@ -1,0 +1,23 @@
+.message {
+  max-width: 100%;
+  word-wrap: anywhere;
+  border-width: 1px;
+  border-style: solid;
+  padding: 15px 12px 10px;
+}
+
+.message p {
+  line-height: 1.4;
+}
+
+.message.byContact {
+  justify-self: start;
+  grid-column: 1 / -2;
+  border-radius: 8px 8px 8px 0;
+}
+
+.message.byMe {
+  justify-self: end;
+  grid-column: 2 / -1;
+  border-radius: 8px 8px 0 8px;
+}

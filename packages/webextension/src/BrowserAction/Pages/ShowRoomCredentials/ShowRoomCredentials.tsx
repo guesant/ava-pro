@@ -1,8 +1,10 @@
-import { useExtensionStorageSlicer } from "@ava-pro/shared/lib/Hooks/useExtensionStorageSlicer"
-import { IRoom } from "@ava-pro/shared/lib/Interfaces/IRoom"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { updateRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageRoomsMutations"
-import { getRoomById } from "@ava-pro/shared/lib/Storage/Slicers/StorageRoomSlicers"
+import {
+  makeStorageMutator,
+  useExtensionStorageSlicer
+} from "@ava-pro/shared/lib/features/storage"
+import { updateRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms"
+import { getRoomById } from "@ava-pro/shared/lib/features/storage/schemas/rooms/get-room-by-id.slicer"
+import { IRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room"
 import { useCallback, useEffect, useMemo } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useContextSelector } from "use-context-selector"

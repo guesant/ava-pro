@@ -1,4 +1,4 @@
-import { IExtractedCourse } from "@ava-pro/shared/lib/Interfaces/IExtractedCourse"
+import { IRoomCacheCourse } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room/cache/courses/course"
 import { Dispatch, FC, SetStateAction, useMemo, useState } from "react"
 import { createContext, useContextSelector } from "use-context-selector"
 import { RoomCoursesContext } from "../../Components/RoomCoursesContext"
@@ -6,8 +6,7 @@ import { RoomCoursesContext } from "../../Components/RoomCoursesContext"
 type IShowRoomSearchCoursesContext = {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
-
-  filteredCourses: IExtractedCourse[]
+  filteredCourses: IRoomCacheCourse[]
 }
 
 export const ShowRoomSearchCoursesContext = createContext(
@@ -25,7 +24,7 @@ export const ShowRoomSearchCoursesContextProvider: FC = ({ children }) => {
   const filteredCourses = useMemo(
     () =>
       courses.filter((course) =>
-        course.name
+        course.fullname
           .toLocaleLowerCase()
           .includes(searchText.trim().toLocaleLowerCase())
       ),

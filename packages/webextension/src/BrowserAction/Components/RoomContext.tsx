@@ -1,12 +1,12 @@
-import { ICrawlerFetch } from "@ava-pro/shared/lib/Interfaces/ICrawlerFetch"
-import { IRoom } from "@ava-pro/shared/lib/Interfaces/IRoom"
-import { makeCrawlerFetch } from "@ava-pro/shared/lib/makeCrawlerFetch"
+import { MoodleClient } from "@ava-pro/moodle-client-js"
+import { IRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room"
 import { FC, useMemo } from "react"
 import { createContext } from "use-context-selector"
 
 type IRoomContext = {
   room: IRoom
-  crawlerFetch: ICrawlerFetch
+
+  moodleClient: MoodleClient
 }
 
 export const RoomContext = createContext({} as IRoomContext)
@@ -15,9 +15,10 @@ export const RoomContextProvider: FC<{ room: IRoom }> = ({
   room,
   children
 }) => {
-  const crawlerFetch = useMemo(() => makeCrawlerFetch(room.url), [room.url])
+  const moodleClient = useMemo(() => new MoodleClient(room.url), [room.url])
+
   return (
-    <RoomContext.Provider value={{ room, crawlerFetch }}>
+    <RoomContext.Provider value={{ room, moodleClient }}>
       {children}
     </RoomContext.Provider>
   )

@@ -1,9 +1,11 @@
-import { IDetectedRoom } from "@ava-pro/shared/lib/Interfaces/IDetectedRoom"
-import { IDetectedRoomResponse } from "@ava-pro/shared/lib/Interfaces/IDetectedRoomResponse"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { removeDetectedRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageDetectedRoomMutations"
-import { acceptDetectedRoom } from "@ava-pro/shared/lib/Storage/Services/DetectedRoom/acceptDetectedRoom"
-import { rejectDetectedRoom } from "@ava-pro/shared/lib/Storage/Services/DetectedRoom/rejectDetectedRoom"
+import { makeStorageMutator } from "@ava-pro/shared/lib/features/storage"
+import { removeDetectedRoom } from "@ava-pro/shared/lib/features/storage/schemas/detected-rooms"
+import {
+  acceptDetectedRoomAction,
+  IDetectedRoom,
+  rejectDetectedRoomAction
+} from "@ava-pro/shared/lib/features/storage/schemas/detected-rooms/detected-room"
+import { IDetectedRoomResponse } from "@ava-pro/shared/lib/features/storage/schemas/detected-rooms/detected-room/response"
 import CheckIcon from "@mui/icons-material/Check"
 import CloseIcon from "@mui/icons-material/Close"
 import DeleteIcon from "@mui/icons-material/Delete"
@@ -41,9 +43,9 @@ const handleResponse = ([response, detectedRoom]: [
 ]) => {
   switch (response) {
     case ButtonResponse.ACCEPT:
-      return acceptDetectedRoom(detectedRoom)
+      return acceptDetectedRoomAction(detectedRoom)
     case ButtonResponse.REJECT:
-      return rejectDetectedRoom(detectedRoom)
+      return rejectDetectedRoomAction(detectedRoom)
   }
 }
 
@@ -53,7 +55,7 @@ const DetectedRoomListItem: FC<IDetectedRoomProps> = ({
   detectedRoom,
   showSecondaryActions = true
 }) => {
-  const { run, isLoading } = useAsync({ deferFn: handleResponse })
+  const { run, isLoading } = useAsync({ deferFn: handleResponse } as any)
 
   const handleAcceptRequest = useCallback(
     () => run(ButtonResponse.ACCEPT, detectedRoom),

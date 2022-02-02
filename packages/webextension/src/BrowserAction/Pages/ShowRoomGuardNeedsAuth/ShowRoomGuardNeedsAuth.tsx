@@ -1,14 +1,14 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import IconButton from "@mui/material/IconButton"
 import Typography from "@mui/material/Typography"
 import { FC } from "react"
-import { Link } from "react-router-dom"
 import { useContextSelector } from "use-context-selector"
 import Page from "../../Components/Page/Page"
 import PageContent from "../../Components/PageContent/PageContent"
 import PageHeader from "../../Components/PageHeader/PageHeader"
 import { RoomAuthedContext } from "../../Components/RoomAuthedContext"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 
 const ShowRoomGuardNeedsAuth: FC = ({ children }) => {
   const isLoggedIn = useContextSelector(
@@ -22,11 +22,11 @@ const ShowRoomGuardNeedsAuth: FC = ({ children }) => {
         <PageHeader
           beforeTitle={
             <>
-              <Link to={"/rooms"}>
+              <AppRouteLink route={appRoutes.rooms}>
                 <IconButton color={"inherit"}>
                   <ArrowBackIcon />
                 </IconButton>
-              </Link>
+              </AppRouteLink>
             </>
           }
           title={getMessage("page_showRoom_guard_needsAuth")}

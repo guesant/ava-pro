@@ -32,6 +32,7 @@ const ShowRoomOverviewCoursesFallback: FC = ({ children }) => {
   }
 
   if (!hasCache && (loadCacheError || !isLoadingCache)) {
+    console.log(loadCacheError)
     return <ShowRoomOverviewCoursesFallbackErrorLoadingCache />
   }
 

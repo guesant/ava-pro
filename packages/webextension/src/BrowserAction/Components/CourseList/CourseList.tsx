@@ -1,5 +1,5 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
-import { IExtractedCourse } from "@ava-pro/shared/lib/Interfaces/IExtractedCourse"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
+import { IRoomCacheCourse } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room/cache/courses/course"
 import Divider from "@mui/material/Divider"
 import List from "@mui/material/List"
 import ListSubheader from "@mui/material/ListSubheader"
@@ -7,8 +7,7 @@ import { FC, useMemo } from "react"
 import CourseListItem from "../CourseListItem/CourseListItem"
 
 type ICourseListProps = {
-  courses: IExtractedCourse[]
-
+  courses: IRoomCacheCourse[]
   keepTrailingDivider?: boolean
 }
 
@@ -41,7 +40,7 @@ const CourseList: FC<ICourseListProps> = ({
           <Divider />
 
           {pinnedCourses.map((course) => (
-            <CourseListItem course={course} key={course.courseId} />
+            <CourseListItem course={course} key={course.id} />
           ))}
         </>
       )}
@@ -57,7 +56,7 @@ const CourseList: FC<ICourseListProps> = ({
           {!hasPinnedCourses && keepTrailingDivider && <Divider />}
 
           {notPinnedCourses.map((course) => (
-            <CourseListItem course={course} key={course.courseId} />
+            <CourseListItem course={course} key={course.id} />
           ))}
         </>
       )}

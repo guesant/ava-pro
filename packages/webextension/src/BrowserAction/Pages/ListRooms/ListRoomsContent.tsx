@@ -1,10 +1,12 @@
-import { useExtensionStorageSlicer } from "@ava-pro/shared/lib/Hooks/useExtensionStorageSlicer"
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
-import { IDetectedRoomResponse } from "@ava-pro/shared/lib/Interfaces/IDetectedRoomResponse"
-import { applyStorageMutation } from "@ava-pro/shared/lib/Storage/applyStorageMutation"
-import { updateSelectedRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageSettingsMutations"
-import { listDetectedRooms } from "@ava-pro/shared/lib/Storage/Slicers/StorageDetectedRoomSlicers"
-import { listRoomsOmitCache } from "@ava-pro/shared/lib/Storage/Slicers/StorageRoomSlicers"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
+import {
+  applyStorageMutation,
+  useExtensionStorageSlicer
+} from "@ava-pro/shared/lib/features/storage"
+import { IDetectedRoomResponse } from "@ava-pro/shared/lib/features/storage/schemas/detected-rooms/detected-room/response"
+import { listDetectedRooms } from "@ava-pro/shared/lib/features/storage/schemas/detected-rooms/list-detected-rooms.slicer"
+import { listRoomsOmitCache } from "@ava-pro/shared/lib/features/storage/schemas/rooms/list-rooms-omit-cache.slicer"
+import { updateSelectedRoom } from "@ava-pro/shared/lib/features/storage/schemas/settings"
 import Alert from "@mui/material/Alert"
 import { useEffect, useMemo } from "react"
 import DetectedRoomList from "../../Components/DetectedRoomList/DetectedRoomList"

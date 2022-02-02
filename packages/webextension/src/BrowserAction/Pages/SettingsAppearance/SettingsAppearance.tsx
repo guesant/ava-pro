@@ -1,4 +1,4 @@
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import ListSubheader from "@mui/material/ListSubheader"
 import SettingsAppearanceDarkMode from "./SettingsAppearanceDarkMode"
 

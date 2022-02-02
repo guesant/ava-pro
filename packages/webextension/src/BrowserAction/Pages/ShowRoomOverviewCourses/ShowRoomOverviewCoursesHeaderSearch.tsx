@@ -1,8 +1,8 @@
 import SearchIcon from "@mui/icons-material/Search"
 import IconButton from "@mui/material/IconButton"
-import { Link } from "react-router-dom"
 import { useContextSelector } from "use-context-selector"
 import { RoomCachedCoursesContext } from "../../Components/RoomCachedCoursesContext"
+import { AppRouteLink, appRoutes } from "../../Hooks/useAppRoutes"
 
 const ShowRoomOverviewCoursesHeaderSearch = () => {
   const canSearch = useContextSelector(
@@ -10,14 +10,14 @@ const ShowRoomOverviewCoursesHeaderSearch = () => {
     ({ hasCache }) => hasCache
   )
   return (
-    <Link
-      to={"./../search/courses"}
+    <AppRouteLink
+      route={appRoutes.viewRoomSearchCourses}
       onClick={(e) => !canSearch && e.preventDefault()}
     >
       <IconButton disabled={!canSearch} color={"inherit"}>
         <SearchIcon />
       </IconButton>
-    </Link>
+    </AppRouteLink>
   )
 }
 

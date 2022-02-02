@@ -3,7 +3,7 @@ import { createContext } from "use-context-selector"
 import { useRoomCachedCourses } from "../Hooks/useRoomCachedCourses"
 import { RoomCoursesContextProvider } from "./RoomCoursesContext"
 
-type IRoomCachedCoursesContext = {} & ReturnType<typeof useRoomCachedCourses>
+type IRoomCachedCoursesContext = ReturnType<typeof useRoomCachedCourses>
 
 export const RoomCachedCoursesContext = createContext(
   {} as IRoomCachedCoursesContext
@@ -15,7 +15,13 @@ export const RoomCachedCoursesContextProvider: FC = ({ children }) => {
 
   return (
     <RoomCachedCoursesContext.Provider
-      value={{ coursesCache, hasCache, isLoadingCache, loadCacheError, reload }}
+      value={{
+        reload,
+        hasCache,
+        coursesCache,
+        isLoadingCache,
+        loadCacheError
+      }}
     >
       <RoomCoursesContextProvider pageCourses={coursesCache}>
         {children}

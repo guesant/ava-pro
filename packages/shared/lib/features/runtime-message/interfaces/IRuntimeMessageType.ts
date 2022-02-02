@@ -1,0 +1,4 @@
+export enum IRuntimeMessageType {
+  NOTIFY_DETECTED_ROOM,
+  NOTIFY_UNREAD_ROOM_MESSAGES
+}

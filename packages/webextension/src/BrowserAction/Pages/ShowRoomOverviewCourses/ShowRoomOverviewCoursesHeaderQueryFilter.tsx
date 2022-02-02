@@ -1,13 +1,14 @@
-import { useExtensionStorageSlicer } from "@ava-pro/shared/lib/Hooks/useExtensionStorageSlicer"
-import { getMessage } from "@ava-pro/shared/lib/i18n/getMessage"
-import { IFilterCoursesByStatus } from "@ava-pro/shared/lib/Interfaces/IFilterCoursesByStatus"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { getFilterCoursesBy } from "@ava-pro/shared/lib/Storage/Slicers/StorageSettingsSlicers"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
+import {
+  makeStorageMutator,
+  useExtensionStorageSlicer
+} from "@ava-pro/shared/lib/features/storage"
+import { IFilterCoursesByStatus } from "@ava-pro/shared/lib/features/storage/schemas/settings/filter-courses-by-status"
+import { getFilterCoursesBy } from "@ava-pro/shared/lib/features/storage/schemas/settings/filter-courses-by-status/get-filter-courses-by-status.slicer"
 import DoneIcon from "@mui/icons-material/Done"
 import PendingActionsIcon from "@mui/icons-material/PendingActions"
 import UpdateIcon from "@mui/icons-material/Update"
 import ListItemIcon from "@mui/material/ListItemIcon"
-
 import ListSubheader from "@mui/material/ListSubheader"
 import MenuItem from "@mui/material/MenuItem"
 import MenuList from "@mui/material/MenuList"

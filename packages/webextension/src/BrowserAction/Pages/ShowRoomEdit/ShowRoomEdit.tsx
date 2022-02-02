@@ -1,5 +1,5 @@
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
-import { updateRoom } from "@ava-pro/shared/lib/Storage/Mutations/StorageRoomsMutations"
+import { makeStorageMutator } from "@ava-pro/shared/lib/features/storage"
+import { updateRoom } from "@ava-pro/shared/lib/features/storage/schemas/rooms"
 import { useCallback, useEffect, useMemo } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useContextSelector } from "use-context-selector"

@@ -1,0 +1,11 @@
+export * as room from "./room"
+export * from "./rooms.struct"
+
+export * from "./add-room.mutation"
+export * from "./get-room-by-id.slicer"
+export * from "./has-room.slicer"
+export * from "./list-rooms.slicer"
+export * from "./list-rooms-omit-cache.slicer"
+export * from "./remove-room.mutation"
+export * from "./update-room.mutation"
+export * from "./update-room-course.mutation"

@@ -1,12 +1,14 @@
-import { useExtensionStorageSlicer } from "@ava-pro/shared/lib/Hooks/useExtensionStorageSlicer"
-import { IExtensionStorageSlicer } from "@ava-pro/shared/lib/Interfaces/IExtensionStorageSlicer"
-import { IPaletteMode } from "@ava-pro/shared/lib/Interfaces/IPaletteMode"
-import { makeStorageMutator } from "@ava-pro/shared/lib/Storage/makeStorageMutator"
+import {
+  makeStorageMutator,
+  useExtensionStorageSlicer
+} from "@ava-pro/shared/lib/features/storage"
+import { IExtensionStorageSlicer } from "@ava-pro/shared/lib/features/storage/interfaces/IExtensionStorageSlicer"
+import { IPaletteMode } from "@ava-pro/shared/lib/features/storage/schemas/settings/palette/mode/IPaletteMode"
 
 const getPaletteModeSlicer: IExtensionStorageSlicer<IPaletteMode> = (state) =>
   state.settings.palette.mode
 
-const togglePaletteMode = makeStorageMutator<void>((state) => {
+const togglePaletteMode = makeStorageMutator((state) => {
   state.settings.palette.mode =
     state.settings.palette.mode === IPaletteMode.DARK
       ? IPaletteMode.LIGHT
