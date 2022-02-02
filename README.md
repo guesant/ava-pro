@@ -38,16 +38,16 @@ git clone -b 0.0.2 https://github.com/guesant/ava-pro.git
 cd ava-pro
 ```
 
-#### Development with docker-compose (recommended)
+#### Development with Docker (recommended)
 
-We recommend the usage of docker-compose to develop the extension (~~due security reasons lol~~ [[1]](https://thehackernews.com/2021/10/popular-npm-package-hijacked-to-publish.html)).
+We recommend the usage of Docker to develop the extension (~~due security reasons lol~~ [[1]](https://thehackernews.com/2021/10/popular-npm-package-hijacked-to-publish.html)).
 
 ```sh
-docker-compose up dev # -> packages/webextension/dist/dev
-docker-compose up build # -> packages/webextension/dist/prod
+make dev # -> packages/webextension/dist/dev
+make build # -> packages/webextension/dist/prod
 ```
 
-#### Development with the nodejs from your system
+#### Development with the NodeJS from your system
 
 <details>
   <summary>Click to expand</summary>

@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint --fix --ext js,ts,tsx,jsx packages",
+    "lint": "eslint --ext js,ts,tsx,jsx packages",
+    "lint:fix": "pnpm run lint -- --fix",
     "dev": "pnpm run --filter @ava-pro/webextension start",
-    "build": "pnpm run clear:cache; pnpm run --filter @ava-pro/webextension build",
-    "clear:cache": "find . -type d -name .parcel-cache -exec rm -rf {} \\+",
+    "build": "pnpm run --filter @ava-pro/webextension build",
     "prepare": "husky install"
   },
   "lint-staged": {
