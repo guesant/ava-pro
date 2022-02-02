@@ -1,15 +1,27 @@
 /* eslint-disable no-useless-constructor */
-
+import normalizeUrl from "normalize-url"
 import * as features from "./features"
 import { IMayBePromise } from "./interfaces/may-be-promise"
 
 export class MoodleClient {
   isAuthed = false
 
+  private _endpointUrl: string | null = null
+
+  get endpointURL() {
+    return this._endpointUrl!
+  }
+
+  set endpointURL(value) {
+    this._endpointUrl = normalizeUrl(value, { removeTrailingSlash: true })
+  }
+
   constructor(
-    public readonly endpointURL: string,
+    endpointURL: string,
     public httpService: typeof fetch = window.fetch.bind(window)
-  ) {}
+  ) {
+    this.endpointURL = endpointURL
+  }
 
   // tokens
 
