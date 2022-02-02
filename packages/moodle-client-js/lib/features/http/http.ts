@@ -6,5 +6,18 @@ export const http = async (
   payload: IHTTPRequestPayload
 ) => {
   const { url, options } = payload
-  return client.httpService(client.endpointURL + url, options)
+
+  const targetUrl = client.endpointURL + url
+
+  const response = await client.httpService(targetUrl, {
+    ...options,
+    mode: "cors",
+    credentials: "include"
+  })
+
+  if (!response.ok) {
+    throw new Error("Response not ok")
+  }
+
+  return response
 }
