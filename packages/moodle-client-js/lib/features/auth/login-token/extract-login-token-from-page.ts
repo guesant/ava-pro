@@ -1,15 +1,13 @@
-import { selectOne } from "css-select"
-import { Document, Element } from "domhandler"
-import { parseDocument } from "htmlparser2"
+const INPUT_LOGIN_TOKEN_REGEX = /<input( [^>]*)? name="logintoken"( [^>]*)?\/?>/
+
+const INPUT_LOGIN_TOKEN_VALUE_REGEX = /value="([^"]*)"/
 
 export const extractLoginTokenFromPage = (pageContent: string) => {
-  const dom = parseDocument(pageContent, {})
+  const [inputLoginToken = ""] =
+    pageContent.match(INPUT_LOGIN_TOKEN_REGEX) ?? []
 
-  const loginToken = selectOne<Document, Element>(
-    // eslint-disable-next-line quotes
-    'input[name="logintoken"]',
-    dom
-  )!
+  const [, loginToken = ""] =
+    inputLoginToken.match(INPUT_LOGIN_TOKEN_VALUE_REGEX) ?? []
 
-  return loginToken.attribs.value as string
+  return loginToken
 }
