@@ -1,7 +1,7 @@
 import { useQuery, UseQueryResult } from "react-query"
 import { useContextSelector } from "use-context-selector"
-import { RoomAuthedContext } from "../Components/RoomAuthedContext"
-import { RoomContext } from "../Components/RoomContext"
+import { RoomAuthedContext } from "./RoomAuthedContext"
+import { RoomContext } from "./RoomContext"
 
 export type IRoomConversationsQuery = {
   conversationsQuery: UseQueryResult<any | null>

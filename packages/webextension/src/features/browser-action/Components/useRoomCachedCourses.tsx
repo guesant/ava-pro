@@ -6,8 +6,8 @@ import { IRoomCacheCourse } from "@ava-pro/shared/lib/features/storage/schemas/r
 import { useCallback, useEffect } from "react"
 import { useAsync } from "react-async"
 import { useContextSelector } from "use-context-selector"
-import { RoomContext } from "../Components/RoomContext"
-import { RoomAuthedContext } from "../Components/RoomAuthedContext"
+import { RoomContext } from "./RoomContext"
+import { RoomAuthedContext } from "./RoomAuthedContext"
 
 const handleUpdateRoom = makeStorageMutator(updateRoom)
 

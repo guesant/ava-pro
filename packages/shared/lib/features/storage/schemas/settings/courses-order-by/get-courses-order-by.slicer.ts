@@ -1,4 +1,4 @@
-import { IExtensionStorageSlicer } from "../../../interfaces/IExtensionStorageSlicer"
+import { IExtensionStorageSlicer } from "../../../interfaces"
 import { IStorage } from "../../interfaces"
 
 export const getCoursesOrderBy: IExtensionStorageSlicer<

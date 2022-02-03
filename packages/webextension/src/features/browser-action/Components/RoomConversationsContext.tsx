@@ -2,7 +2,7 @@ import { features } from "@ava-pro/moodle-client-js"
 import { FC } from "react"
 import { UseQueryResult } from "react-query"
 import { createContext } from "use-context-selector"
-import { useRoomConversationsQuery } from "../Hooks/useRoomConversationsQuery"
+import { useRoomConversationsQuery } from "./useRoomConversationsQuery"
 
 type IRoomChatsContext = {
   conversationsQuery: UseQueryResult<

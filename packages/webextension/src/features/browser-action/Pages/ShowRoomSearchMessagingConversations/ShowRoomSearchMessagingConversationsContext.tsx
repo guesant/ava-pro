@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { createContext } from "use-context-selector"
-import { useRoomConversationsQuery } from "../../Hooks/useRoomConversationsQuery"
+import { useRoomConversationsQuery } from "../../Components/useRoomConversationsQuery"
 
 type IShowRoomSearchChatsConversationsContext = {
   conversationsQuery: ReturnType<

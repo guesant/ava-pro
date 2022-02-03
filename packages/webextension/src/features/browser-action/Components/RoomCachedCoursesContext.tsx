@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { createContext } from "use-context-selector"
-import { useRoomCachedCourses } from "../Hooks/useRoomCachedCourses"
+import { useRoomCachedCourses } from "./useRoomCachedCourses"
 import { RoomCoursesContextProvider } from "./RoomCoursesContext"
 
 type IRoomCachedCoursesContext = ReturnType<typeof useRoomCachedCourses>

@@ -3,11 +3,11 @@ import { updateRoomCourse } from "@ava-pro/shared/lib/features/storage/schemas/r
 import { IRoomCacheCourse } from "@ava-pro/shared/lib/features/storage/schemas/rooms/room/cache/courses/course"
 import { useCallback } from "react"
 import { useContextSelector } from "use-context-selector"
-import { RoomContext } from "../Components/RoomContext"
+import { RoomContext } from "./RoomContext"
 
 const handleUpdateRoomCourse = makeStorageMutator(updateRoomCourse)
 
-export const useCoursePinState = ({
+export const useRoomCoursePinState = ({
   id: courseId,
   isPinned
 }: IRoomCacheCourse) => {

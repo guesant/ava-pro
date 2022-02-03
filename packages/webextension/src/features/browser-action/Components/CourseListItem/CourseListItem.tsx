@@ -7,11 +7,11 @@ import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction"
 import ListItemText from "@mui/material/ListItemText"
 import Typography from "@mui/material/Typography"
 import { FC, useCallback } from "react"
-import { useCoursePinState } from "../../Hooks/useCoursePinState"
+import { useRoomCoursePinState } from "../useRoomCoursePinState"
 import * as classes from "./CourseListItem.module.css"
 
 const CourseListItem: FC<{ course: IRoomCacheCourse }> = ({ course }) => {
-  const { isPinned, togglePinState } = useCoursePinState(course)
+  const { isPinned, togglePinState } = useRoomCoursePinState(course)
 
   const handleClick = useCallback(() => {
     window.open(course.viewurl)
