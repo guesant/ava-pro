@@ -12,21 +12,21 @@ cd ava-pro
 We recommend the usage of Docker to develop the extension (~~due security reasons lol~~ [[1]](https://thehackernews.com/2021/10/popular-npm-package-hijacked-to-publish.html)).
 
 ```sh
-make sh # start a new container and attaches a shell session
-```
-
-```sh
 make dev # -> packages/webextension/dist/dev
 make build # -> packages/webextension/dist/prod
 ```
 
 ```sh
-make stop # stop the running container
-make attach # attaches a shell into a running container (sh, dev or build)
+make sh # starts a shell session
 ```
 
 ```sh
-make clear-cache # purge some cache stuffs
+make stop # stop the running container
+
+```
+
+```sh
+make clear # delete the dist files and the parcel cache
 ```
 
 #### Development with the NodeJS from your machine
