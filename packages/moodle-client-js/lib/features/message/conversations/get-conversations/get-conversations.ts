@@ -8,14 +8,15 @@ import { patchConversation } from "./patch-conversation"
 
 export const getConversations = async (
   client: MoodleClient,
-  payload: IGetConversationsRequest
+  payload?: IGetConversationsRequest
 ) => {
   const { conversations } = await ajax<IGetConversationsResponse>(
     client,
     "core_message_get_conversations",
     {
       type: null,
-      ...payload
+      ...payload,
+      userid: payload?.userid ?? (await client.userId)
     }
   )
 

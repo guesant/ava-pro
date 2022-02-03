@@ -1,6 +1,8 @@
 # ava-pro
 
-## What's ava-pro?
+Extensão para navegador criada para melhorar a experiência do usuário em plataformas educacionais Moodle™ (\*).
+
+## What's AVA Pro?
 
 PT-BR:
 
@@ -12,7 +14,7 @@ Esta extensão foi criada para melhorar a minha experiência e a de alguns coleg
 
 ## Install
 
-### From your browser's extension store (recommended):
+### From the browser extension store (recommended):
 
 <!-- todo: <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" height="50"/> -->
 
@@ -28,92 +30,21 @@ Esta extensão foi criada para melhorar a minha experiência e a de alguns coleg
 
 ## Hacking
 
-<details>
-  <summary>Click to expand</summary>
+You may be looking for the [HACKING.md](./HACKING.md).
 
-### Getting the Source Code
+## Useful Developer Resources
 
-```sh
-git clone -b 0.0.2 https://github.com/guesant/ava-pro.git
-cd ava-pro
-```
+- https://extensionworkshop.com/
 
-#### Development with Docker (recommended)
+- https://developer.chrome.com/docs/webstore/
 
-We recommend the usage of Docker to develop the extension (~~due security reasons lol~~ [[1]](https://thehackernews.com/2021/10/popular-npm-package-hijacked-to-publish.html)).
+- https://developer.chrome.com/docs/extensions/
 
-```sh
-make dev # -> packages/webextension/dist/dev
-make build # -> packages/webextension/dist/prod
-```
+- https://developer.mozilla.org/pt-BR/docs/Mozilla/Add-ons/WebExtensions
 
-```sh
-make attach # attaches to shell in a running dev or build container
-make clear-cache # purge some cache stuffs
-```
+- https://developer.mozilla.org/pt-BR/docs/Mozilla/Add-ons/WebExtensions/API
 
-```sh
-make sh # start a new container with a shell session
-```
-
-#### Development with the NodeJS from your system
-
-<details>
-  <summary>Click to expand</summary>
-
-```sh
-npm i -g pnpm
-pnpm install
-```
-
-```sh
-pnpm run dev # -> packages/webextension/dist/dev
-pnpm run build # -> packages/webextension/dist/prod
-```
-
-</details>
-
-### Load the extension build
-
-### Chrome
-
-<details>
-  <summary>Click to expand</summary>
-
-tl;dr;
-
-> - Open the Extension Management page by navigating to chrome://extensions.
->
-> - Enable Developer Mode by clicking the toggle switch next to Developer mode.
->
-> - Click the Load unpacked button and select the extension directory.
-
-- <https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked>
-
-</details>
-
-### Firefox
-
-<details>
-  <summary>Click to expand</summary>
-
-tl;dr;
-
-> - open Firefox
->
-> - enter "about:debugging" in the URL bar
->
-> - click "This Firefox"
->
-> - click "Load Temporary Add-on"
->
-> - open the extension's directory and select any file inside the extension, or select the packaged extension (.zip file).
-
-- <https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/>
-
-</details>
-
-</details>
+- https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
 
 ## License
 
@@ -124,6 +55,10 @@ will. Specifically you can redistribute and/or modify it under the terms of the
 [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.html) as
 published by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
+
+---
+
+\* Moodle™ trade marks are owned by either Moodle Pty Ltd or one of its associated entities. Read more here: <https://moodle.com/trademarks/>.
 
 ## Author
 

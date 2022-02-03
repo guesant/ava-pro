@@ -7,12 +7,15 @@ import {
 
 export * from "./interfaces"
 
-export const getConversationMessages = (
+export const getConversationMessages = async (
   client: MoodleClient,
   payload: IGetConversationMessagesRequest
 ) =>
   ajax<IGetConversationMessagesResponse>(
     client,
     "core_message_get_conversation_messages",
-    payload
+    {
+      ...payload,
+      currentuserid: payload.currentuserid ?? (await client.userId)
+    }
   )

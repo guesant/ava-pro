@@ -1,7 +1,7 @@
 export type IGetConversationMessagesRequest = {
   convid: number
 
-  currentuserid: number
+  currentuserid?: number
 
   limitfrom?: number
 

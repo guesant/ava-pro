@@ -1,7 +1,7 @@
 import { IGetConversationsConversationTypeDto } from "./IGetConversationsConversationTypeDto"
 
 export type IGetConversationsRequest = {
-  userid: number
+  userid?: number
 
   type?: IGetConversationsConversationTypeDto | null
 
