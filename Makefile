@@ -18,3 +18,6 @@ dev:
 build:
 	make clear-cache
 	docker run --rm --name $(DOCKER_CONTAINER_NAME) -v $(PROJECT_DATA):/srv -w /srv -u node -it $(DOCKER_CONTAINER_IMAGE) sh -c "pnpm install && pnpm run build"
+
+stop:
+	docker stop $(DOCKER_CONTAINER_NAME)

@@ -17,12 +17,16 @@ make build # -> packages/webextension/dist/prod
 ```
 
 ```sh
-make clear-cache # purge some cache stuffs
 make attach # attaches a shell into a running container (dev or build)
 ```
 
 ```sh
 make sh # start a new container and attaches a shell session
+```
+
+```sh
+make stop # stop the running container
+make clear-cache # purge some cache stuffs
 ```
 
 #### Development with the NodeJS from your machine
