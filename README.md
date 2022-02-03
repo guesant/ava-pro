@@ -1,6 +1,6 @@
 # ava-pro
 
-Extensão para navegador criada para melhorar a experiência do usuário em plataformas educacionais Moodle™ (\*).
+Extensão de Navegador, criada para melhorar a experiência do usuário em plataformas educacionais Moodle. ™ (\*).
 
 ## What's AVA Pro?
 
@@ -22,11 +22,11 @@ Esta extensão foi criada para melhorar a minha experiência e a de alguns coleg
 
 ## Ecosystem
 
-| Project                                                  | Description                                                  |
-| -------------------------------------------------------- | ------------------------------------------------------------ |
-| [@ava-pro/moodle-client-js](./packages/moodle-client-js) | Web Scrapping library for extracting data from Moodle pages. |
-| [@ava-pro/shared](./packages/shared)                     | Library with shared resources for the project needs.         |
-| [@ava-pro/webextension](./packages/webextension)         | The Web Extension source code.                               |
+| Project                                                  | Description                                                 |
+| -------------------------------------------------------- | ----------------------------------------------------------- |
+| [@ava-pro/moodle-client-js](./packages/moodle-client-js) | Web Scraping library for extracting data from Moodle pages. |
+| [@ava-pro/shared](./packages/shared)                     | Library with shared resources for the project needs.        |
+| [@ava-pro/webextension](./packages/webextension)         | The Web Extension source code.                              |
 
 ## Hacking
 
@@ -40,9 +40,9 @@ You may be looking for the [HACKING.md](./HACKING.md).
 
 - https://developer.chrome.com/docs/extensions/
 
-- https://developer.mozilla.org/pt-BR/docs/Mozilla/Add-ons/WebExtensions
+- https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions
 
-- https://developer.mozilla.org/pt-BR/docs/Mozilla/Add-ons/WebExtensions/API
+- https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API
 
 - https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
 
