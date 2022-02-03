@@ -24,13 +24,18 @@ export const useFeedbackFetchCoursesQuery = () => {
         setKey(key)
       }, 300)
       setFeedbackTimeoutId(showFeedbackTimeout)
-    }
-
-    if (!isLoadingCache && feedbackTimeoutId !== null) {
+    } else if (!isLoadingCache && feedbackTimeoutId !== null) {
       clearTimeout(feedbackTimeoutId)
       setFeedbackTimeoutId(null)
-      key && closeSnackbar(key)
-      setKey(null)
+      if (key !== null) {
+        closeSnackbar(key)
+        setKey(null)
+      }
+    } else {
+      if (key !== null) {
+        closeSnackbar(key)
+        setKey(null)
+      }
     }
   }, [isLoadingCache, feedbackTimeoutId, key, enqueueSnackbar])
 }

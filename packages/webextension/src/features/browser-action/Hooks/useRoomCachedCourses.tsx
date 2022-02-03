@@ -7,6 +7,7 @@ import { useCallback, useEffect } from "react"
 import { useAsync } from "react-async"
 import { useContextSelector } from "use-context-selector"
 import { RoomContext } from "../Components/RoomContext"
+import { RoomAuthedContext } from "../Components/RoomAuthedContext"
 
 const handleUpdateRoom = makeStorageMutator(updateRoom)
 
@@ -27,7 +28,9 @@ export const useRoomCachedCourses = () => {
     ({ moodleClient }) => moodleClient
   )
 
-  const id = useContextSelector(RoomContext, ({ room: { id } }) => id)
+  const roomId = useContextSelector(RoomContext, ({ room: { id } }) => id)
+
+  const userId = useContextSelector(RoomAuthedContext, ({ userId }) => userId)
 
   const coursesCache = useContextSelector(
     RoomContext,
@@ -43,7 +46,7 @@ export const useRoomCachedCourses = () => {
   const updateCoursesCache = useCallback(async () => {
     const { courses } =
       await moodleClient.getEnrolledCoursesByTimelineClassification()
-    await handleUpdateRoomCoursesCache(id, courses)
+    await handleUpdateRoomCoursesCache(roomId, courses)
   }, [hasCache, moodleClient])
 
   const { run, error, isLoading } = useAsync({ deferFn: updateCoursesCache })
@@ -51,8 +54,16 @@ export const useRoomCachedCourses = () => {
   const reload = useCallback(() => run(), [run])
 
   useEffect(() => {
-    !hasCache && reload()
-  }, [hasCache, reload])
+    if (!hasCache) {
+      reload()
+    }
+  }, [reload, hasCache])
+
+  useEffect(() => {
+    if (userId !== null) {
+      reload()
+    }
+  }, [reload, userId])
 
   const loadCacheError = !hasCache && error
 
