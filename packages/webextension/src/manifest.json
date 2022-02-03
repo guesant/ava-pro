@@ -23,7 +23,7 @@
       "128": "./icons/icon-128.png",
       "256": "./icons/icon-256.png"
     },
-    "default_popup": "BrowserAction/index.html",
+    "default_popup": "features/browser-action/index.html",
     "default_title": "AVA Pro"
   },
   "background": {

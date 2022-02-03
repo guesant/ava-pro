@@ -2,7 +2,7 @@ import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 import { isUrl } from "@ava-pro/shared/lib/utils/is-url"
 import TextField from "@mui/material/TextField"
 import { useFormContext } from "react-hook-form"
-import AppErrorMessage from "../../Components/AppErrorMessage/AppErrorMessage"
+import AppErrorMessage from "../AppErrorMessage/AppErrorMessage"
 import { handleSelectAllOnFocus } from "../../Hooks/handleSelectAllOnFocus"
 
 const RoomFormInputURL = () => {

@@ -2,7 +2,7 @@
 
 ### Estrutura do Projeto
 
-- `src/BrowserAction`
+- `src/features/browser-action`
 
   > Página do popup que é aberto quando for clicado no ícone da extensão.
 
