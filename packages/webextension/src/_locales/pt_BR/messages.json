@@ -206,6 +206,9 @@
   "page_showRoom_overviewCourses_feedback_error": {
     "message": "Não foi possível carregar a lista de cursos. Certifique que você está conectado à Internet e autenticado no Ambiente."
   },
+  "page_showRoom_overviewCourses_feedback_refetchingCache": {
+    "message": "Atualizando a lista de cursos..."
+  },
   "page_showRoom_overviewCourses_feedback_loadingCache": {
     "message": "Carregando a lista de cursos..."
   },

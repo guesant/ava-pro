@@ -8,6 +8,8 @@ import { useAsync } from "react-async"
 import { useContextSelector } from "use-context-selector"
 import { RoomContext } from "./RoomContext"
 import { RoomAuthedContext } from "./RoomAuthedContext"
+import { useSnackbar } from "notistack"
+import { getMessage } from "@ava-pro/shared/lib/features/i18n"
 
 const handleUpdateRoom = makeStorageMutator(updateRoom)
 
@@ -23,6 +25,8 @@ const handleUpdateRoomCoursesCache = (
   })
 
 export const useRoomCachedCourses = () => {
+  const { enqueueSnackbar } = useSnackbar()
+
   const moodleClient = useContextSelector(
     RoomContext,
     ({ moodleClient }) => moodleClient
@@ -64,6 +68,17 @@ export const useRoomCachedCourses = () => {
       reload()
     }
   }, [reload, userId])
+
+  useEffect(() => {
+    if (isLoading) {
+      enqueueSnackbar(
+        getMessage("page_showRoom_overviewCourses_feedback_refetchingCache"),
+        {
+          autoHideDuration: 3 * 1000
+        }
+      )
+    }
+  }, [isLoading])
 
   const loadCacheError = !hasCache && error
 
